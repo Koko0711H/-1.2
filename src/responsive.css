@@ -1,0 +1,149 @@
+/* 响应式设计 - 适配手机端 */
+
+/* 平板设备 (768px - 1024px) */
+@media (max-width: 1024px) {
+  .hero-section {
+    height: 80vh;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .industry-cards {
+    gap: 1.5rem;
+  }
+  
+  .contact-info {
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+
+/* 手机设备 (小于768px) */
+@media (max-width: 768px) {
+  .hero-section {
+    height: 70vh;
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .nav-menu {
+    display: none;
+  }
+  
+  .nav-toggle {
+    display: block;
+  }
+  
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .industry-cards {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .industry-card {
+    min-width: 100%;
+  }
+  
+  .contact-info {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .contact-form {
+    padding: 1rem;
+  }
+  
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .floating-contact {
+    bottom: 1rem;
+    right: 1rem;
+  }
+}
+
+/* 小型手机设备 (小于480px) */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.8rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .product-card {
+    padding: 1rem;
+  }
+  
+  .about-content {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .about-text {
+    text-align: center;
+  }
+}
+
+/* 确保图片和视频在移动设备上响应式 */
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 确保表格在移动设备上可滚动 */
+.table-responsive {
+  overflow-x: auto;
+}
+
+/* 调整导航栏在移动设备上的显示 */
+.navbar {
+  padding: 0.5rem 1rem;
+}
+
+/* 确保按钮在移动设备上易于点击 */
+button, .btn {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* 调整字体大小在移动设备上 */
+body {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* 确保内容在移动设备上不会溢出 */
+.container {
+  padding: 0 1rem;
+  overflow-x: hidden;
+}
