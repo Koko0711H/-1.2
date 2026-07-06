@@ -1,263 +1,314 @@
-/* ===== �ֻ���ר���Ż� ===== */
+﻿/* ===== 手机端专项优化 ===== */
+/* 仅在最大宽度768px以下生效，电脑端完全不变 */
 
-/* ��ҳHero�Ż� - ��Ƶ������ʾ */
+/* ---- 首页 Hero 优化 - 视频完整展示 ---- */
 @media (max-width: 768px) {
   .hero-section {
-    height: 50vh !important;
-    min-height: 400px;
+    height: 60vh !important;
+    min-height: 350px;
   }
-  
+
   .hero-bg-video {
     object-fit: cover;
     width: 100%;
     height: 100%;
   }
-  
+
   .hero-content {
-    padding: 0 1rem;
+    padding: 0 1.5rem;
+    top: auto;
+    bottom: 80px;
+    left: 0;
+    right: 0;
+    max-width: 100%;
+    text-align: center;
   }
-  
+
   .hero-title {
     font-size: 1.8rem !important;
-    line-height: 1.2;
+    line-height: 1.3;
     margin-bottom: 0.5rem;
   }
-  
+
   .hero-subtitle {
     font-size: 1rem !important;
     margin-bottom: 1rem;
   }
-  
+
   .hero-btn {
     padding: 0.6rem 1.5rem;
     font-size: 0.9rem;
   }
-  
+
   .hero-arrow {
-    display: none;
+    width: 36px;
+    height: 36px;
+    display: flex !important;
+  }
+
+  .hero-arrow svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .hero-arrow-left {
+    left: 10px;
+  }
+
+  .hero-arrow-right {
+    right: 10px;
   }
 }
 
-/* ��Ʒ�����Ż� - ��Ƶ���ϣ��������� */
+/* ---- 产品中心优化 - 视频/图片在上，文字在下 ---- */
 @media (max-width: 768px) {
-  .product-card {
-    display: flex;
-    flex-direction: column;
+  .product-showcase {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem;
+    padding: 1rem;
     margin-bottom: 2rem;
   }
-  
-  .product-video {
+
+  .product-showcase.from-left,
+  .product-showcase.from-right {
+    transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .product-showcase.from-left.visible,
+  .product-showcase.from-right.visible {
+    transform: translateY(0);
+  }
+
+  .product-showcase-img {
+    width: 100% !important;
+    order: 1;
+  }
+
+  .product-showcase-img .product-video {
     width: 100%;
-    height: 200px;
-    margin-bottom: 1rem;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 8px;
   }
-  
-  .product-info {
-    padding: 0 1rem;
+
+  .product-showcase-text {
+    order: 2;
+    padding: 0 0.5rem;
   }
-  
-  .product-title {
+
+  .product-tag {
+    font-size: 0.8rem;
+  }
+
+  .product-showcase-text h3 {
     font-size: 1.3rem;
     margin-bottom: 0.5rem;
   }
-  
-  .product-desc {
+
+  .product-showcase-text p {
     font-size: 0.9rem;
-    margin-bottom: 1rem;
+    line-height: 1.6;
   }
-  
-  /* չ�������Ż� - ͼƬ���ϣ��������� */
-  .product-detail {
+
+  /* 了解更多展开后 - 图片在上文字在下 */
+  .rich-detail {
+    display: flex;
     flex-direction: column;
+    gap: 1rem;
+    padding: 0;
   }
-  
-  .product-detail-image {
+
+  .rich-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .rich-item .rich-img {
     width: 100%;
-    height: 200px;
-    margin-bottom: 1rem;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 6px;
   }
-  
-  .product-detail-text {
-    padding: 0 1rem;
+
+  .rich-item .rich-text {
+    padding: 0;
+  }
+
+  .rich-item .rich-text h4 {
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .rich-item .rich-text p {
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  .product-showcase-btns {
+    margin-top: 0.8rem;
+  }
+
+  .product-learn-btn {
+    width: 100%;
+    text-align: center;
+    padding: 0.7rem;
+  }
+
+  .product-detail {
+    max-height: none !important;
+    overflow: visible !important;
   }
 }
 
-/* Ϊʲôѡ�������Ż� - ������������ */
+/* ---- 为什么选择我们优化 - 2x2网格排列 ---- */
 @media (max-width: 768px) {
   .advantages-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1rem !important;
     padding: 0 1rem;
+    max-width: 100%;
   }
-  
+
   .advantage-card {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 1.5rem;
+    padding: 1.2rem 0.8rem;
     background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: transform 0.3s, box-shadow 0.3s;
   }
-  
+
+  .advantage-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  }
+
   .advantage-icon {
     font-size: 2rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.6rem;
   }
-  
-  .advantage-title {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
+
+  .advantage-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    font-weight: 600;
   }
-  
-  .advantage-desc {
-    font-size: 0.9rem;
+
+  .advantage-card p {
+    font-size: 0.8rem;
     line-height: 1.4;
+    color: var(--text-light);
   }
 }
 
-/* �����������Ż� - �ĸ�ģ�������������� */
+/* ---- 关于深柴电力优化 - 2x2模块排列 ---- */
 @media (max-width: 768px) {
   .about-content {
     flex-direction: column;
     padding: 0 1rem;
+    gap: 1rem;
   }
-  
-  .about-image {
-    width: 100%;
-    height: 200px;
-    margin-bottom: 1rem;
-  }
-  
+
   .about-text {
+    order: 1;
     padding: 0;
   }
-  
-  .about-features {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-  
-  .about-feature {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 1rem;
-    background: #f8f9fa;
-    border-radius: 8px;
-  }
-  
-  .about-feature-icon {
-    font-size: 1.5rem;
+
+  .about-text h3 {
+    font-size: 1.2rem;
     margin-bottom: 0.5rem;
   }
-  
-  .about-feature-title {
-    font-size: 1rem;
-    margin-bottom: 0.3rem;
+
+  .about-text p {
+    font-size: 0.9rem;
+    line-height: 1.6;
   }
-  
-  .about-feature-desc {
-    font-size: 0.85rem;
+
+  .about-image {
+    order: 2;
+    width: 100%;
+    height: auto;
+    max-height: 220px;
+  }
+
+  .about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .stats-bar {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1rem;
+    padding: 1.5rem 1rem;
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: 0.8rem;
+    background: var(--light-bg);
+    border-radius: 8px;
+  }
+
+  .stat-item .number {
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 0.2rem;
+    color: var(--primary);
+    font-weight: 700;
+  }
+
+  .stat-item .label {
+    font-size: 0.8rem;
+    color: var(--text-light);
   }
 }
 
-/* ��ϵ���Ǻ����������Ż� - �������� */
-@media (max-width: 768px) {
-  .contact-section {
-    padding: 2rem 1rem;
-  }
-  
-  .contact-info {
-    flex-direction: column;
-    margin-bottom: 2rem;
-  }
-  
-  .contact-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-  
-  .contact-icon {
-    width: 40px;
-    height: 40px;
-    margin-right: 1rem;
-  }
-  
-  .contact-text {
-    flex: 1;
-  }
-  
-  .contact-form {
-    width: 100%;
-    padding: 0;
-  }
-  
-  .form-group {
-    margin-bottom: 1rem;
-  }
-  
-  .form-input {
-    width: 100%;
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  .form-textarea {
-    width: 100%;
-    height: 100px;
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    resize: vertical;
-  }
-  
-  .submit-btn {
-    width: 100%;
-    padding: 0.8rem;
-    background: #0d2137;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-  }
-}
-
-/* �۽���ҵ�Ż� - ������� */
+/* ---- 聚焦行业优化 - 保持横向滚动 ---- */
 @media (max-width: 768px) {
   .industry-section {
     padding: 2rem 0;
   }
-  
-  .industry-cards {
+
+  .industry-scroll {
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     padding: 0 1rem;
     gap: 1rem;
+    scrollbar-width: none;
   }
-  
+
+  .industry-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
   .industry-card {
-    min-width: 280px;
+    min-width: 260px;
+    max-width: 260px;
     scroll-snap-align: start;
     flex-shrink: 0;
+    border-radius: 10px;
+    overflow: hidden;
   }
 }
 
-/* ��Ŀ�����Ż� - ������� */
+/* ---- 项目案例优化 - 保持横向滚动 ---- */
 @media (max-width: 768px) {
   .cases-section {
     padding: 2rem 0;
   }
-  
+
   .cases-scroll {
     display: flex;
     overflow-x: auto;
@@ -265,74 +316,334 @@
     -webkit-overflow-scrolling: touch;
     padding: 0 1rem;
     gap: 1rem;
+    scrollbar-width: none;
   }
-  
+
+  .cases-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
   .case-card {
-    min-width: 250px;
+    min-width: 240px;
+    max-width: 240px;
     scroll-snap-align: start;
     flex-shrink: 0;
+    border-radius: 10px;
+    overflow: hidden;
   }
 }
 
-/* ҳ���Ż� */
+/* ---- 联系我们 + 在线留言 上下排列 ---- */
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 2rem 1rem;
+  }
+
+  .contact-inner {
+    flex-direction: column;
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .contact-info {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .contact-info h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .contact-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .contact-info-item:last-child {
+    border-bottom: none;
+  }
+
+  .contact-info-item .icon {
+    font-size: 1.2rem;
+    width: 30px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .contact-info-item .detail h4 {
+    font-size: 0.9rem;
+    margin-bottom: 0.15rem;
+    color: var(--text);
+  }
+
+  .contact-info-item .detail p {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    line-height: 1.4;
+  }
+
+  /* 在线留言表单 */
+  .contact-form {
+    width: 100%;
+    order: 2;
+  }
+
+  .contact-form h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .form-group {
+    margin-bottom: 0.8rem;
+  }
+
+  .form-group label {
+    font-size: 0.85rem;
+    margin-bottom: 0.3rem;
+    display: block;
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .form-input,
+  .form-group input,
+  .form-textarea,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    transition: border-color 0.3s;
+  }
+
+  .form-input:focus,
+  .form-group input:focus,
+  .form-textarea:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-light);
+  }
+
+  .form-textarea,
+  .form-group textarea {
+    height: 100px;
+    resize: vertical;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 0.8rem;
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .submit-btn:hover {
+    background: var(--primary-light);
+  }
+}
+
+/* ---- 页脚优化 ---- */
 @media (max-width: 768px) {
   .footer-content {
     flex-direction: column;
     text-align: center;
     padding: 2rem 1rem;
   }
-  
+
   .footer-links {
     margin-bottom: 1.5rem;
   }
-  
+
   .footer-social {
     margin-bottom: 1.5rem;
   }
 }
 
-/* ������ť�Ż� */
+/* ---- 浮动联系按钮优化 ---- */
 @media (max-width: 768px) {
   .floating-contact {
     bottom: 1rem;
     right: 1rem;
+    gap: 8px;
   }
-  
-  .floating-btn {
-    width: 50px !important;
-    height: 50px !important;
+
+  .floating-icon {
+    width: 44px;
+    height: 44px;
   }
-  
-  .floating-popup {
-    right: 60px !important;
-    width: 200px;
+
+  .floating-label-text {
+    font-size: 12px;
+    padding: 8px 12px;
   }
 }
 
-/* ͨ���Ż� */
+/* ---- 导航栏手机端优化 ---- */
 @media (max-width: 768px) {
-  .section-title {
-    font-size: 1.5rem !important;
-    margin-bottom: 1rem;
-  }
-  
-  .section-subtitle {
-    font-size: 0.9rem !important;
-  }
-  
-  .container {
+  .header-inner {
     padding: 0 1rem;
   }
-  
-  /* ȷ�����ֲ������ */
-  h1, h2, h3, h4, p {
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 1000;
+    gap: 0;
+  }
+
+  .nav-links.mobile-open {
+    display: flex;
+  }
+
+  .nav-links a {
+    color: var(--text) !important;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #eee;
+    font-size: 15px;
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  .header-right .quote-btn,
+  .header-right .social-icon {
+    display: none;
+  }
+
+  .logo .logo-main {
+    font-size: 20px;
+  }
+
+  .logo-img {
+    height: 28px;
+  }
+
+  .lang-btn {
+    font-size: 13px;
+    padding: 4px 8px;
+  }
+}
+
+/* ---- 通用手机端优化 ---- */
+@media (max-width: 768px) {
+  .section-title h2 {
+    font-size: 1.5rem !important;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title p {
+    font-size: 0.85rem !important;
+  }
+
+  .container {
+    padding: 0 1rem;
+    overflow-x: hidden;
+  }
+
+  /* 确保所有文字不溢出 */
+  h1, h2, h3, h4, p, span {
     word-wrap: break-word;
     overflow-wrap: break-word;
   }
-  
-  /* ȷ��ͼƬ����Ƶ��Ӧʽ */
+
+  /* 确保图片和视频响应式 */
   img, video {
     max-width: 100%;
     height: auto;
+  }
+
+  /* 聚光灯页面手机端 */
+  .spotlight-home h1 {
+    font-size: 1.8rem !important;
+  }
+
+  .spotlight-home p {
+    font-size: 0.9rem !important;
+  }
+}
+
+/* ---- 超小屏幕优化 (480px以下) ---- */
+@media (max-width: 480px) {
+  .hero-section {
+    height: 55vh !important;
+    min-height: 300px;
+  }
+
+  .hero-title {
+    font-size: 1.5rem !important;
+  }
+
+  .hero-subtitle {
+    font-size: 0.85rem !important;
+  }
+
+  .section-title h2 {
+    font-size: 1.3rem !important;
+  }
+
+  .advantages-grid {
+    gap: 0.8rem !important;
+  }
+
+  .advantage-card {
+    padding: 1rem 0.6rem;
+  }
+
+  .advantage-icon {
+    font-size: 1.6rem;
+  }
+
+  .advantage-card h3 {
+    font-size: 0.9rem;
+  }
+
+  .advantage-card p {
+    font-size: 0.75rem;
+  }
+
+  .product-showcase-img .product-video {
+    height: 180px;
+  }
+
+  .rich-item .rich-img {
+    height: 150px;
+  }
+
+  .stat-item .number {
+    font-size: 1.2rem;
+  }
+
+  .contact-info-item .detail h4 {
+    font-size: 0.85rem;
+  }
+
+  .contact-info-item .detail p {
+    font-size: 0.8rem;
   }
 }
