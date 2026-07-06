@@ -1,4 +1,4 @@
-﻿import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { useLang } from '../i18n'
 
 function SpotlightHome({ onMouseLeave }) {

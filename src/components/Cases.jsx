@@ -1,4 +1,4 @@
-﻿import { useState } from 'react'
+import { useState } from 'react'
 import { useLang } from '../i18n'
 
 function Cases() {

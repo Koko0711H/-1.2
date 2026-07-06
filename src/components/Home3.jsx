@@ -1,4 +1,4 @@
-﻿import { useLang } from '../i18n'
+import { useLang } from '../i18n'
 
 function Home3() {
   const { t } = useLang()

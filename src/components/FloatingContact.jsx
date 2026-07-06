@@ -1,4 +1,4 @@
-﻿function FloatingContact() {
+function FloatingContact() {
   return (
     <div className="floating-contact">
       <div className="floating-item">

@@ -1,4 +1,4 @@
-﻿import { useState } from 'react'
+import { useState } from 'react'
 import { useLang } from '../i18n'
 import imgConstruction from '../assets/images/industry-construction.jpg'
 import imgSchool from '../assets/images/industry-school.jpg'
