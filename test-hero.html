@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>测试 Hero 组件</title>
+    <style>
+        body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        .test-container { 
+            width: 100%; 
+            height: 100vh; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            background: #0a1628;
+            color: white;
+            text-align: center;
+        }
+        .test-content { max-width: 800px; padding: 20px; }
+        .test-button {
+            background: #1a5a9a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="test-content">
+            <h1>深柴电力 - Hero 组件测试</h1>
+            <p>检查 Hero 组件是否包含切换功能</p>
+            <div>
+                <button class="test-button" onclick="testHero()">测试 Hero 组件</button>
+                <button class="test-button" onclick="testSpotlight()">测试 SpotlightHome 组件</button>
+            </div>
+            <div id="result" style="margin-top: 20px;"></div>
+        </div>
+    </div>
+    <script>
+        async function testHero() {
+            try {
+                const response = await fetch('/src/components/Hero.jsx');
+                const content = await response.text();
+                const result = document.getElementById('result');
+                
+                if (content.includes('SpotlightHome')) {
+                    result.innerHTML += '<p>✓ Hero.jsx 包含 SpotlightHome 导入</p>';
+                } else {
+                    result.innerHTML += '<p>✗ Hero.jsx 缺少 SpotlightHome 导入</p>';
+                }
+                
+                if (content.includes('toggleSpotlight')) {
+                    result.innerHTML += '<p>✓ Hero.jsx 包含 toggleSpotlight 函数</p>';
+                } else {
+                    result.innerHTML += '<p>✗ Hero.jsx 缺少 toggleSpotlight 函数</p>';
+                }
+                
+                if (content.includes('showSpotlight')) {
+                    result.innerHTML += '<p>✓ Hero.jsx 包含 showSpotlight 状态</p>';
+                } else {
+                    result.innerHTML += '<p>✗ Hero.jsx 缺少 showSpotlight 状态</p>';
+                }
+            } catch (error) {
+                document.getElementById('result').innerHTML += '<p>错误: ' + error.message + '</p>';
+            }
+        }
+        
+        async function testSpotlight() {
+            try {
+                const response = await fetch('/src/components/SpotlightHome.jsx');
+                const content = await response.text();
+                const result = document.getElementById('result');
+                
+                if (content.includes('generator-reveal.png')) {
+                    result.innerHTML += '<p>✓ SpotlightHome.jsx 包含 generator-reveal.png</p>';
+                } else {
+                    result.innerHTML += '<p>✗ SpotlightHome.jsx 缺少 generator-reveal.png</p>';
+                }
+                
+                if (content.includes('generator-base.jpg')) {
+                    result.innerHTML += '<p>✓ SpotlightHome.jsx 包含 generator-base.jpg</p>';
+                } else {
+                    result.innerHTML += '<p>✗ SpotlightHome.jsx 缺少 generator-base.jpg</p>';
+                }
+            } catch (error) {
+                document.getElementById('result').innerHTML += '<p>错误: ' + error.message + '</p>';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>测试页面</title>
+    <script>
+        window.onerror = function(message, source, lineno, colno, error) {
+            console.error('JavaScript 错误:', message);
+            document.body.innerHTML += '<p>JavaScript 错误: ' + message + '</p>';
+        };
+    </script>
+</head>
+<body>
+    <h1>测试页面</h1>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+</body>
+</html>

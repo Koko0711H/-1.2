@@ -1,4 +1,4 @@
-@import './mobile-optimized.css';
+ï»¿@import './mobile-optimized.css';
 
 @import './responsive.css';
 
@@ -479,7 +479,7 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
 
 /* ===== ????????????? ===== */
 
-/* ????õô (768px - 1024px) */
+/* ????ï¿½ï¿½ (768px - 1024px) */
 @media (max-width: 1024px) {
   .hero-section {
     height: 80vh;
@@ -498,7 +498,7 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   }
 }
 
-/* ????õô (§³??768px) */
+/* ????ï¿½ï¿½ (ï¿½ï¿½??768px) */
 @media (max-width: 768px) {
   /* ?????? */
   .header-inner {
@@ -635,7 +635,7 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   }
 }
 
-/* §³??????õô (§³??480px) */
+/* ï¿½ï¿½??????ï¿½ï¿½ (ï¿½ï¿½??480px) */
 @media (max-width: 480px) {
   .hero-title {
     font-size: 1.5rem !important;
