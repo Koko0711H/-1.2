@@ -27,6 +27,13 @@ function Advantages() {
     { icon: '🌍', title: 'adv4Title', desc: 'adv4Desc' },
   ]
 
+  const advantageImages = [
+    '/advantage-1.jpg',
+    '/advantage-2.jpg',
+    '/advantage-3.jpg',
+    '/advantage-4.jpg',
+  ]
+
   return (
     <section className="advantages-section">
       <div className="section-title">
@@ -36,7 +43,11 @@ function Advantages() {
       </div>
       <div className="advantages-grid" ref={ref}>
         {advs.map((item, index) => (
-          <div className="advantage-card fade-up" key={index}>
+          <div
+            className="advantage-card fade-up"
+            key={index}
+            style={{ backgroundImage: `url(${advantageImages[index]})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+          >
             <div className="advantage-icon"><span>{item.icon}</span></div>
             <h3>{t(item.title)}</h3>
             <p>{t(item.desc)}</p>

@@ -35,6 +35,7 @@ const translations = {
   prod1Desc: { en: 'Fully enclosed silent enclosure design, noise level as low as 65dB, suitable for residential areas, hospitals, hotels and other noise-sensitive locations.', zh: '采用全封闭静音箱体设计，噪音低至65dB，适用于住宅区、医院、酒店等噪音敏感场所。' },
   prod2Tag: { en: '100KW-2000KW', zh: '100KW-2000KW' },
   prod2Name: { en: 'Open-Frame Generator Set', zh: '开架型发电机组' },
+  prod2SmallName: { en: 'Open-Frame Generator Set (Small)', zh: '开架型发电机组（小）' },
   prod2Desc: { en: 'Classic open-frame design with excellent heat dissipation, suitable for industrial plants, mines, construction sites and other scenarios.', zh: '经典开架式设计，散热性能优异，适用于工业厂房、矿山、建筑工地等场景。' },
   prod3Tag: { en: '30KW-500KW', zh: '30KW-500KW' },
   prod3Name: { en: 'Mobile Trailer Generator Set', zh: '移动拖车式发电机组' },
@@ -56,6 +57,9 @@ const translations = {
   prod3Detail: { en: 'Features: Professional trailer chassis, road-legal, quick deployment, all-terrain tires, power range 30KW-500KW. Applications: emergency rescue, field operations, temporary construction.', zh: '特点：专业拖车底盘、合法上路、快速部署、全地形轮胎、功率覆盖30KW-500KW。应用场景：应急救援、野外作业、临时施工等需要快速机动供电的场景。' },
   prod4Detail: { en: 'Features: 10KV-35KV rated voltage, intelligent monitoring, automatic protection, modular design. Applications: industrial parks, mines, large commercial complexes, data centers.', zh: '特点：额定电压10KV-35KV、智能监控系统、自动保护装置、模块化设计便于扩展。应用场景：工业园区、矿山、大型商业综合体、数据中心等高可靠性供电场景。' },
   learnMoreBtn: { en: 'Learn More >', zh: '了解更多 >' },
+  expandBtn: { en: 'Expand', zh: '展开' },
+  moreDetailsBtn: { en: 'Learn More', zh: '了解更多' },
+  productPageHint: { en: 'Click “Learn More” to browse the dedicated 3D product page', zh: '点击“了解更多”浏览3D产品专属页面' },
   foldBtn: { en: 'Fold', zh: '收起' },
 
   // ===== Open-Frame Rich Detail =====
@@ -144,7 +148,9 @@ const translations = {
   case6Loc: { en: 'Inner Mongolia, China', zh: '内蒙古自治区' },
 
   // ===== Contact =====
+  contactEyebrow: { en: 'SALES & SERVICE', zh: '销售与服务' },
   contactTitle: { en: 'Contact Us', zh: '联系我们' },
+  contactLead: { en: 'From product selection to after-sales support, we provide a complete power solution for your business.', zh: '从产品选型到售后服务，为您提供全流程电力解决方案。' },
   contactAddr: { en: 'Address', zh: '公司地址' },
   contactAddrVal: { en: 'C1006, Cangshan Smart Industrial Park, Fuzhou, Fujian, China', zh: '福建省福州市仓山智能产业园C区1006' },
   contactPhone: { en: 'Phone', zh: '联系电话' },
@@ -157,7 +163,9 @@ const translations = {
   contactProdBaseVal: { en: 'Shenyang, Liaoning & Ningde, Fujian', zh: '辽宁沈阳、福建宁德' },
   contactOpsCenter: { en: 'Operations Center', zh: '运营中心' },
   contactOpsCenterVal: { en: 'Fuzhou, Fujian', zh: '福建福州' },
+  formEyebrow: { en: 'ONLINE SERVICE', zh: '在线服务' },
   formTitle: { en: 'Online Inquiry', zh: '在线留言' },
+  formLead: { en: 'Tell us what you need and our team will get back to you shortly.', zh: '填写您的需求，我们的专业团队会尽快与您联系。' },
   formName: { en: 'Your Name', zh: '您的姓名' },
   formNamePh: { en: 'Please enter your name', zh: '请输入您的姓名' },
   formPhone: { en: 'Phone Number', zh: '联系电话' },

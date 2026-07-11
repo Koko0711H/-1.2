@@ -16,7 +16,9 @@ function Contact() {
     <section className="contact-section">
       <div className="contact-inner">
         <div className="contact-info">
+          <span className="contact-eyebrow">{t("contactEyebrow")}</span>
           <h3>{t("contactTitle")}</h3>
+          <p className="contact-lead">{t("contactLead")}</p>
           {[
             { icon: "📍", label: t("contactAddr"), value: t("contactAddrVal") },
             { icon: "📞", label: t("contactPhone"), value: "18205938836" },
@@ -36,7 +38,9 @@ function Contact() {
           ))}
         </div>
         <form className="contact-form" onSubmit={handleSubmit}>
+          <span className="form-eyebrow">{t("formEyebrow")}</span>
           <h3>{t("formTitle")}</h3>
+          <p className="form-lead">{t("formLead")}</p>
           {[
             { label: t("formName"), name: "name", type: "text", ph: t("formNamePh") },
             { label: t("formPhone"), name: "phone", type: "tel", ph: t("formPhonePh") },

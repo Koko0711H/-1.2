@@ -147,11 +147,19 @@
     line-height: 1.6;
   }
 
+  .product-page-hint {
+    display: block;
+    font-size: 1.15rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 1rem !important;
+  }
+
   .product-showcase-btns {
     margin-top: 0.8rem;
   }
 
-  .product-learn-btn {
+  .product-learn-btn,
+  .product-more-btn {
     width: 100%;
     text-align: center;
     padding: 0.7rem;

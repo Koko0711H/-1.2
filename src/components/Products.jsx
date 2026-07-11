@@ -2,10 +2,11 @@ import { useState, useEffect, useRef } from 'react'
 import { useLang } from '../i18n'
 
 const productKeys = [
-  { tag: 'prod1Tag', name: 'prod1Name', desc: 'prod1Desc', detail: 'prod1Detail', type: 'video', src: '/silent-generator.mp4', hasRichDetail: true },
-  { tag: 'prod2Tag', name: 'prod2Name', desc: 'prod2Desc', detail: 'prod2Detail', type: 'video', src: '/open-frame.mp4', hasRichDetail: true },
-  { tag: 'prod3Tag', name: 'prod3Name', desc: 'prod3Desc', detail: 'prod3Detail', type: 'video', src: '/mobile-trailer.mp4', hasRichDetail: true },
-  { tag: 'prod4Tag', name: 'prod4Name', desc: 'prod4Desc', detail: 'prod4Detail', type: 'video', src: '/high-voltage.mp4' },
+  { tag: 'prod1Tag', name: 'prod1Name', desc: 'prod1Desc', detail: 'prod1Detail', type: 'video', src: '/silent-generator.mp4', hasRichDetail: true, moreLink: 'https://1-5-7.pages.dev/' },
+  { tag: 'prod2Tag', name: 'prod2Name', desc: 'prod2Desc', detail: 'prod2Detail', type: 'video', src: '/open-frame.mp4', hasRichDetail: true, moreLink: 'https://shenchai1-5-6.pages.dev/' },
+  { tag: 'prod2Tag', name: 'prod2SmallName', desc: 'prod2Desc', detail: 'prod2Detail', type: 'video', src: '/open-frame-small.mp4', hasRichDetail: true, moreLink: 'https://shenchai1-5-3.pages.dev/' },
+  { tag: 'prod3Tag', name: 'prod3Name', desc: 'prod3Desc', detail: 'prod3Detail', type: 'video', src: '/mobile-trailer.mp4', hasRichDetail: true, moreLink: 'https://1-5-8.pages.dev/' },
+  { tag: 'prod4Tag', name: 'prod4Name', desc: 'prod4Desc', detail: 'prod4Detail', type: 'video', src: '/high-voltage.mp4', moreLink: 'https://1-5-9.pages.dev/' },
 ]
 
 function RichDetail() {
@@ -151,11 +152,12 @@ function ProductCard({ item, index }) {
       <div className="product-showcase-text">
         <span className="product-tag">{t(item.tag)}</span>
         <h3>{t(item.name)}</h3>
+        <p className="product-page-hint">{t('productPageHint')}</p>
         <p>{t(item.desc)}</p>
         <div className={`product-detail ${expanded ? 'open' : ''}`}>
           {item.hasRichDetail && item.name === "prod1Name" ? (
             <RichDetail />
-          ) : item.hasRichDetail && item.name === "prod2Name" ? (
+          ) : item.hasRichDetail && (item.name === "prod2Name" || item.name === "prod2SmallName") ? (
             <OpenFrameRichDetail />
           ) : item.hasRichDetail && item.name === "prod3Name" ? (
             <MobileTrailerRichDetail />
@@ -164,9 +166,18 @@ function ProductCard({ item, index }) {
           )}
         </div>
         <div className="product-showcase-btns">
-          <a className="btn-outline product-learn-btn" onClick={() => setExpanded(!expanded)}>
-            {expanded ? t('foldBtn') : t('learnMoreBtn')}
+          <button type="button" className="btn-outline product-learn-btn product-expand-btn" onClick={() => setExpanded(!expanded)}>
+            {expanded ? t('foldBtn') : t('expandBtn')}
             <span className={`expand-arrow ${expanded ? 'up' : ''}`}>▾</span>
+          </button>
+          <a
+            className="btn-outline product-more-btn"
+            href={item.moreLink || '#'}
+            onClick={(event) => {
+              if (!item.moreLink) event.preventDefault()
+            }}
+          >
+            {t('moreDetailsBtn')}
           </a>
         </div>
       </div>
