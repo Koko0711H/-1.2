@@ -7,6 +7,7 @@ function Hero() {
   const [showSpotlight, setShowSpotlight] = useState(false)
   const { t } = useLang()
   const videoRef = useRef(null)
+  const autoTransitionTimerRef = useRef(null)
 
     const slides = [
     {
@@ -45,7 +46,23 @@ function Hero() {
     }
   }, [current, showSpotlight])
 
+  useEffect(() => {
+    return () => {
+      if (autoTransitionTimerRef.current) {
+        clearTimeout(autoTransitionTimerRef.current)
+      }
+    }
+  }, [])
+
+  const clearAutoTransitionTimer = () => {
+    if (autoTransitionTimerRef.current) {
+      clearTimeout(autoTransitionTimerRef.current)
+      autoTransitionTimerRef.current = null
+    }
+  }
+
   const goTo = (dir) => {
+    clearAutoTransitionTimer()
     if (showSpotlight) {
       setShowSpotlight(false)
     } else {
@@ -54,6 +71,7 @@ function Hero() {
   }
 
   const toggleSpotlight = () => {
+    clearAutoTransitionTimer()
     setShowSpotlight(prev => !prev)
   }
 
@@ -64,6 +82,11 @@ function Hero() {
 
   const handleVideoEnd = () => {
     if (videoRef.current) videoRef.current.pause()
+    clearAutoTransitionTimer()
+    autoTransitionTimerRef.current = setTimeout(() => {
+      setShowSpotlight(true)
+      autoTransitionTimerRef.current = null
+    }, 2000)
   }
 
   const slide = slides[current]
