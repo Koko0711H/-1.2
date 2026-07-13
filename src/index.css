@@ -72,7 +72,9 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   max-width: 1400px;
   margin: 0 auto; height: 100%;
   display: flex; align-items: center; justify-content: space-between;
-  margin: 0 auto; height: 100%;
+  gap: clamp(12px, 1.6vw, 28px);
+  padding: 0 clamp(18px, 2.4vw, 40px);
+  box-sizing: border-box;
 }
 .logo {
   display: flex; align-items: baseline; gap: 2px; cursor: pointer;
@@ -81,14 +83,21 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
 .logo .logo-main { font-size: 26px; font-weight: 900; letter-spacing: 2px; }
 .logo-img { height: 36px; width: auto; object-fit: contain; transition: filter 0.3s; }
 
-.nav-links { display: flex; gap: 36px; }
+.nav-links {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  justify-content: center;
+  gap: clamp(8px, 1.55vw, 24px);
+}
 .nav-links a {
-  font-size: 16px; font-weight: 500; transition: all 0.3s;
-  position: relative; cursor: pointer; padding: 6px 14px; border-radius: 6px;
+  font-size: clamp(14px, 1.05vw, 16px); font-weight: 500; transition: all 0.3s;
+  position: relative; cursor: pointer; padding: 6px clamp(3px, 0.5vw, 8px); border-radius: 6px;
+  white-space: nowrap;
 }
 .nav-links a:hover { background: var(--hover-bg, rgba(255,255,255,0.15)); }
 
-.header-right { display: flex; align-items: center; gap: 16px; }
+.header-right { display: flex; align-items: center; gap: clamp(6px, 0.85vw, 14px); flex-shrink: 0; }
 .social-icon {
   width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.5);
   display: flex; align-items: center; justify-content: center; transition: all 0.3s;
@@ -96,9 +105,9 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
 .social-icon:hover { background: rgba(255,255,255,0.15); }
 .douyin-icon { width: 18px; height: 18px; object-fit: contain; }
 .quote-btn {
-  display: flex; align-items: center; padding: 8px 20px;
+  display: flex; align-items: center; padding: 8px clamp(10px, 1.2vw, 18px);
   border: 1px solid rgba(255,255,255,0.7); border-radius: 4px;
-  font-size: 15px; transition: all 0.3s; margin-left: 4px;
+  font-size: 15px; transition: all 0.3s; margin-left: 4px; white-space: nowrap;
 }
 .quote-btn:hover { background: rgba(0,0,0,0.05); }
 
@@ -502,7 +511,7 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
 }
 .lang-btn {
   font-size: 15px; padding: 4px 8px; font-weight: 500; user-select: none;
-  transition: all 0.3s; letter-spacing: 0.5px;
+  transition: all 0.3s; letter-spacing: 0.5px; white-space: nowrap;
 }
 .lang-btn:hover { opacity: 0.8; }
 .industry-scroll::-webkit-scrollbar { display: none; }

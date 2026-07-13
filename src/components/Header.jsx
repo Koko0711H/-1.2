@@ -45,17 +45,20 @@ function Header() {
           {[
             { key: 'navHome', action: 'top' },
             { key: 'navProducts', action: 'products' },
-            { key: 'navIndustry', action: 'industry' },
+            { key: 'navIndustry', href: 'https://shenchai1-5-3.pages.dev/' },
             { key: 'navAbout', action: 'about' },
             { key: 'navCases', action: 'cases' },
             { key: 'navService', action: 'contact' },
           ].map((item, i) => (
             <a
               key={i}
+              href={item.href || `#${item.action}`}
               style={{ color: tc, transition: 'color 0.3s' }}
-              onClick={() => item.action === 'top'
-                ? window.scrollTo({ top: 0, behavior: 'smooth' })
-                : scrollTo(item.action)
+              onClick={(event) => item.href
+                ? undefined
+                : (event.preventDefault(), item.action === 'top'
+                  ? window.scrollTo({ top: 0, behavior: 'smooth' })
+                  : scrollTo(item.action))
               }
             >
               {t(item.key)}

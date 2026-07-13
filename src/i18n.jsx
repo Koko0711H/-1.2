@@ -14,7 +14,7 @@ const translations = {
   home3Title: { en: 'Global Service', zh: '全球服务' },
   home3Sub: { en: 'Reliable power partner across 50+ countries', zh: '覆盖50+国家的可靠电力合作伙伴' },
   home3Placeholder: { en: 'Page under construction — Coming Soon', zh: '页面建设中 — 敬请期待' },
-  navIndustry: { en: 'Industries', zh: '聚焦行业' },
+  navIndustry: { en: 'Online Showroom', zh: '网上展厅' },
   getQuote: { en: 'Get Quote', zh: '获取报价' },
 
   // ===== Hero =====
