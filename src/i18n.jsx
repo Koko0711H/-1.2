@@ -102,11 +102,12 @@ const translations = {
   consultBtn: { en: 'Consult Now >', zh: '立即咨询 >' },
 
   // ===== About =====
-  aboutTitle: { en: 'About ShenChai Power', zh: '关于深柴电力' },
+  aboutTitle: { en: 'About ShenChai Power', zh: '关于深柴动力' },
   aboutSub: { en: 'A Trusted Generator Set Manufacturer', zh: '值得信赖的发电机组制造商' },
   aboutH3: { en: '20 Years of Excellence', zh: '二十年专注，铸就行业品牌' },
   aboutP1: { en: 'ShenChai Power is a comprehensive enterprise integrating R&D, production, sales and service of diesel generator sets. The company has a modern production base with an annual capacity of over 5,000 units.', zh: '深柴电力是一家集柴油发电机组研发、生产、销售和服务于一体的综合性企业。公司拥有现代化生产基地，年产能超过5000台套。' },
   aboutP2: { en: 'Leveraging the strength of state-owned enterprises and combining it with market-driven innovation, ShenChai Power has grown into a leading manufacturer of diesel generator sets.', zh: '依托国企实力，结合市场化创新机制，深柴电力已发展成为国内领先的柴油发电机组制造商。' },
+  aboutPageBtn: { en: 'About ShenChai Power', zh: '关于深柴动力' },
   aboutImgAlt: { en: 'ShenChai Power Production Base', zh: '深柴电力生产基地' },
   stat1: { en: '20+ Years', zh: '20+ 年行业经验' },
   stat2: { en: '500+ Clients', zh: '500+ 服务客户' },

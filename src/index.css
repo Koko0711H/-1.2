@@ -335,6 +335,21 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
 .about-text { flex: 1; }
 .about-text h3 { font-size: 24px; color: var(--primary); margin-bottom: 20px; }
 .about-text p { color: var(--text-light); line-height: 1.9; margin-bottom: 16px; font-size: 15px; }
+.about-page-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  margin-top: 8px;
+  padding: 0 20px;
+  border: 1px solid var(--primary);
+  border-radius: 4px;
+  color: var(--primary);
+  font-size: 15px;
+  font-weight: 600;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+.about-page-btn:hover { background: var(--primary); color: #fff; }
 .about-image {
   flex: 1; height: 350px; border-radius: 8px; overflow: hidden;
   display: flex; align-items: center; justify-content: center;

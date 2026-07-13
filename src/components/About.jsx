@@ -33,6 +33,9 @@ function About() {
             <h3>{t('aboutH3')}</h3>
             <p>{t('aboutP1')}</p>
             <p>{t('aboutP2')}</p>
+            <a className="about-page-btn" href="https://3-0-1.pages.dev/">
+              {t('aboutPageBtn')}
+            </a>
           </div>
           <div className="about-image fade-up">
             <img src="/factory.jpg" alt={t('aboutImgAlt')} />

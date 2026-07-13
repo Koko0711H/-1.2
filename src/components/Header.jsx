@@ -46,7 +46,7 @@ function Header() {
             { key: 'navHome', action: 'top' },
             { key: 'navProducts', action: 'products' },
             { key: 'navIndustry', href: 'https://shenchai1-5-3.pages.dev/' },
-            { key: 'navAbout', action: 'about' },
+            { key: 'navAbout', href: 'https://3-0-1.pages.dev/' },
             { key: 'navCases', action: 'cases' },
             { key: 'navService', action: 'contact' },
           ].map((item, i) => (
