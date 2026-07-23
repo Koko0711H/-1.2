@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import './App.css'
+import './main-redesign.css'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import Products from './components/Products'
@@ -40,15 +40,16 @@ function App() {
     <>
       <Header />
       <Hero />
-      <Products />
-      <Industry />
-      <Advantages />
-      <About />
-      
-      <Cases />
-      <div id="contact">
-        <Contact />
-      </div>
+      <main className="main-redesign">
+        <Advantages />
+        <Products />
+        <Industry />
+        <About />
+        <Cases />
+        <div id="contact">
+          <Contact />
+        </div>
+      </main>
       <Footer />
       <FloatingContact />
     </>

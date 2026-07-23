@@ -148,7 +148,8 @@ function ProductCard({ item, index }) {
   }
 
   return (
-    <div ref={ref} className={`product-showcase ${isLeft ? 'from-left' : 'from-right'}`}>
+    <article ref={ref} className={`product-showcase ${isLeft ? 'from-left' : 'from-right'}`}>
+      <span className="product-card-index" aria-hidden="true">SC / {String(index + 1).padStart(2, '0')}</span>
       <div className="product-showcase-text">
         <span className="product-tag">{t(item.tag)}</span>
         <h3>{t(item.name)}</h3>
@@ -187,6 +188,10 @@ function ProductCard({ item, index }) {
         onMouseLeave={handleMouseLeave}
         style={{ cursor: item.type === 'video' ? 'pointer' : 'default' }}
       >
+        <div className="product-media-labels" aria-hidden="true">
+          <span>PRODUCT MOTION FILE</span>
+          <span>HOVER TO RUN</span>
+        </div>
         {item.type === 'video' ? (
           <video
             ref={videoRef}
@@ -201,7 +206,7 @@ function ProductCard({ item, index }) {
           <img src={item.src} alt={t(item.name)} className="product-showcase-photo" />
         )}
       </div>
-    </div>
+    </article>
   )
 }
 
@@ -210,9 +215,14 @@ function Products() {
   return (
     <section className="products-explore-section" id="products">
       <div className="section-title">
-        <h2>{t('productsTitle')}</h2>
-        <div className="underline"></div>
-        <p>{t('productsSub')}</p>
+        <div className="section-heading-meta">
+          <span>02 / PRODUCT SYSTEMS</span>
+          <span>5 PRODUCT FAMILIES · 100KW—3000KW</span>
+        </div>
+        <div className="section-heading-copy">
+          <h2>{t('productsTitle')}</h2>
+          <p>{t('productsSub')}</p>
+        </div>
       </div>
       <div className="products-explore-list">
         {productKeys.map((p, i) => <ProductCard key={i} item={p} index={i} />)}

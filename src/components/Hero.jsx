@@ -1,79 +1,49 @@
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useLang } from '../i18n'
-import SpotlightHome from './SpotlightHome'
 
 function Hero() {
-  const [current, setCurrent] = useState(0)
-  const [showSpotlight, setShowSpotlight] = useState(false)
-  const { t } = useLang()
+  const { lang, t } = useLang()
+  const heroSectionRef = useRef(null)
   const videoRef = useRef(null)
-  const autoTransitionTimerRef = useRef(null)
+  const hasLeftHeroRef = useRef(false)
 
-    const slides = [
-    {
-      titleKey: 'heroTitle1', subKey: 'heroSub1',
-      bg: 'video', video: '/hero-video.mp4'
-    },
-  ]
+  const slide = {
+    titleKey: 'heroTitle1',
+    subKey: 'heroSub1',
+    video: '/hero-power-range-sharp4k.mp4'
+  }
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      if (!showSpotlight) {
-        setCurrent(p => (p + 1) % slides.length)
+    const section = heroSectionRef.current
+    if (!section) return undefined
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.intersectionRatio <= 0.2) {
+        hasLeftHeroRef.current = true
+        return
       }
-    }, 5000)
-    return () => clearInterval(timer)
-  }, [showSpotlight])
 
-  useEffect(() => {
-    const onScroll = () => {
-      if (window.scrollY === 0 && videoRef.current && !showSpotlight) {
+      if (entry.intersectionRatio >= 0.6 && hasLeftHeroRef.current && videoRef.current) {
+        hasLeftHeroRef.current = false
         videoRef.current.currentTime = 0
-        videoRef.current.play()
-      }
-    }
-    window.addEventListener('scroll', onScroll)
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [showSpotlight])
-
-  useEffect(() => {
-    if (videoRef.current && !showSpotlight) {
-      if (slides[current].bg === 'video') {
         videoRef.current.play().catch(() => {})
-      } else {
-        videoRef.current.pause()
       }
-    }
-  }, [current, showSpotlight])
+    }, { threshold: [0.2, 0.6] })
 
-  useEffect(() => {
-    return () => {
-      if (autoTransitionTimerRef.current) {
-        clearTimeout(autoTransitionTimerRef.current)
-      }
-    }
+    observer.observe(section)
+    return () => observer.disconnect()
   }, [])
 
-  const clearAutoTransitionTimer = () => {
-    if (autoTransitionTimerRef.current) {
-      clearTimeout(autoTransitionTimerRef.current)
-      autoTransitionTimerRef.current = null
+  useEffect(() => {
+    const handlePageShow = (event) => {
+      if (!event.persisted || !videoRef.current) return
+      videoRef.current.currentTime = 0
+      videoRef.current.play().catch(() => {})
     }
-  }
 
-  const goTo = (dir) => {
-    clearAutoTransitionTimer()
-    if (showSpotlight) {
-      setShowSpotlight(false)
-    } else {
-      setCurrent(p => (p + dir + slides.length) % slides.length)
-    }
-  }
-
-  const toggleSpotlight = () => {
-    clearAutoTransitionTimer()
-    setShowSpotlight(prev => !prev)
-  }
+    window.addEventListener('pageshow', handlePageShow)
+    return () => window.removeEventListener('pageshow', handlePageShow)
+  }, [])
 
   const scrollToProducts = () => {
     const el = document.getElementById('products')
@@ -82,64 +52,25 @@ function Hero() {
 
   const handleVideoEnd = () => {
     if (videoRef.current) videoRef.current.pause()
-    clearAutoTransitionTimer()
-    autoTransitionTimerRef.current = setTimeout(() => {
-      setShowSpotlight(true)
-      autoTransitionTimerRef.current = null
-    }, 2000)
-  }
-
-  const slide = slides[current]
-
-  if (showSpotlight) {
-    return (
-      <section className="hero-section">
-        <SpotlightHome onMouseLeave={() => setShowSpotlight(false)} />
-        <button className="hero-arrow hero-arrow-left" onClick={() => goTo(-1)}>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-        </button>
-        <button className="hero-arrow hero-arrow-right" onClick={toggleSpotlight}>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg>
-        </button>
-      </section>
-    )
   }
 
   return (
-    <section className="hero-section">
+    <section ref={heroSectionRef} className="hero-section">
       <div className="hero-bg">
-        {slide.bg === 'video' ? (
-          <video ref={videoRef} className="hero-bg-video" autoPlay muted playsInline onEnded={handleVideoEnd}>
-            <source src={slide.video} type="video/mp4" />
-          </video>
-        ) : (
-          <div className="hero-bg-gradient" style={{ background: slide.gradient }}></div>
-        )}
+        <video ref={videoRef} className="hero-bg-video" autoPlay muted playsInline onEnded={handleVideoEnd}>
+          <source src={slide.video} type="video/mp4" />
+        </video>
       </div>
-      <div className="hero-content">
-        <h1>{t(slide.titleKey)}</h1>
+      <div className={`hero-content hero-content-brand is-${lang}`}>
+        <h1 className="hero-company-title" aria-label={t(slide.titleKey)}>
+          <span className="hero-company-solid" aria-hidden="true">{t('heroBrandLead')}</span>
+          <span className="hero-company-outline" aria-hidden="true">{t('heroBrandTail')}</span>
+        </h1>
         <p>{t(slide.subKey)}</p>
-        <a className="hero-btn" onClick={scrollToProducts}>{t('learnMore')}</a>
+        <button type="button" className="hero-btn" onClick={scrollToProducts}>{t('heroCta')}</button>
       </div>
-      <button className="hero-arrow hero-arrow-left" onClick={() => goTo(-1)}>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-      </button>
-      <button className="hero-arrow hero-arrow-right" onClick={toggleSpotlight}>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg>
-      </button>
-      
     </section>
   )
 }
 
 export default Hero
-
-
-
-
-
-
-
-
-
-

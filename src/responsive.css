@@ -5,79 +5,12 @@
   .hero-section {
     height: 80vh;
   }
-  
-  .hero-title {
-    font-size: 2.5rem;
-  }
-  
-  .hero-subtitle {
-    font-size: 1.2rem;
-  }
-  
-  .products-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-  }
-  
-  .industry-cards {
-    gap: 1.5rem;
-  }
-  
-  .contact-info {
-    flex-direction: column;
-    gap: 2rem;
-  }
 }
 
 /* �ֻ��豸 (С��768px) */
 @media (max-width: 768px) {
   .hero-section {
     height: 70vh;
-  }
-  
-  .hero-title {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .hero-subtitle {
-    font-size: 1rem;
-  }
-  
-  .nav-menu {
-    display: none;
-  }
-  
-  .nav-toggle {
-    display: block;
-  }
-  
-  .products-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  
-  .industry-cards {
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  
-  .industry-card {
-    min-width: 100%;
-  }
-  
-  .contact-info {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .contact-form {
-    padding: 1rem;
-  }
-  
-  .footer-content {
-    flex-direction: column;
-    text-align: center;
   }
   
   .floating-contact {
@@ -88,13 +21,6 @@
 
 /* С���ֻ��豸 (С��480px) */
 @media (max-width: 480px) {
-  .hero-title {
-    font-size: 1.8rem;
-  }
-  
-  .hero-subtitle {
-    font-size: 0.9rem;
-  }
   
   .section-title {
     font-size: 1.8rem;
@@ -121,14 +47,8 @@ img, video {
 }
 
 /* ȷ��������ƶ��豸�Ͽɹ��� */
-.table-responsive {
-  overflow-x: auto;
-}
 
 /* �������������ƶ��豸�ϵ���ʾ */
-.navbar {
-  padding: 0.5rem 1rem;
-}
 
 /* ȷ����ť���ƶ��豸�����ڵ�� */
 button, .btn {
@@ -143,7 +63,3 @@ body {
 }
 
 /* ȷ���������ƶ��豸�ϲ������ */
-.container {
-  padding: 0 1rem;
-  overflow-x: hidden;
-}

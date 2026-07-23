@@ -1,62 +1,106 @@
-import { useState } from "react"
 import { useLang } from "../i18n"
 
 function Contact() {
-  const [form, setForm] = useState({ name: "", phone: "", email: "", message: "" })
   const { t } = useLang()
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    alert(t("formThanks"))
-    setForm({ name: "", phone: "", email: "", message: "" })
-  }
+  const serviceCards = [
+    { image: "/service/service-selection.jpg", tag: t("service1Tag"), title: t("service1Title"), desc: t("service1Desc") },
+    { image: "/service/service-delivery.jpg", tag: t("service2Tag"), title: t("service2Title"), desc: t("service2Desc") },
+    { image: "/service/service-support.jpg", tag: t("service3Tag"), title: t("service3Title"), desc: t("service3Desc") },
+  ]
+
+  const locations = [
+    { code: "R&D", label: t("contactRdBase"), value: t("contactRdBaseVal") },
+    { code: "MFG", label: t("contactProdBase"), value: t("contactProdBaseVal") },
+    { code: "OPS", label: t("contactOpsCenter"), value: t("contactOpsCenterVal") },
+  ]
 
   return (
-    <section className="contact-section">
-      <div className="contact-inner">
-        <div className="contact-info">
-          <span className="contact-eyebrow">{t("contactEyebrow")}</span>
-          <h3>{t("contactTitle")}</h3>
-          <p className="contact-lead">{t("contactLead")}</p>
-          {[
-            { icon: "📍", label: t("contactAddr"), value: t("contactAddrVal") },
-            { icon: "📞", label: t("contactPhone"), value: "18205938836" },
-            { icon: "✉️", label: t("contactEmail"), value: "info@shenchai.com" },
-            { icon: "🕐", label: t("contactHours"), value: t("contactHoursVal") },
-            { icon: "🔬", label: t("contactRdBase"), value: t("contactRdBaseVal") },
-            { icon: "🏭", label: t("contactProdBase"), value: t("contactProdBaseVal") },
-            { icon: "🏢", label: t("contactOpsCenter"), value: t("contactOpsCenterVal") },
-          ].map((item, i) => (
-            <div className="contact-info-item" key={i}>
-              <div className="icon">{item.icon}</div>
-              <div className="detail">
-                <h4>{item.label}</h4>
-                <p>{item.value}</p>
+    <section className="contact-section" id="service">
+      <div className="service-shell service-command-shell">
+        <header className="service-command-heading">
+          <div>
+            <span>{t("serviceEyebrow")}</span>
+            <h2>{t("serviceTitle")}</h2>
+          </div>
+          <p>{t("serviceLead")}</p>
+        </header>
+
+        <section className="service-contact-console" aria-label={t("serviceContactTitle")}>
+          <header className="service-console-intro">
+            <div>
+              <span>{t("serviceDeskEyebrow")}</span>
+              <h3>{t("serviceContactTitle")}</h3>
+            </div>
+            <p>{t("servicePhoneHint")}</p>
+          </header>
+
+          <div className="service-console-grid">
+            <div className="service-console-primary">
+              <a className="service-console-phone" href="tel:18205938836">
+                <span>TEL / {t("contactPhone")}</span>
+                <strong>182 0593 8836</strong>
+                <small>{t("servicePhoneHint")}</small>
+                <i aria-hidden="true">↗</i>
+              </a>
+              <a className="service-console-detail service-console-email" href="mailto:info@shenchai.com">
+                <span>EMAIL / {t("contactEmail")}</span>
+                <strong>info@shenchai.com</strong>
+                <small>{t("serviceEmailHint")}</small>
+                <i aria-hidden="true">↗</i>
+              </a>
+            </div>
+
+            <div className="service-console-details">
+              <div className="service-console-detail">
+                <span>HQ / {t("contactAddr")}</span>
+                <strong>{t("contactAddrVal")}</strong>
+                <small>{t("serviceAddressHint")}</small>
+              </div>
+              <div className="service-console-detail service-console-hours">
+                <span>HRS / {t("contactHours")}</span>
+                <strong>{t("contactHoursVal")}</strong>
               </div>
             </div>
-          ))}
-        </div>
-        <form className="contact-form" onSubmit={handleSubmit}>
-          <span className="form-eyebrow">{t("formEyebrow")}</span>
-          <h3>{t("formTitle")}</h3>
-          <p className="form-lead">{t("formLead")}</p>
-          {[
-            { label: t("formName"), name: "name", type: "text", ph: t("formNamePh") },
-            { label: t("formPhone"), name: "phone", type: "tel", ph: t("formPhonePh") },
-            { label: t("formEmail"), name: "email", type: "email", ph: t("formEmailPh") },
-          ].map((field, i) => (
-            <div className="form-group" key={i}>
-              <label>{field.label}</label>
-              <input type={field.type} name={field.name} value={form[field.name]} onChange={handleChange} placeholder={field.ph} required />
-            </div>
-          ))}
-          <div className="form-group">
-            <label>{t("formMsg")}</label>
-            <textarea name="message" value={form.message} onChange={handleChange} placeholder={t("formMsgPh")} required></textarea>
           </div>
-          <button type="submit" className="submit-btn">{t("formSubmit")}</button>
-        </form>
+        </section>
+
+        <section className="service-stage" aria-label={t("serviceScope")}>
+          <div className="service-stage-heading">
+            <span>{t("serviceScope")}</span>
+            <span>01 — 03</span>
+          </div>
+          <div className="service-stage-grid">
+            {serviceCards.map((item, index) => (
+              <article className="service-stage-card" key={item.title}>
+                <img src={item.image} alt={item.title} loading="lazy" />
+                <div className="service-stage-shade" aria-hidden="true" />
+                <div className="service-stage-copy">
+                  <span>{String(index + 1).padStart(2, "0")} / {item.tag}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.desc}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="service-footprint">
+          <div className="service-footprint-heading">
+            <span>{t("serviceFootprintEyebrow")}</span>
+            <h3>{t("serviceFootprintTitle")}</h3>
+            <p>{t("serviceFootprintLead")}</p>
+          </div>
+          <div className="service-location-grid">
+            {locations.map((item) => (
+              <article className="service-location-card" key={item.code}>
+                <span>{item.code}</span>
+                <strong>{item.label}</strong>
+                <p>{item.value}</p>
+              </article>
+            ))}
+          </div>
+        </section>
       </div>
     </section>
   )

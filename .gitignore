@@ -12,6 +12,17 @@ dist
 dist-ssr
 *.local
 
+# Local design archives and generated working material
+.codex-snapshots/
+.media/
+backup-assets/
+about-3d/
+*.zip
+
+# Cloudflare local state
+.wrangler/
+.dev.vars*
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
