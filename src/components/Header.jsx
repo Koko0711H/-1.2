@@ -2,13 +2,22 @@ import { useState, useEffect } from 'react'
 import { useLang } from '../i18n'
 
 function Header() {
-  const [atTop, setAtTop] = useState(true)
+  const [activeSection, setActiveSection] = useState('top')
   const { lang, setLang, t } = useLang()
 
   useEffect(() => {
-    const heroHeight = window.innerHeight - 70
-    const onScroll = () => setAtTop(window.scrollY < heroHeight * 0.6)
-    window.addEventListener('scroll', onScroll)
+    const sectionIds = ['top', 'products', 'about', 'cases', 'contact']
+    const onScroll = () => {
+      const marker = window.scrollY + 120
+      let current = 'top'
+      sectionIds.forEach((id) => {
+        const section = document.getElementById(id)
+        if (section && section.offsetTop <= marker) current = id
+      })
+      setActiveSection(current)
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
@@ -18,26 +27,36 @@ function Header() {
   }
 
   return (
-    <header className={`header brand-header ${atTop ? 'is-top' : 'is-scrolled'}`}>
+    <header className="header brand-header">
       <div className="header-inner">
-        <div className="logo" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+        <a
+          className="logo"
+          href="#top"
+          aria-label={lang === 'zh' ? '深柴动力首页' : 'ShenChai Power home'}
+          onClick={(event) => {
+            event.preventDefault()
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+          }}
+        >
           <img
             src="/logo.png"
             alt="FlyDeer 深柴动力"
             className="logo-img"
           />
-        </div>
+        </a>
         <nav className="nav-links">
           {[
             { key: 'navHome', action: 'top' },
             { key: 'navProducts', action: 'products' },
             { key: 'navIndustry', href: 'https://shenchai1-5-3.pages.dev/' },
-            { key: 'navAbout', href: 'https://3-0-1.pages.dev/' },
+            { key: 'navAbout', action: 'about', href: 'https://3-0-1.pages.dev/' },
             { key: 'navCases', action: 'cases' },
             { key: 'navService', action: 'contact' },
           ].map((item, i) => (
             <a
               key={i}
+              className={item.action === activeSection ? 'active' : ''}
+              aria-current={item.action === activeSection ? 'page' : undefined}
               href={item.href || `#${item.action}`}
               onClick={(event) => item.href
                 ? undefined
@@ -59,13 +78,13 @@ function Header() {
             className={`lang-btn ${lang === 'en' ? 'active' : ''}`}
             onClick={() => setLang('en')}
           >English</span>
-          <a className="social-icon" href="#">
+          <a className="social-icon" href="#contact" aria-label="Facebook">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
           </a>
-          <a className="social-icon" href="#">
+          <a className="social-icon" href="#contact" aria-label="LinkedIn">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
           </a>
-          <a className="social-icon" href="#">
+          <a className="social-icon" href="#contact" aria-label="Douyin">
 <svg width="30" height="30" viewBox="0 0 48 48" fill="currentColor">
               <path d="M33.5 8.5c1.5 3 4 5 7 5.5v4.5c-2.5 0-5-1-7-3v13c0 6.5-5 11.5-11.5 11.5S10.5 35 10.5 28.5 15.5 17 22 17v4.5c-4 0-7 3-7 7s3 7 7 7 7-3 7-7V8.5h4.5z"/>
             </svg>

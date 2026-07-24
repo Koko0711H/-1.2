@@ -37,15 +37,15 @@ function Contact() {
 
           <div className="service-console-grid">
             <div className="service-console-primary">
-              <a className="service-console-phone" href="tel:18205938836">
+              <a className="service-console-phone" href="tel:+8618205938836">
                 <span>TEL / {t("contactPhone")}</span>
-                <strong>182 0593 8836</strong>
+                <strong>+86 182 0593 8836</strong>
                 <small>{t("servicePhoneHint")}</small>
                 <i aria-hidden="true">↗</i>
               </a>
-              <a className="service-console-detail service-console-email" href="mailto:info@shenchai.com">
+              <a className="service-console-detail service-console-email" href="mailto:flydeerpower@googlel.com">
                 <span>EMAIL / {t("contactEmail")}</span>
-                <strong>info@shenchai.com</strong>
+                <strong>flydeerpower@googlel.com</strong>
                 <small>{t("serviceEmailHint")}</small>
                 <i aria-hidden="true">↗</i>
               </a>

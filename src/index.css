@@ -506,18 +506,9 @@ select {
 .brand-header {
   height: var(--header-height);
   color: var(--brand-white);
-  background: rgba(6, 26, 51, 0.94);
+  background: rgba(6, 26, 51, 0.97);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 4px 8px rgba(6, 26, 51, 0.16);
-  transition: background-color 0.35s ease, box-shadow 0.35s ease;
-}
-
-.brand-header.is-top {
-  background: linear-gradient(180deg, rgba(6, 26, 51, 0.82), rgba(6, 26, 51, 0.3) 72%, transparent);
-  box-shadow: none;
-}
-
-.brand-header.is-scrolled {
-  background: rgba(6, 26, 51, 0.96);
 }
 
 .brand-header .logo-img {
@@ -526,15 +517,42 @@ select {
   mix-blend-mode: normal;
 }
 
+.brand-header .nav-links {
+  height: 100%;
+  align-items: stretch;
+}
+
 .brand-header .nav-links a {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 clamp(3px, 0.5vw, 8px);
   color: rgba(255, 255, 255, 0.94);
-  border-radius: 4px;
+  border-radius: 0;
   transition: color 0.25s ease, background-color 0.25s ease;
+}
+
+.brand-header .nav-links a::after {
+  position: absolute;
+  right: clamp(3px, 0.5vw, 8px);
+  bottom: 0;
+  left: clamp(3px, 0.5vw, 8px);
+  height: 2px;
+  background: var(--brand-red);
+  content: '';
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.25s ease;
+}
+
+.brand-header .nav-links a.active::after,
+.brand-header .nav-links a:hover::after {
+  transform: scaleX(1);
 }
 
 .brand-header .nav-links a:hover {
   color: var(--brand-white);
-  background: rgba(255, 255, 255, 0.12);
+  background: transparent;
 }
 
 .brand-header .lang-btn {
@@ -569,7 +587,10 @@ select {
   color: var(--brand-white);
   background: var(--brand-red);
   border: 1px solid var(--brand-red);
-  border-radius: 4px;
+  border-radius: 6px;
+  overflow: hidden;
+  background-clip: padding-box;
+  transform: translateZ(0);
   font-weight: 600;
 }
 
@@ -577,6 +598,18 @@ select {
   color: var(--brand-white);
   background: #c92f3b;
   border-color: #c92f3b;
+}
+
+@media (max-width: 1180px) {
+  .brand-header .social-icon { display: none; }
+}
+
+@media (max-width: 900px) {
+  .brand-header .nav-links,
+  .brand-header .quote-btn,
+  .brand-header .social-icon { display: none; }
+  .brand-header .header-inner { justify-content: space-between; }
+  .brand-header .header-right { margin-left: auto; gap: 12px; }
 }
 
 @media (max-width: 768px) {

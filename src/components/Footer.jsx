@@ -35,8 +35,8 @@ function Footer() {
         <div className="footer-col">
           <h4>{t('footerContact')}</h4>
           <ul>
-            <li><a href="tel:4008886666">400-888-6666</a></li>
-            <li><a href="mailto:info@shenchai.com">info@shenchai.com</a></li>
+            <li><a href="tel:+8618205938836">+86 182 0593 8836</a></li>
+            <li><a href="mailto:flydeerpower@googlel.com">flydeerpower@googlel.com</a></li>
           </ul>
         </div>
       </div>
