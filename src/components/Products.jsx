@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { useLang } from '../i18n'
+import { withLanguage } from '../languageRouting'
 
 const productKeys = [
   { tag: 'prod1Tag', name: 'prod1Name', desc: 'prod1Desc', detail: 'prod1Detail', type: 'video', src: '/silent-generator.mp4', hasRichDetail: true, moreLink: 'https://1-5-7.pages.dev/' },
@@ -115,7 +116,7 @@ function MobileTrailerRichDetail() {
 function ProductCard({ item, index }) {
   const ref = useRef(null)
   const videoRef = useRef(null)
-  const { t } = useLang()
+  const { lang, t } = useLang()
   const isLeft = index % 2 === 0
   const [expanded, setExpanded] = useState(false)
 
@@ -173,7 +174,7 @@ function ProductCard({ item, index }) {
           </button>
           <a
             className="btn-outline product-more-btn"
-            href={item.moreLink || '#'}
+            href={item.moreLink ? withLanguage(item.moreLink, lang) : '#'}
             onClick={(event) => {
               if (!item.moreLink) event.preventDefault()
             }}

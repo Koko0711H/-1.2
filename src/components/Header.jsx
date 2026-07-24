@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useLang } from '../i18n'
+import { withLanguage } from '../languageRouting'
 
 function Header() {
   const [activeSection, setActiveSection] = useState('top')
@@ -57,7 +58,7 @@ function Header() {
               key={i}
               className={item.action === activeSection ? 'active' : ''}
               aria-current={item.action === activeSection ? 'page' : undefined}
-              href={item.href || `#${item.action}`}
+              href={item.href ? withLanguage(item.href, lang) : `#${item.action}`}
               onClick={(event) => item.href
                 ? undefined
                 : (event.preventDefault(), item.action === 'top'
@@ -70,14 +71,18 @@ function Header() {
           ))}
         </nav>
         <div className="header-right">
-          <span
+          <button
+            type="button"
             className={`lang-btn ${lang === 'zh' ? 'active' : ''}`}
+            aria-pressed={lang === 'zh'}
             onClick={() => setLang('zh')}
-          >中文</span>
-          <span
+          >中文</button>
+          <button
+            type="button"
             className={`lang-btn ${lang === 'en' ? 'active' : ''}`}
+            aria-pressed={lang === 'en'}
             onClick={() => setLang('en')}
-          >English</span>
+          >English</button>
           <a className="social-icon" href="#contact" aria-label="Facebook">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
           </a>

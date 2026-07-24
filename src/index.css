@@ -556,9 +556,13 @@ select {
 }
 
 .brand-header .lang-btn {
+  appearance: none;
+  background: transparent;
+  border: 0;
   padding: 5px 3px 7px;
   color: rgba(255, 255, 255, 0.58);
   border-bottom: 2px solid transparent;
+  font-family: inherit;
   font-size: 14px;
   font-weight: 500;
   line-height: 1;

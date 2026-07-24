@@ -1,4 +1,5 @@
-import { createContext, useContext, useState, useCallback } from 'react'
+import { createContext, useContext, useState, useCallback, useEffect } from 'react'
+import { getInitialLanguage, syncLanguageToUrl } from './languageRouting'
 
 const translations = {
   // ===== Navigation =====
@@ -185,7 +186,11 @@ const translations = {
 const LanguageContext = createContext()
 
 export function LanguageProvider({ children }) {
-  const [lang, setLang] = useState('en')
+  const [lang, setLang] = useState(() => getInitialLanguage('en'))
+
+  useEffect(() => {
+    syncLanguageToUrl(lang)
+  }, [lang])
 
   const t = useCallback((key) => {
     return translations[key]?.[lang] || key
