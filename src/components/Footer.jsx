@@ -6,13 +6,13 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="footer-system-line">
-        <span>SHENCHAI POWER SYSTEMS</span>
+        <span>FLYDEER POWER SYSTEMS</span>
         <span>ENGINEERED FOR CONTINUOUS DUTY</span>
       </div>
       <div className="footer-inner">
         <div className="footer-brand">
-          <img src="/logo.png" alt="FlyDeer 深柴动力" className="footer-logo" />
-          <p>ShenChai Power — Professional diesel generator sets for global customers.</p>
+          <img src="/logo.png" alt="FLYDEER POWER 深柴动力" className="footer-logo" />
+          <p>FLYDEER POWER — Professional diesel generator sets for global customers.</p>
         </div>
         <div className="footer-col">
           <h4>{t('footerProducts')}</h4>

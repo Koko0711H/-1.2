@@ -1593,7 +1593,7 @@
   }
 }
 
-/* Why ShenChai: proof-led archive, aligned with the About-site system */
+/* Why FLYDEER: proof-led archive, aligned with the About-site system */
 .main-redesign .advantages-section {
   position: relative;
   max-width: none;
@@ -3149,5 +3149,78 @@
   .main-redesign .service-console-email > i,
   .main-redesign .service-console-email {
     transition: none;
+  }
+}
+
+/* ===== Industrial title system / 2026-07-24 ===== */
+.main-redesign .section-title h2,
+.main-redesign .about-text h3,
+.main-redesign .advantage-certifications-heading h3,
+.main-redesign .case-info h3,
+.main-redesign .service-command-heading h2,
+.main-redesign .service-footprint-heading h3 {
+  text-wrap: balance;
+}
+
+.main-redesign .section-title h2 {
+  max-width: 920px;
+  font-size: clamp(50px, 5.9vw, 90px);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+.main-redesign .advantages-title h2 {
+  max-width: 980px;
+  font-size: clamp(56px, 6.25vw, 98px);
+  line-height: 0.96;
+  letter-spacing: -0.048em;
+}
+
+.main-redesign .service-command-heading h2 {
+  max-width: 900px;
+  font-size: clamp(50px, 5.8vw, 86px);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+html[lang="en"] .main-redesign .section-heading-copy,
+html[lang="en"] .main-redesign .advantages-title .section-heading-copy {
+  grid-template-columns: minmax(0, 1.32fr) minmax(260px, 0.52fr);
+}
+
+html[lang="en"] .main-redesign .section-title h2,
+html[lang="en"] .main-redesign .advantages-title h2,
+html[lang="en"] .main-redesign .service-command-heading h2 {
+  max-width: 1040px;
+  letter-spacing: -0.038em;
+}
+
+html[lang="zh"] .main-redesign .section-title h2,
+html[lang="zh"] .main-redesign .advantages-title h2,
+html[lang="zh"] .main-redesign .service-command-heading h2 {
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+}
+
+@media (max-width: 760px) {
+  html[lang="en"] .main-redesign .section-heading-copy,
+  html[lang="en"] .main-redesign .advantages-title .section-heading-copy {
+    grid-template-columns: 1fr;
+  }
+
+  .main-redesign .section-title h2,
+  .main-redesign .advantages-title h2,
+  .main-redesign .service-command-heading h2 {
+    font-size: clamp(42px, 12vw, 62px);
+    line-height: 1;
+    letter-spacing: -0.035em;
+  }
+
+  html[lang="en"] .main-redesign .section-title h2,
+  html[lang="en"] .main-redesign .advantages-title h2,
+  html[lang="en"] .main-redesign .service-command-heading h2 {
+    font-size: clamp(40px, 10.8vw, 58px);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
   }
 }

@@ -494,7 +494,7 @@ img, video {
 @media (max-width: 768px) {
 }
 
-/* ===== Unified Shenchai brand shell ===== */
+/* ===== Unified FLYDEER POWER brand shell ===== */
 body,
 button,
 input,
@@ -642,7 +642,7 @@ select {
   display: flex;
   flex-wrap: nowrap;
   align-items: baseline;
-  gap: 0.16em;
+  gap: 0.12em;
   max-width: 100%;
   margin: 0 0 clamp(25px, 3vh, 38px);
   color: #fff;
@@ -650,8 +650,8 @@ select {
   font-size: clamp(88px, 9.3vw, 178px);
   font-stretch: condensed;
   font-weight: 900;
-  line-height: 0.82;
-  letter-spacing: -0.055em;
+  line-height: 0.86;
+  letter-spacing: -0.045em;
   text-transform: uppercase;
   text-shadow: 0 8px 34px rgba(0, 10, 32, 0.4);
 }
@@ -661,6 +661,10 @@ select {
   font-size: clamp(112px, 14vw, 238px);
   letter-spacing: 0.01em;
   text-transform: none;
+}
+
+.hero-content.hero-content-brand.is-en .hero-company-title {
+  font-size: clamp(84px, 8.8vw, 166px);
 }
 
 .hero-company-solid,
@@ -717,6 +721,11 @@ select {
     margin-bottom: 18px;
     font-size: clamp(54px, 12.5vw, 84px);
     line-height: 0.9;
+  }
+
+  .hero-content.hero-content-brand.is-en .hero-company-title {
+    font-size: clamp(48px, 14vw, 58px);
+    line-height: 0.92;
   }
 
   .hero-content-brand.is-en .hero-company-outline {

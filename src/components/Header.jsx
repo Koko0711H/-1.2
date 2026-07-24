@@ -33,7 +33,7 @@ function Header() {
         <a
           className="logo"
           href="#top"
-          aria-label={lang === 'zh' ? '深柴动力首页' : 'ShenChai Power home'}
+          aria-label={lang === 'zh' ? '深柴动力首页' : 'FLYDEER POWER home'}
           onClick={(event) => {
             event.preventDefault()
             window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -41,7 +41,7 @@ function Header() {
         >
           <img
             src="/logo.png"
-            alt="FlyDeer 深柴动力"
+            alt="FLYDEER POWER 深柴动力"
             className="logo-img"
           />
         </a>

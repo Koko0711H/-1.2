@@ -27,7 +27,7 @@ function About() {
         <div className="section-title">
           <div className="section-heading-meta">
             <span>04 / COMPANY PROFILE</span>
-            <span>SHENCHAI POWER · SINCE 2002</span>
+            <span>FLYDEER POWER · SINCE 2002</span>
           </div>
           <div className="section-heading-copy">
             <h2>{t('aboutTitle')}</h2>
@@ -47,7 +47,7 @@ function About() {
               </div>
               <div className="about-image fade-up">
                 <img src="/flydeer-building.png" alt={t('aboutImgAlt')} />
-                <span className="about-image-caption">SHENCHAI POWER / HEADQUARTERS</span>
+                <span className="about-image-caption">FLYDEER POWER / HEADQUARTERS</span>
               </div>
             </div>
             <div className="stats-bar">

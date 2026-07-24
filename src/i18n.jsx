@@ -12,8 +12,8 @@ const translations = {
   getQuote: { en: 'Get Quote', zh: '获取报价' },
 
   // ===== Hero =====
-  heroTitle1: { en: 'SHENCHAI POWER', zh: '深柴动力' },
-  heroBrandLead: { en: 'SHENCHAI', zh: '深柴' },
+  heroTitle1: { en: 'FLYDEER POWER', zh: '深柴动力' },
+  heroBrandLead: { en: 'FLYDEER', zh: '深柴' },
   heroBrandTail: { en: 'POWER', zh: '动力' },
   heroSub1: { en: '30KW–2000KW generator sets for industry, infrastructure and emergency power.', zh: '30KW–2000KW 发电机组，为工业、基建与应急场景持续供电' },
   heroCta: { en: 'Explore Products', zh: '探索产品' },
@@ -91,13 +91,13 @@ const translations = {
   ind9Sub: { en: 'High-reliability power for demanding mine sites', zh: '为高负荷矿山作业提供可靠电力' },
 
   // ===== About =====
-  aboutTitle: { en: 'About ShenChai Power', zh: '关于深柴动力' },
+  aboutTitle: { en: 'About FLYDEER POWER', zh: '关于深柴动力' },
   aboutSub: { en: 'A Trusted Generator Set Manufacturer', zh: '值得信赖的发电机组制造商' },
   aboutH3: { en: '20 Years of Excellence', zh: '二十年专注，铸就行业品牌' },
-  aboutP1: { en: 'ShenChai Power is a comprehensive enterprise integrating R&D, production, sales and service of diesel generator sets. The company has a modern production base with an annual capacity of over 5,000 units.', zh: '深柴动力是一家集柴油发电机组研发、生产、销售和服务于一体的综合性企业。公司拥有现代化生产基地，年产能超过5000台套。' },
-  aboutP2: { en: 'Leveraging the strength of state-owned enterprises and combining it with market-driven innovation, ShenChai Power has grown into a leading manufacturer of diesel generator sets.', zh: '依托国企实力，结合市场化创新机制，深柴动力已发展成为国内领先的柴油发电机组制造商。' },
-  aboutPageBtn: { en: 'About ShenChai Power', zh: '关于深柴动力' },
-  aboutImgAlt: { en: 'ShenChai Power Headquarters', zh: '深柴动力总部大楼' },
+  aboutP1: { en: 'FLYDEER POWER is a comprehensive enterprise integrating R&D, production, sales and service of diesel generator sets. The company has a modern production base with an annual capacity of over 5,000 units.', zh: '深柴动力是一家集柴油发电机组研发、生产、销售和服务于一体的综合性企业。公司拥有现代化生产基地，年产能超过5000台套。' },
+  aboutP2: { en: 'Leveraging the strength of state-owned enterprises and combining it with market-driven innovation, FLYDEER POWER has grown into a leading manufacturer of diesel generator sets.', zh: '依托国企实力，结合市场化创新机制，深柴动力已发展成为国内领先的柴油发电机组制造商。' },
+  aboutPageBtn: { en: 'About FLYDEER POWER', zh: '关于深柴动力' },
+  aboutImgAlt: { en: 'FLYDEER POWER Headquarters', zh: '深柴动力总部大楼' },
   stat1: { en: '20+ Years', zh: '20+ 年行业经验' },
   stat2: { en: '500+ Clients', zh: '500+ 服务客户' },
   stat3: { en: '50+ Countries', zh: '50+ 出口国家' },
@@ -121,7 +121,7 @@ const translations = {
   adv4Desc: { en: 'From lifting and placement to installation coordination, the team handles heavy equipment and restricted-access conditions with a clear process.', zh: '从吊装、落位到安装协同，面对大型设备与受限空间，均有清晰可靠的实施流程。' },
   adv4Label: { en: 'ENGINEERING RECORD', zh: '工程现场' },
   advRecordLabel: { en: 'FIELD RECORD', zh: '现场档案' },
-  advReasonRailLabel: { en: 'WHY SHENCHAI', zh: '选择深柴的理由' },
+  advReasonRailLabel: { en: 'WHY FLYDEER', zh: '选择深柴的理由' },
   advArchiveLabel: { en: 'PROJECT EVIDENCE ARCHIVE', zh: '项目证据档案' },
   advArchiveCount: { en: 'REAL-WORLD IMAGES', zh: '张真实现场' },
   advCertEyebrow: { en: 'CERTIFICATION MATRIX / 06', zh: '资质认证矩阵 / 06' },
@@ -172,7 +172,7 @@ const translations = {
   footerAbout: { en: 'About', zh: '关于我们' },
   footerProducts: { en: 'Products', zh: '产品中心' },
   footerContact: { en: 'Contact', zh: '联系方式' },
-  footerCopyright: { en: '? 2026 ShenChai Power. All Rights Reserved.', zh: '? 2026 深柴动力 版权所有' },
+  footerCopyright: { en: '© 2026 FLYDEER POWER. All Rights Reserved.', zh: '© 2026 深柴动力 版权所有' },
   footerProd1: { en: 'Silent Generator Sets', zh: '静音型机组' },
   footerProd2: { en: 'Open-Frame Sets', zh: '开架型机组' },
   footerProd3: { en: 'Mobile Sets', zh: '移动式机组' },
@@ -190,6 +190,9 @@ export function LanguageProvider({ children }) {
 
   useEffect(() => {
     syncLanguageToUrl(lang)
+    document.title = lang === 'zh'
+      ? '深柴动力｜专业动力解决方案'
+      : 'FLYDEER POWER | Professional Power Solutions'
   }, [lang])
 
   const t = useCallback((key) => {
