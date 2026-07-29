@@ -3,11 +3,11 @@ import { useLang } from '../i18n'
 import { withLanguage } from '../languageRouting'
 
 const productKeys = [
-  { tag: 'prod1Tag', name: 'prod1Name', desc: 'prod1Desc', detail: 'prod1Detail', type: 'video', src: '/silent-generator.mp4', hasRichDetail: true, moreLink: 'https://1-5-7.pages.dev/' },
-  { tag: 'prod2Tag', name: 'prod2Name', desc: 'prod2Desc', detail: 'prod2Detail', type: 'video', src: '/open-frame.mp4', hasRichDetail: true, moreLink: 'https://shenchai1-5-6.pages.dev/' },
-  { tag: 'prod2Tag', name: 'prod2SmallName', desc: 'prod2Desc', detail: 'prod2Detail', type: 'video', src: '/open-frame-small.mp4', hasRichDetail: true, moreLink: 'https://shenchai1-5-3.pages.dev/' },
-  { tag: 'prod3Tag', name: 'prod3Name', desc: 'prod3Desc', detail: 'prod3Detail', type: 'video', src: '/mobile-trailer.mp4', hasRichDetail: true, moreLink: 'https://1-5-8.pages.dev/' },
-  { tag: 'prod4Tag', name: 'prod4Name', desc: 'prod4Desc', detail: 'prod4Detail', type: 'video', src: '/high-voltage.mp4', moreLink: 'https://1-5-9.pages.dev/' },
+  { tag: 'prod1Tag', name: 'prod1Name', desc: 'prod1Desc', detail: 'prod1Detail', type: 'video', src: '/silent-generator.mp4', hasRichDetail: true, moreLink: '/products/silent/' },
+  { tag: 'prod2Tag', name: 'prod2Name', desc: 'prod2Desc', detail: 'prod2Detail', type: 'video', src: '/open-frame.mp4', hasRichDetail: true, moreLink: '/products/open-frame-1200/' },
+  { tag: 'prod2Tag', name: 'prod2SmallName', desc: 'prod2Desc', detail: 'prod2Detail', type: 'video', src: '/open-frame-small.mp4', hasRichDetail: true, moreLink: '/products/open-frame-500/' },
+  { tag: 'prod3Tag', name: 'prod3Name', desc: 'prod3Desc', detail: 'prod3Detail', type: 'video', src: '/mobile-trailer.mp4', hasRichDetail: true, moreLink: '/products/mobile-trailer/' },
+  { tag: 'prod4Tag', name: 'prod4Name', desc: 'prod4Desc', detail: 'prod4Detail', type: 'video', src: '/high-voltage.mp4', moreLink: '/products/high-voltage/' },
 ]
 
 function RichDetail() {

@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0c100f" />
+  <title>FLYDEER POWER | About Us</title>
+  <style>
+    :root{--orange:#0a2850;--ink:#111614;--paper:#fff;--line:rgba(255,255,255,.22)}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--ink);color:#fff;font-family:Arial,"Microsoft YaHei",sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}
+    .site-header{position:fixed;z-index:30;top:0;left:0;right:0;height:66px;padding:0 clamp(22px,3.65vw,52px);display:flex;align-items:center;justify-content:space-between;color:#fff;background:linear-gradient(180deg,rgba(0,0,0,.42),transparent);transition:color .35s,background .35s}.logo{width:120px;filter:brightness(0) invert(1)}.nav{display:flex;align-items:stretch;height:100%;gap:clamp(25px,2.7vw,43px)}.nav a{position:relative;display:flex;align-items:center;font-size:16px;white-space:nowrap}.nav a:after{position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--orange);content:"";transform:scaleX(0);transition:.2s}.nav a:hover:after,.nav .active:after{transform:scaleX(1)}.tools{display:flex;align-items:center;gap:12px}.lang{display:flex;gap:18px;margin-right:8px}.lang button{border:0;border-bottom:2px solid transparent;padding:5px 0 8px;background:transparent;color:rgba(255,255,255,.58);font:15px inherit;cursor:pointer}.lang button.active{color:#fff;border-color:var(--orange)}.circle{width:34px;height:34px;border:1px solid rgba(255,255,255,.55);border-radius:50%;display:grid;place-items:center;font-size:14px}.quote{border:1px solid rgba(255,255,255,.65);padding:10px 15px;font-size:15px}
+    .intro-stage{position:relative}.hero{position:sticky;top:0;height:100svh;min-height:680px;overflow:hidden;background:#060a09}.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.45),transparent 62%),linear-gradient(0deg,rgba(0,0,0,.48),transparent 50%)}.hero-copy{position:absolute;z-index:2;top:clamp(108px,13vh,154px);left:clamp(28px,4.3vw,82px);width:min(760px,48vw);will-change:opacity,transform}.eyebrow{margin:0 0 22px;color:var(--orange);font:11px monospace;letter-spacing:.18em}.hero h1{margin:0;font-size:clamp(86px,13vw,220px);line-height:.8;letter-spacing:-.13em;white-space:nowrap}.hero-bottom{margin-top:clamp(28px,3vw,54px);max-width:300px;font-size:14px;line-height:1.75}.round{display:grid;place-items:center;width:52px;height:52px;margin-top:25px;border:1px solid #fff8;border-radius:50%;font-size:23px}.corner{position:absolute;z-index:2;right:4vw;bottom:5vw;color:#ffffff80;font:10px monospace;line-height:1.5}
+    .cases{position:relative;z-index:3;min-height:100svh;padding:130px 4.3vw 100px;background:transparent;color:#fff}.section-intro{display:flex;justify-content:space-between;gap:40px}.section-intro h2,.section h2{margin:0;max-width:760px;font-size:clamp(44px,6.7vw,105px);line-height:.94;letter-spacing:-.08em}.gallery{width:112%;margin:110px -6% 45px;overflow:hidden;transform:rotate(-5deg)}.track{display:flex;gap:16px;width:max-content;animation:slide 32s linear infinite}.gallery:hover .track{animation-play-state:paused}.card{width:350px;height:270px;padding:18px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(135deg,#24465e,#101b1d)}.card:nth-child(2n){background:linear-gradient(135deg,#78513d,#1f1915)}.card:nth-child(3n){background:linear-gradient(135deg,#28433b,#101816)}.grid{position:absolute;inset:0;opacity:.35;background:repeating-linear-gradient(90deg,transparent 0 48px,#fff2 49px 50px),repeating-linear-gradient(0deg,transparent 0 48px,#fff2 49px 50px)}.card>*:not(.grid){position:relative}.card b{font:11px monospace;color:var(--orange)}.card p,.card small{margin:0 0 7px;font:10px monospace;letter-spacing:.12em}.card h3{margin:0;font-size:26px;letter-spacing:-.05em}.note{text-align:right;color:#fff9;font:10px monospace;letter-spacing:.1em}@keyframes slide{to{transform:translateX(-47%)}}
+    .section{position:relative;z-index:5;padding:140px 4.3vw}.journey{overflow:hidden;padding-top:64px}.journey:before{position:absolute;z-index:0;top:0;left:0;right:0;height:96px;content:"";background:linear-gradient(180deg,#111614 0%,#fff 100%);pointer-events:none}.journey>.section-intro{position:relative;z-index:1}.light{background:#fff;color:#111614}.dark{background:#111614;color:#fff}.timeline{max-width:920px;margin:110px 0 0 auto}.milestone{display:grid;grid-template-columns:120px 50px 1fr;padding:20px 0 72px;border-top:1px solid #11161433}.milestone>span{font:13px monospace;color:#55635c}.dot{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;background:var(--orange);font:8px monospace}.milestone h3{margin:0 0 14px;font-size:28px;letter-spacing:-.05em}.milestone p{max-width:370px;color:#48524c;line-height:1.65}.products{min-height:780px}.product-list{width:min(760px,100%);margin:105px 0 0 auto;border-top:1px solid var(--line)}.product{display:grid;grid-template-columns:80px 1fr 25px;gap:16px;padding:25px 0;border-bottom:1px solid var(--line)}.product>span,.product>b{color:var(--orange);font:12px monospace}.product h3{margin:0 0 8px;font-size:27px}.product p{margin:0;color:#b6b8ae;line-height:1.6}.contact h2{margin-bottom:90px}.contact-grid{display:grid;grid-template-columns:1fr 1fr 1.1fr;gap:50px;padding-top:25px;border-top:1px solid #11161433}.contact-grid p{color:#637069;font:11px monospace;letter-spacing:.1em}.contact-grid a,.contact-grid address{display:block;font-size:17px;line-height:1.8;font-style:normal}.map{min-height:180px;display:grid;place-items:center;border:1px solid #11161444;background:repeating-linear-gradient(45deg,transparent 0 14px,#11161408 15px 16px);font:10px monospace;text-align:center}footer{position:relative;z-index:5;display:flex;justify-content:space-between;gap:15px;padding:21px 4.3vw;background:#111614;color:#aeb1aa;font:10px monospace;letter-spacing:.06em}
+    .en{display:none}body.english .zh{display:none}body.english .en{display:inline}body.english .en.block{display:block}body.english .cases .section-intro h2.en{max-width:900px}@media(max-width:700px){.site-header{height:62px;padding:0 6vw}.logo{width:105px}.nav,.circle,.quote{display:none}.hero{min-height:620px}.hero-copy{top:96px;left:6vw;width:88vw}.hero h1{font-size:clamp(58px,19vw,104px)}body.english .hero h1{white-space:normal;font-size:clamp(52px,14vw,80px);line-height:.9}.cases,.section{padding:96px 6vw}.journey{padding-top:64px}.section-intro{display:block}.section-intro h2,.section h2{font-size:48px}.gallery{margin:70px -6% 34px;width:116%}.card{width:270px;height:210px}.timeline{margin-top:75px}.milestone{grid-template-columns:64px 38px 1fr;padding-bottom:46px}.milestone h3{font-size:22px}.contact-grid{grid-template-columns:1fr;gap:22px}footer{padding:20px 6vw;flex-wrap:wrap}}
+  </style>
+  <style>
+    /* The duplicated card set makes the marquee continuous at the loop boundary. */
+    @keyframes slide{to{transform:translateX(calc(-50% - 8px))}}
+    /* Restore the original section rhythm; this change is unrelated to the carousel loop. */
+    .journey{padding-top:140px;overflow:visible}.journey:before{display:none}@media(max-width:700px){.journey{padding-top:96px}}
+    /* Native view-timeline lift: the whole case stage follows scroll with no JS chase or snap. */
+    @keyframes case-stage-scroll{
+      0%{opacity:0;filter:blur(7px);transform:perspective(1200px) translate3d(0,var(--case-start-y),0) rotateX(var(--case-start-pitch)) scale(var(--case-start-scale));animation-timing-function:cubic-bezier(.2,.72,.24,1)}
+      18%{opacity:1;filter:blur(0)}
+      68%{opacity:1;filter:blur(0);transform:perspective(1200px) translate3d(0,var(--case-peak-y),0) rotateX(0) scale(var(--case-peak-scale));animation-timing-function:cubic-bezier(.32,0,.2,1)}
+      100%{opacity:1;filter:blur(0);transform:perspective(1200px) translate3d(0,var(--case-end-y),0) rotateX(0) scale(1)}
+    }
+    @keyframes hero-copy-scroll{from{opacity:1;transform:translate3d(0,0,0)}to{opacity:0;transform:translate3d(0,-36px,0)}}
+    .hero-copy{animation-name:hero-copy-scroll;animation-duration:1s;animation-timing-function:linear;animation-fill-mode:both;animation-timeline:scroll(root block);animation-range:0 42svh}
+    .cases{--case-start-y:420px;--case-peak-y:7px;--case-end-y:49px;--case-start-pitch:24deg;--case-start-scale:.82;--case-peak-scale:1.1;--case-hold-distance:26svh;min-height:calc(238svh + var(--case-hold-distance));margin-top:-65svh;padding:0 4.3vw;perspective:1600px}
+    .gallery{transform:none}
+    .cases.motion-ready .case-motion{position:sticky;top:0;height:100svh;min-height:680px;box-sizing:border-box;padding-top:130px;animation-name:case-stage-scroll;animation-duration:1s;animation-timing-function:linear;animation-fill-mode:both;animation-timeline:scroll(root block);animation-range:18svh 68svh;transform-origin:50% 35%;will-change:transform,opacity,filter}
+    .cases.motion-ready .section-intro,.cases.motion-ready .gallery,.cases.motion-ready .note{opacity:1;filter:none;transform:none}
+    /* The journey is inserted as one complete page from the right. Its stable
+       section owns the view timeline; only the inner page moves. */
+    @keyframes journey-page-in{
+      0%{transform:perspective(1800px) translate3d(102vw,0,0) rotateY(-2deg) scale(.988);box-shadow:-36px 0 70px rgba(0,0,0,.2)}
+      72%{box-shadow:-16px 0 40px rgba(0,0,0,.12)}
+      100%{transform:perspective(1800px) translate3d(0,0,0) rotateY(0) scale(1);box-shadow:0 0 0 rgba(0,0,0,0)}
+    }
+    .journey{position:relative;z-index:9;min-height:165svh;margin-top:-100svh;padding:0;overflow:clip;background:transparent;view-timeline-name:--journey-page;view-timeline-axis:block}
+    .journey-page{position:sticky;top:0;min-height:100svh;padding:140px 4.3vw;background:linear-gradient(90deg,rgba(255,255,255,.08) 0 42%,rgba(255,255,255,.62) 68%,rgba(255,255,255,.8) 100%),url('journey-engine-background.png') center/cover no-repeat;transform-origin:left center;animation-name:journey-page-in;animation-duration:1s;animation-timing-function:cubic-bezier(.18,.72,.22,1);animation-fill-mode:both;animation-timeline:--journey-page;animation-range:entry 0% entry 62%;will-change:transform,box-shadow}
+    /* Fallback for browsers without CSS scroll timelines: each scroll event maps
+       directly to the page position, with no RAF smoothing or auto-play. */
+    .journey.js-motion .journey-page{height:100svh;overflow:hidden;animation:none;transform:perspective(1800px) translate3d(var(--journey-x,102vw),0,0) rotateY(var(--journey-tilt,-2deg)) scale(var(--journey-scale,.988));box-shadow:-28px 0 56px rgba(0,0,0,var(--journey-shadow,.16));will-change:transform,box-shadow}
+    .journey.js-motion .journey-page:after{position:absolute;z-index:4;top:0;bottom:0;left:0;width:6px;content:"";background:var(--orange);opacity:var(--journey-edge,0);box-shadow:0 0 32px rgba(10,40,80,.58);pointer-events:none}
+    .journey-content{will-change:transform;transform:translate3d(0,var(--journey-content-y,0),0)}
+    .journey.js-motion .journey-content>.section-intro,.journey.js-motion .timeline{opacity:var(--journey-reveal,0);transform:translate3d(0,var(--journey-content-in-y,34px),0);transition:none}
+    .cases.overlay-fade{opacity:var(--case-overlay-opacity,1);filter:blur(var(--case-overlay-blur,0px));will-change:opacity,filter}
+    .reveal-stage .section-intro,.reveal-stage .product-list,.reveal-stage .contact-grid,.reveal-stage>h2,.reveal-stage>.eyebrow{will-change:opacity,transform;transition:opacity .82s cubic-bezier(.16,.78,.22,1),transform .82s cubic-bezier(.16,.78,.22,1)}
+    .products.reveal-stage .section-intro{opacity:0;transform:translate3d(-44px,0,0)}.products.reveal-stage .product-list{opacity:0;transform:translate3d(64px,0,0)}.products.reveal-stage .product{opacity:0;transform:translate3d(46px,0,0);will-change:opacity,transform;transition:opacity .72s cubic-bezier(.16,.78,.22,1),transform .72s cubic-bezier(.16,.78,.22,1)}.products.reveal-stage.in-view .section-intro,.products.reveal-stage.in-view .product-list{opacity:1;transform:translate3d(0,0,0)}.products.reveal-stage.in-view .product{opacity:1;transform:translate3d(0,0,0)}.products.reveal-stage.in-view .product:nth-child(1){transition-delay:.12s}.products.reveal-stage.in-view .product:nth-child(2){transition-delay:.22s}.products.reveal-stage.in-view .product:nth-child(3){transition-delay:.32s}
+    .contact.reveal-stage>.eyebrow,.contact.reveal-stage>h2{opacity:0;transform:translate3d(0,42px,0)}.contact.reveal-stage .contact-grid{opacity:0;transform:translate3d(0,64px,0)}.contact.reveal-stage.in-view>.eyebrow,.contact.reveal-stage.in-view>h2,.contact.reveal-stage.in-view .contact-grid{opacity:1;transform:translate3d(0,0,0)}.contact.reveal-stage.in-view>h2{transition-delay:.08s}.contact.reveal-stage.in-view .contact-grid{transition-delay:.22s}
+    .products.stage-ready{position:relative;z-index:9;min-height:245svh;margin-top:-100svh;padding:0;background:transparent}.contact.stage-ready{position:relative;z-index:10;min-height:235svh;margin-top:-100svh;padding:0;background:transparent}.section-stage{position:sticky;top:0;min-height:100svh;padding:140px 4.3vw}.products.stage-ready .section-stage{z-index:1;background:linear-gradient(90deg,rgba(8,11,10,.9) 0 34%,rgba(8,11,10,.56) 62%,rgba(8,11,10,.78) 100%),url('products-engine-background.png') center/cover no-repeat;transform:translate3d(0,var(--product-stage-y,100svh),0);box-shadow:0 -30px 70px rgba(0,0,0,var(--product-panel-shadow,.24));will-change:transform,box-shadow}.products.stage-ready .section-stage:after{position:absolute;z-index:4;top:0;right:0;left:0;height:6px;content:"";background:var(--orange);box-shadow:0 0 32px rgba(255,90,54,.5);pointer-events:none}.products.stage-ready .section-intro{opacity:var(--product-copy-opacity,0);transform:translate3d(var(--product-copy-x,-64px),0,0);transition:none}.products.stage-ready .product-list{opacity:var(--product-list-opacity,0);transform:translate3d(var(--product-list-x,80px),0,0);transition:none}.contact.stage-ready .section-stage{z-index:1;background:#fff;transform:translate3d(var(--contact-stage-x,-100vw),0,0);box-shadow:28px 0 70px rgba(0,0,0,var(--contact-panel-shadow,.2));will-change:transform,box-shadow}.contact.stage-ready .section-stage:after{position:absolute;z-index:4;top:0;right:0;bottom:0;width:6px;content:"";background:var(--orange);box-shadow:0 0 32px rgba(255,90,54,.5);pointer-events:none}.contact.stage-ready .section-stage>.eyebrow,.contact.stage-ready .section-stage>h2{opacity:var(--contact-copy-opacity,0);transform:translate3d(var(--contact-copy-x,-64px),0,0);transition:none}.contact.stage-ready .contact-grid{opacity:var(--contact-grid-opacity,0);transform:translate3d(var(--contact-grid-y,64px),0,0);transition:none}
+    @media(prefers-reduced-motion:reduce){.journey.js-motion .journey-content>.section-intro,.journey.js-motion .timeline,.products.stage-ready .section-intro,.products.stage-ready .product-list,.contact.stage-ready .section-stage>.eyebrow,.contact.stage-ready .section-stage>h2,.contact.stage-ready .contact-grid{opacity:1!important;transform:none!important;transition:none!important}}@media(max-width:700px){.products.stage-ready,.contact.stage-ready{min-height:230svh;margin-top:-85svh}.section-stage{padding:96px 6vw}}
+    @supports not (animation-timeline:scroll(root block)){
+      .hero-copy{animation:none}.cases.motion-ready .case-motion{animation:none;opacity:1;filter:none;transform:none}.journey-page{animation:none;transform:none}
+    }
+    @media(max-width:700px){.cases{--case-start-y:300px;--case-peak-y:12px;--case-end-y:40px;--case-start-pitch:18deg;--case-start-scale:.86;--case-peak-scale:1.06;--case-hold-distance:20svh}.cases.motion-ready .case-motion{min-height:620px;padding-top:96px}.journey{min-height:150svh;margin-top:-100svh}.journey-page{padding:96px 6vw}}
+  </style>
+  <style>
+    /* ===== Unified FLYDEER POWER brand shell ===== */
+    :root{
+      --brand-navy:#0a2850;
+      --brand-navy-deep:#061a33;
+      --brand-red:#e63946;
+      --brand-surface:#f5f7fa;
+      --brand-ink:#172033;
+      --brand-white:#fff;
+      --font-brand:Arial,"PingFang SC","Microsoft YaHei",sans-serif;
+      --orange:var(--brand-navy);
+      --ink:var(--brand-navy-deep);
+    }
+    body,button,input,textarea,select{font-family:var(--font-brand)}
+    body,.hero,.dark,footer{background-color:var(--brand-navy-deep)}
+    .eyebrow,.corner,.card b,.card p,.card small,.note,.milestone>span,.dot,.product>span,.product>b,.contact-grid p,.map,footer{font-family:var(--font-brand)}
+    .hero h1{letter-spacing:-.04em}
+    body:not(.english) .hero h1.zh,
+    body.english .hero h1.en{
+      position:relative;
+      display:inline-block;
+      transform:perspective(520px) rotateY(24deg) rotateZ(-.8deg);
+      transform-origin:4% 50%;
+      transform-style:preserve-3d;
+      backface-visibility:hidden;
+      -webkit-text-stroke:1.5px rgba(55,139,226,.9);
+      paint-order:stroke fill;
+      text-shadow:3px 1px 0 #2f7dcc,7px 3px 0 #1e62a7,12px 5px 0 #0f477f,18px 8px 0 #0a2850,28px 15px 34px rgba(0,0,0,.8);
+      filter:drop-shadow(22px 14px 24px rgba(12,92,181,.36));
+      animation:title-plunge-in 1s cubic-bezier(.16,.78,.22,1) both;
+      will-change:transform,filter;
+    }
+    @keyframes title-plunge-in{
+      from{transform:perspective(900px) rotateY(0) rotateZ(0) translateZ(80px);text-shadow:0 0 0 transparent;filter:drop-shadow(0 0 0 transparent)}
+      to{transform:perspective(520px) rotateY(24deg) rotateZ(-.8deg) translateZ(0)}
+    }
+    @keyframes title-plunge-in-mobile{
+      from{transform:perspective(700px) rotateY(0) rotateZ(0) translateZ(48px)}
+      to{transform:perspective(420px) rotateY(18deg) rotateZ(-.6deg) translateZ(0)}
+    }
+    .section-intro h2,.section h2{letter-spacing:-.03em}
+    .card h3,.milestone h3{letter-spacing:-.02em}
+    .card,.card:nth-child(2n),.card:nth-child(3n){background:linear-gradient(135deg,#173f6b,#071a33)}
+    .track{animation-duration:72s}
+    .card{isolation:isolate;border:1px solid rgba(255,255,255,.18);border-radius:16px;background-clip:padding-box;box-shadow:0 18px 46px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.06);transition:transform .45s cubic-bezier(.16,.78,.22,1),border-color .45s ease,box-shadow .45s ease}
+    .card>.case-photo{position:absolute;z-index:0;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.015);transition:transform .8s cubic-bezier(.16,.78,.22,1)}
+    .card:after{position:absolute;z-index:1;inset:0;content:"";background:linear-gradient(180deg,rgba(3,13,27,.08) 18%,rgba(3,13,27,.28) 56%,rgba(3,13,27,.9) 100%)}
+    .card>.grid{z-index:2;opacity:.1}.card>b,.card>div{z-index:3}.card b{color:#fff}.card:hover{transform:translateY(-5px);border-color:rgba(255,255,255,.38);box-shadow:0 24px 58px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.1)}.card:hover>.case-photo{transform:scale(1.06)}
+    .card h3{display:block;max-width:94%;text-shadow:0 2px 18px rgba(0,0,0,.58)}body.english .card h3.en{display:block}
+    .card small{display:block;margin-top:7px;white-space:nowrap;font-size:8px;color:rgba(255,255,255,.76)}
+    @keyframes slide{to{transform:translateX(calc(-50% - 8px))}}
+    @media(max-width:700px){.card{border-radius:13px}}@media(prefers-reduced-motion:reduce){.card,.card>.case-photo{transition:none}.card:hover{transform:none}}
+
+    .site-header{
+      height:70px;
+      padding:0;
+      color:var(--brand-white);
+      background:rgba(6,26,51,.94);
+      box-shadow:0 4px 8px rgba(6,26,51,.16);
+    }
+    .site-header-inner{
+      width:100%;
+      max-width:1400px;
+      height:100%;
+      margin:0 auto;
+      padding:0 clamp(18px,2.4vw,40px);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:clamp(12px,1.6vw,28px);
+    }
+    .site-header .logo{width:auto;height:36px;object-fit:contain}
+    .site-header .nav{flex:1;justify-content:center;gap:clamp(8px,1.55vw,24px)}
+    .site-header .nav a{padding:6px clamp(3px,.5vw,8px);border-radius:4px;font-size:clamp(14px,1.05vw,16px);font-weight:500}
+    .site-header .nav a:hover{background:rgba(255,255,255,.12)}
+    .site-header .tools{gap:clamp(6px,.85vw,14px)}
+    .site-header .lang{gap:12px;margin-right:0}
+    .site-header .lang button{padding:5px 3px 7px;color:rgba(255,255,255,.58);border-bottom:2px solid transparent;font:500 14px/1 var(--font-brand)}
+    .site-header .lang button:hover,.site-header .lang button.active{color:var(--brand-white);border-color:var(--brand-red)}
+    .site-header .circle{color:var(--brand-white);border-color:rgba(255,255,255,.42)}
+    .site-header .circle:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.72)}
+    .site-header .quote{min-height:36px;padding:8px clamp(10px,1.2vw,18px);display:flex;align-items:center;color:var(--brand-white);background:var(--brand-red);border:1px solid var(--brand-red);border-radius:4px;font-weight:600}
+    .site-header .quote:hover{background:#c92f3b;border-color:#c92f3b}
+    .about-inquiry-strip{position:relative;z-index:5;padding:72px 4.3vw;color:var(--brand-white);background:linear-gradient(135deg,var(--brand-navy-deep),var(--brand-navy))}
+    .about-inquiry-strip h2{max-width:850px;margin:0;font-size:clamp(38px,5.2vw,74px);line-height:1;letter-spacing:-.03em}
+    .about-inquiry-actions{display:flex;flex-wrap:wrap;gap:14px;margin:32px 0 0}
+    .about-inquiry-actions a{min-height:46px;padding:0 24px;display:inline-flex;align-items:center;justify-content:center;border-radius:4px;font-size:15px;font-weight:600;transition:background .2s,color .2s,border-color .2s}
+    .about-inquiry-primary{color:var(--brand-white);background:var(--brand-red);border:1px solid var(--brand-red)}
+    .about-inquiry-primary:hover{background:#c92f3b;border-color:#c92f3b}
+    .about-inquiry-secondary{color:var(--brand-navy);background:transparent;border:1px solid rgba(10,40,80,.45)}
+    .about-inquiry-secondary:hover{color:var(--brand-white);background:var(--brand-navy);border-color:var(--brand-navy)}
+    .about-inquiry-strip .about-inquiry-secondary{color:var(--brand-white);border-color:rgba(255,255,255,.56)}
+    .about-inquiry-strip .about-inquiry-secondary:hover{color:var(--brand-navy-deep);background:var(--brand-white);border-color:var(--brand-white)}
+    .journey.js-motion .journey-page:after,.products.stage-ready .section-stage:after,.contact.stage-ready .section-stage:after{box-shadow:0 0 32px rgba(10,40,80,.58)}
+    @media(max-width:700px){
+      .site-header{height:64px;padding:0}
+      .site-header-inner{padding:0 16px;gap:10px}
+      .site-header .logo{width:auto;height:28px}
+      .site-header .nav,.site-header .circle,.site-header .quote{display:none}
+      .about-inquiry-strip{padding:64px 6vw}
+      .about-inquiry-actions{margin-top:28px}
+      .about-inquiry-actions a{width:100%}
+      body:not(.english) .hero h1.zh,body.english .hero h1.en{transform:perspective(420px) rotateY(18deg) rotateZ(-.6deg);animation-name:title-plunge-in-mobile}
+    }
+    @media(prefers-reduced-motion:reduce){body:not(.english) .hero h1.zh,body.english .hero h1.en{animation:none}}
+  </style>
+  <style>
+    /* ===== Page 04: FLYDEER POWER factory production archive ===== */
+    .factory{color:var(--brand-ink);background:#edf3f8}
+    .factory-heading{display:grid;grid-template-columns:minmax(180px,.72fr) minmax(0,1.65fr);gap:clamp(28px,5vw,92px);align-items:start}
+    .factory-title-group{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(240px,.62fr);gap:clamp(24px,4vw,70px);align-items:end}
+    .factory h2{max-width:760px;font-size:clamp(48px,5.8vw,88px);line-height:.92;letter-spacing:-.045em}
+    .factory-lead{max-width:430px;margin:0 0 4px;color:#536273;font-size:clamp(13px,1vw,16px);line-height:1.8}
+    .factory-gallery{position:relative;height:clamp(380px,48vh,520px);margin-top:clamp(28px,4vh,48px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:14px}
+    .factory-shot{position:relative;min-width:0;min-height:0;margin:0;overflow:hidden;border:1px solid rgba(10,40,80,.12);border-radius:16px;background:var(--brand-navy-deep);box-shadow:0 18px 40px rgba(16,42,71,.13);isolation:isolate}
+    .factory-shot--hero{grid-column:1/7;grid-row:1/3}.factory-shot:nth-child(2){grid-column:7/10;grid-row:1}.factory-shot:nth-child(3){grid-column:10/13;grid-row:1}.factory-shot:nth-child(4){grid-column:7/9;grid-row:2}.factory-shot:nth-child(5){grid-column:9/11;grid-row:2}.factory-shot:nth-child(6){grid-column:11/13;grid-row:2}
+    .factory-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.015);transition:transform .85s cubic-bezier(.16,.78,.22,1)}
+    .factory-shot:nth-child(4) img{object-position:60% center}
+    .factory-shot:after{position:absolute;z-index:1;inset:0;content:"";background:linear-gradient(180deg,transparent 45%,rgba(3,17,35,.82) 100%)}
+    .factory-shot figcaption{position:absolute;z-index:2;right:14px;bottom:13px;left:14px;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;color:#fff}
+    .factory-shot figcaption>span{color:rgba(255,255,255,.7);font:600 9px/1.2 var(--font-brand);letter-spacing:.13em;white-space:nowrap}
+    .factory-shot figcaption>strong{font-size:clamp(13px,1.15vw,18px);line-height:1.08;text-align:right;text-shadow:0 2px 14px rgba(0,0,0,.45)}
+    .factory-shot--hero figcaption{right:22px;bottom:20px;left:22px}.factory-shot--hero figcaption>strong{font-size:clamp(20px,2vw,32px)}
+    .factory-shot:hover img{transform:scale(1.065)}
+    .factory.stage-ready{position:relative;z-index:8;min-height:235svh;margin-top:-100svh;padding:0;background:transparent}
+    .products.stage-ready{z-index:10}
+    .factory.stage-ready .section-stage{z-index:1;height:100svh;min-height:680px;padding:112px 4.3vw 42px;overflow:hidden;background:linear-gradient(135deg,#f8fbfd 0%,#e7eff6 100%);transform:translate3d(var(--factory-stage-x,-100vw),0,0);box-shadow:28px 0 70px rgba(0,0,0,var(--factory-panel-shadow,.2));will-change:transform,box-shadow}
+    .factory.stage-ready .section-stage:before{position:absolute;top:96px;right:4.3vw;width:clamp(120px,18vw,300px);height:1px;content:"";background:linear-gradient(90deg,transparent,rgba(10,40,80,.38));pointer-events:none}
+    .factory.stage-ready .section-stage:after{position:absolute;z-index:4;top:0;right:0;bottom:0;width:6px;content:"";background:var(--brand-navy);box-shadow:0 0 32px rgba(10,40,80,.58);pointer-events:none}
+    .factory.stage-ready .factory-heading{opacity:var(--factory-copy-opacity,0);transform:translate3d(var(--factory-copy-x,-64px),0,0);transition:none}
+    .factory.stage-ready .factory-gallery{opacity:var(--factory-gallery-opacity,0);transform:translate3d(0,var(--factory-gallery-y,64px),0);transition:none}
+    @media(max-width:900px){.factory-heading{grid-template-columns:1fr}.factory-title-group{grid-template-columns:1fr 1fr}.factory.stage-ready .section-stage{padding-top:96px}.factory-gallery{height:44vh;margin-top:26px}}
+    @media(max-width:700px){
+      .factory.stage-ready{min-height:225svh;margin-top:-85svh}
+      .factory.stage-ready .section-stage{min-height:620px;padding:88px 6vw 34px}
+      .factory-heading{display:block}.factory .eyebrow{margin-bottom:14px}.factory-title-group{display:block}.factory h2{font-size:clamp(40px,12vw,52px);line-height:.94}
+      .factory-lead{margin-top:16px;font-size:13px;line-height:1.65}
+      .factory-gallery{height:310px;margin-top:24px;display:grid;grid-auto-flow:column;grid-auto-columns:78vw;grid-template-columns:none;grid-template-rows:310px;gap:12px;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x mandatory;scrollbar-width:none}
+      .factory-gallery::-webkit-scrollbar{display:none}.factory-shot,.factory-shot--hero,.factory-shot:nth-child(n){grid-column:auto;grid-row:auto;scroll-snap-align:start;border-radius:13px}.factory-shot figcaption,.factory-shot--hero figcaption{right:16px;bottom:15px;left:16px}.factory-shot figcaption>strong,.factory-shot--hero figcaption>strong{font-size:18px}
+    }
+    @media(prefers-reduced-motion:reduce){.factory.stage-ready .factory-heading,.factory.stage-ready .factory-gallery{opacity:1!important;transform:none!important}.factory-shot img{transition:none}.factory-shot:hover img{transform:scale(1.015)}}
+  </style>
+  <style>
+    /* ===== Page 03: real delivery and commissioning records ===== */
+    .delivery{color:#fff;background:var(--brand-navy-deep)}
+    .delivery-heading{display:grid;grid-template-columns:minmax(180px,.72fr) minmax(0,1.65fr);gap:clamp(28px,5vw,92px);align-items:start}
+    .delivery-title-group{display:grid;grid-template-columns:minmax(0,1.18fr) minmax(250px,.7fr);gap:clamp(24px,4vw,70px);align-items:end}
+    .delivery h2{max-width:790px;font-size:clamp(48px,5.6vw,86px);line-height:.92;letter-spacing:-.045em}
+    .delivery-lead{max-width:460px;margin:0 0 4px;color:rgba(232,242,252,.72);font-size:clamp(13px,1vw,16px);line-height:1.8}
+    .delivery-gallery{position:relative;height:clamp(380px,48vh,520px);margin-top:clamp(28px,4vh,48px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:14px}
+    .delivery-shot{position:relative;min-width:0;min-height:0;margin:0;overflow:hidden;border:1px solid rgba(151,198,238,.2);border-radius:16px;background:#031124;box-shadow:0 20px 48px rgba(0,0,0,.28);isolation:isolate}
+    .delivery-shot--hero{grid-column:1/7;grid-row:1/3}.delivery-shot:nth-child(2){grid-column:7/9;grid-row:1}.delivery-shot:nth-child(3){grid-column:9/11;grid-row:1}.delivery-shot:nth-child(4){grid-column:11/13;grid-row:1}.delivery-shot:nth-child(5){grid-column:7/9;grid-row:2}.delivery-shot:nth-child(6){grid-column:9/11;grid-row:2}.delivery-shot:nth-child(7){grid-column:11/13;grid-row:2}
+    .delivery-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.012);transition:transform .85s cubic-bezier(.16,.78,.22,1),filter .85s ease}
+    .delivery-shot:nth-child(5) img,.delivery-shot:nth-child(7) img{object-position:center 58%}
+    .delivery-shot:after{position:absolute;z-index:1;inset:0;content:"";background:linear-gradient(180deg,rgba(3,17,36,.03) 34%,rgba(3,17,36,.84) 100%)}
+    .delivery-shot figcaption{position:absolute;z-index:2;right:13px;bottom:12px;left:13px;display:flex;align-items:flex-end;justify-content:space-between;gap:10px;color:#fff}
+    .delivery-shot figcaption>span{color:rgba(255,255,255,.66);font:600 8px/1.2 var(--font-brand);letter-spacing:.12em;white-space:nowrap}
+    .delivery-shot figcaption>strong{font-size:clamp(12px,1vw,16px);line-height:1.08;text-align:right;text-shadow:0 2px 14px rgba(0,0,0,.52)}
+    .delivery-shot--hero figcaption{right:22px;bottom:20px;left:22px}.delivery-shot--hero figcaption>span{font-size:9px}.delivery-shot--hero figcaption>strong{font-size:clamp(20px,2vw,32px)}
+    .delivery-shot:hover img{transform:scale(1.06);filter:saturate(1.06)}
+    .delivery.stage-ready{position:relative;z-index:9;min-height:235svh;margin-top:-100svh;padding:0;background:transparent}
+    .delivery.stage-ready .section-stage{z-index:1;height:100svh;min-height:680px;padding:112px 4.3vw 42px;overflow:hidden;background:radial-gradient(circle at 72% 18%,rgba(41,111,178,.22),transparent 38%),linear-gradient(145deg,#071e3b 0%,#041427 100%);transform:translate3d(var(--delivery-stage-x,100vw),0,0);box-shadow:-28px 0 70px rgba(0,0,0,var(--delivery-panel-shadow,.2));will-change:transform,box-shadow}
+    .delivery.stage-ready .section-stage:before{position:absolute;top:96px;right:4.3vw;width:clamp(120px,18vw,300px);height:1px;content:"";background:linear-gradient(90deg,transparent,rgba(137,192,239,.46));pointer-events:none}
+    .delivery.stage-ready .section-stage:after{position:absolute;z-index:4;top:0;bottom:0;left:0;width:6px;content:"";background:#6faee2;box-shadow:0 0 34px rgba(96,170,232,.48);pointer-events:none}
+    .delivery.stage-ready .delivery-heading{opacity:var(--delivery-copy-opacity,0);transform:translate3d(var(--delivery-copy-x,64px),0,0);transition:none}
+    .delivery.stage-ready .delivery-gallery{opacity:var(--delivery-gallery-opacity,0);transform:translate3d(0,var(--delivery-gallery-y,72px),0);transition:none}
+    .journey{z-index:10}.products.stage-ready{z-index:11}
+    @media(max-width:900px){.delivery-heading{grid-template-columns:1fr}.delivery-title-group{grid-template-columns:1fr 1fr}.delivery.stage-ready .section-stage{padding-top:96px}.delivery-gallery{height:44vh;margin-top:26px}}
+    @media(max-width:700px){
+      .delivery.stage-ready{min-height:225svh;margin-top:-85svh}
+      .delivery.stage-ready .section-stage{min-height:620px;padding:88px 6vw 34px}
+      .delivery-heading{display:block}.delivery .eyebrow{margin-bottom:14px}.delivery-title-group{display:block}.delivery h2{font-size:clamp(40px,12vw,52px);line-height:.94}
+      .delivery-lead{margin-top:16px;font-size:13px;line-height:1.65}
+      .delivery-gallery{height:310px;margin-top:24px;display:grid;grid-auto-flow:column;grid-auto-columns:78vw;grid-template-columns:none;grid-template-rows:310px;gap:12px;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x mandatory;scrollbar-width:none}
+      .delivery-gallery::-webkit-scrollbar{display:none}.delivery-shot,.delivery-shot--hero,.delivery-shot:nth-child(n){grid-column:auto;grid-row:auto;scroll-snap-align:start;border-radius:13px}.delivery-shot figcaption,.delivery-shot--hero figcaption{right:16px;bottom:15px;left:16px}.delivery-shot figcaption>strong,.delivery-shot--hero figcaption>strong{font-size:18px}
+    }
+    @media(prefers-reduced-motion:reduce){.delivery.stage-ready .delivery-heading,.delivery.stage-ready .delivery-gallery{opacity:1!important;transform:none!important}.delivery-shot img{transition:none}.delivery-shot:hover img{transform:scale(1.012)}}
+  </style>
+  <style>
+    /* ===== Company overview: an editorial company profile inside the immersive sequence ===== */
+    .company-profile{position:relative;z-index:7;min-height:190svh;margin-top:-100svh;padding:0;background:transparent}
+    .company-profile-page{position:sticky;top:0;height:100svh;min-height:680px;padding:92px 4.3vw 38px;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:clamp(18px,2.4vh,28px);overflow:hidden;color:var(--brand-ink);background:linear-gradient(135deg,#f7f9fc 0%,#edf3f8 55%,#e5edf5 100%);transform:translate3d(0,var(--profile-page-y,100svh),0);box-shadow:0 -32px 80px rgba(5,26,51,var(--profile-shadow,.24));will-change:transform,box-shadow}
+    .company-profile-page:before{position:absolute;z-index:0;top:84px;right:4.3vw;width:clamp(150px,22vw,380px);height:1px;content:"";background:linear-gradient(90deg,transparent,rgba(10,40,80,.36));pointer-events:none}
+    .company-profile-page:after{position:absolute;z-index:4;top:0;right:0;left:0;height:6px;content:"";background:var(--brand-navy);box-shadow:0 0 32px rgba(10,40,80,.55);pointer-events:none}
+    .company-profile-heading{position:relative;z-index:1;text-align:center;opacity:var(--profile-heading-opacity,0);transform:translate3d(0,var(--profile-heading-y,46px),0);will-change:opacity,transform}
+    .company-profile-heading .eyebrow{margin-bottom:10px}.company-profile-heading h2{margin:0;color:var(--brand-navy);font-size:clamp(30px,3vw,46px);line-height:1.05;letter-spacing:-.045em}.company-profile-heading .profile-rule{display:block;width:58px;height:3px;margin:14px auto 11px;background:var(--brand-navy)}.company-profile-kicker{margin:0;color:#5b6877;font-size:clamp(13px,1vw,16px)}
+    .company-profile-story{position:relative;z-index:1;width:min(1340px,100%);margin:auto;display:grid;grid-template-columns:minmax(0,.92fr) minmax(420px,1.15fr);gap:clamp(44px,6vw,100px);align-items:center;opacity:var(--profile-story-opacity,0);transform:translate3d(0,var(--profile-story-y,58px),0);will-change:opacity,transform}
+    .company-profile-copy h3{margin:0 0 22px;color:var(--brand-navy);font-size:clamp(24px,2.1vw,34px);line-height:1.15;letter-spacing:-.035em}.company-profile-copy p{max-width:650px;margin:0 0 15px;color:#536273;font-size:clamp(13px,1vw,16px);line-height:1.85}.company-profile-link{min-height:44px;margin-top:10px;padding:0 20px;display:inline-flex;align-items:center;border:1px solid rgba(10,40,80,.62);border-radius:6px;color:var(--brand-navy);font-size:14px;font-weight:700;transition:color .22s,background .22s,transform .22s}.company-profile-link:hover{color:#fff;background:var(--brand-navy);transform:translateY(-2px)}
+    .company-profile-image{position:relative;height:clamp(245px,35vh,360px);margin:0;overflow:hidden;border:1px solid rgba(10,40,80,.12);border-radius:18px;background:var(--brand-navy-deep);box-shadow:0 24px 55px rgba(15,49,83,.18)}.company-profile-image img{width:100%;height:100%;display:block;object-fit:cover;object-position:center;transform:scale(1.015)}.company-profile-image:after{position:absolute;inset:0;content:"";background:linear-gradient(180deg,transparent 58%,rgba(3,20,40,.52))}.company-profile-image figcaption{position:absolute;z-index:1;right:18px;bottom:15px;color:rgba(255,255,255,.82);font:600 10px/1 var(--font-brand);letter-spacing:.12em}
+    .company-profile-stats{position:relative;z-index:1;width:min(1340px,100%);margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;opacity:var(--profile-stats-opacity,0);transform:translate3d(0,var(--profile-stats-y,64px),0);will-change:opacity,transform}.profile-stat{min-height:124px;padding:22px 18px;display:grid;place-items:center;align-content:center;gap:9px;text-align:center;border:1px solid rgba(10,40,80,.08);border-radius:14px;background:rgba(255,255,255,.82);box-shadow:0 15px 36px rgba(15,49,83,.09);backdrop-filter:blur(12px)}.profile-stat strong{color:var(--brand-navy);font-size:clamp(32px,3vw,48px);line-height:1}.profile-stat span{color:#5e6974;font-size:13px}
+    @media(max-width:900px){.company-profile-story{grid-template-columns:1fr 1fr;gap:28px}.company-profile-copy p{line-height:1.65}.company-profile-stats{gap:12px}.profile-stat{min-height:110px}}
+    @media(max-width:700px){.company-profile{min-height:200svh;margin-top:-85svh}.company-profile-page{height:100svh;min-height:620px;padding:78px 6vw 24px;display:block;overflow-y:auto}.company-profile-page:before{display:none}.company-profile-heading h2{font-size:34px}.company-profile-heading .profile-rule{margin:11px auto 9px}.company-profile-story{display:block;margin-top:24px}.company-profile-copy h3{margin-bottom:14px;font-size:24px}.company-profile-copy p{margin-bottom:10px;font-size:13px;line-height:1.6}.company-profile-link{margin-top:4px}.company-profile-image{height:210px;margin-top:20px;border-radius:14px}.company-profile-stats{grid-template-columns:repeat(2,1fr);gap:10px;margin-top:18px}.profile-stat{min-height:92px;padding:15px 10px;border-radius:11px}.profile-stat strong{font-size:31px}.profile-stat span{font-size:11px}}
+    @media(prefers-reduced-motion:reduce){.company-profile-page,.company-profile-heading,.company-profile-story,.company-profile-stats{opacity:1!important;transform:none!important}}
+  </style>
+  <style>
+    /* Company qualifications: compact, privacy-safe certificate cards in the profile page */
+    .company-profile-certificates{position:relative;z-index:1;width:min(1340px,100%);margin:0 auto;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;opacity:var(--profile-stats-opacity,0);transform:translate3d(0,var(--profile-stats-y,64px),0);will-change:opacity,transform}
+    .profile-certificate-card{min-width:0;min-height:132px;padding:10px;display:flex;align-items:center;gap:12px;overflow:hidden;border:1px solid rgba(10,40,80,.09);border-radius:14px;background:rgba(255,255,255,.84);box-shadow:0 15px 36px rgba(15,49,83,.09);backdrop-filter:blur(12px);cursor:default;user-select:none;touch-action:pan-y}
+    .profile-certificate-media{flex:0 0 82px;height:112px;margin:0;overflow:hidden;border:1px solid rgba(10,40,80,.08);border-radius:8px;background:#fff;box-shadow:0 7px 16px rgba(10,40,80,.12);pointer-events:none}
+    .profile-certificate-media img{width:100%;height:100%;display:block;object-fit:cover;pointer-events:none;user-select:none;-webkit-user-drag:none}
+    .profile-certificate-copy{min-width:0;display:grid;gap:9px;align-content:center;pointer-events:none}.profile-certificate-copy small{color:#8b99a8;font:700 8px/1 var(--font-brand);letter-spacing:.11em}.profile-certificate-copy strong{color:var(--brand-navy);font-size:clamp(11px,.83vw,13px);line-height:1.35;letter-spacing:-.015em}
+    @media(max-width:1050px){.company-profile-certificates{grid-template-columns:repeat(3,1fr)}.profile-certificate-card{min-height:112px}.profile-certificate-media{height:92px;flex-basis:66px}}
+    @media(max-width:700px){.company-profile-certificates{margin-top:18px;grid-auto-flow:column;grid-auto-columns:66vw;grid-template-columns:none;gap:10px;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x mandatory;scrollbar-width:none}.company-profile-certificates::-webkit-scrollbar{display:none}.profile-certificate-card{min-height:112px;scroll-snap-align:start;border-radius:12px}.profile-certificate-media{height:92px;flex-basis:65px}}
+    @media(prefers-reduced-motion:reduce){.company-profile-certificates{opacity:1!important;transform:none!important}}
+  </style>
+  <style>
+    /* ===== Page 04: after-sales field support ===== */
+    .service.stage-ready .section-stage{padding:104px 4.3vw 44px;display:flex;flex-direction:column;justify-content:space-between;color:#fff;background:linear-gradient(180deg,rgba(2,12,27,.54) 0%,rgba(2,12,27,.12) 50%,rgba(2,12,27,.62) 100%),linear-gradient(90deg,rgba(3,17,36,.58) 0%,rgba(3,17,36,.25) 48%,rgba(3,17,36,.04) 100%),url('/about/after-sales-service.png') center/cover no-repeat}
+    .service.stage-ready .section-stage:before{position:absolute;z-index:0;inset:0;content:"";background:radial-gradient(circle at 72% 42%,rgba(93,164,225,.14),transparent 28%),linear-gradient(115deg,transparent 0 58%,rgba(151,199,239,.07) 58.15%,transparent 58.4%);pointer-events:none}
+    .service.stage-ready .section-stage:after{height:6px;width:auto;right:0;bottom:auto;left:0;background:linear-gradient(90deg,#3b86c8,#a9d6f7 46%,rgba(169,214,247,.1));box-shadow:0 0 32px rgba(92,166,225,.42)}
+    .service-intro{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(280px,.55fr);align-items:end;gap:clamp(32px,7vw,130px)}
+    .service-intro:before{position:absolute;z-index:-1;top:-58px;right:-8vw;bottom:-70px;left:-4.3vw;content:"";background:linear-gradient(90deg,rgba(3,18,38,.58) 0%,rgba(3,18,38,.34) 48%,rgba(3,18,38,.08) 76%,transparent 100%);-webkit-mask-image:linear-gradient(90deg,#000 0%,#000 64%,transparent 100%);mask-image:linear-gradient(90deg,#000 0%,#000 64%,transparent 100%);backdrop-filter:blur(3px);pointer-events:none}
+    .service-intro .eyebrow{margin-bottom:18px;color:#9bcaf0}.service h2{max-width:920px;color:#fff;font-size:clamp(54px,6.8vw,108px);line-height:.88;letter-spacing:-.055em;text-shadow:0 6px 30px rgba(0,0,0,.36)}
+    .service-summary{max-width:450px;padding:0 0 7px}.service-summary>p{margin:0;color:rgba(235,244,252,.76);font-size:clamp(13px,1.05vw,16px);line-height:1.8}.service-status{margin-top:24px;display:flex;align-items:center;gap:10px;color:rgba(224,241,255,.72);font:700 9px/1 var(--font-brand);letter-spacing:.16em}.service-status i{width:8px;height:8px;border-radius:50%;background:#8fd0ff;box-shadow:0 0 0 5px rgba(107,184,240,.12),0 0 18px rgba(107,184,240,.75);animation:service-pulse 2.4s ease-in-out infinite}
+    .service-grid.product-list{position:relative;z-index:1;width:100%;margin:clamp(36px,6vh,70px) 0 0;padding-top:28px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;border-top:1px solid rgba(184,217,242,.28)}
+    .service-grid:before{position:absolute;top:-2px;left:0;width:25%;height:3px;content:"";background:linear-gradient(90deg,#8bc9f4,rgba(139,201,244,0));box-shadow:0 0 18px rgba(113,185,238,.45)}
+    .service-card.product{position:relative;min-height:190px;padding:24px;display:flex;flex-direction:column;justify-content:space-between;gap:22px;overflow:hidden;border:1px solid rgba(181,218,245,.18);border-radius:16px;background:linear-gradient(145deg,rgba(12,40,70,.72),rgba(5,20,39,.58));box-shadow:0 20px 45px rgba(0,0,0,.2);backdrop-filter:blur(12px);transition:transform .42s cubic-bezier(.16,.78,.22,1),border-color .42s ease,background .42s ease}
+    .service-card.product:before{position:absolute;top:0;right:0;width:70px;height:70px;content:"";background:linear-gradient(135deg,transparent 49%,rgba(150,207,247,.1) 50%);pointer-events:none}.service-card.product:hover{transform:translateY(-7px);border-color:rgba(164,214,249,.44);background:linear-gradient(145deg,rgba(18,57,96,.82),rgba(5,20,39,.68))}
+    .service-card-head{display:flex;align-items:center;justify-content:space-between;gap:14px}.service-card-index{color:#a9d7f7;font:700 11px/1 var(--font-brand);letter-spacing:.14em}.service-card-state{color:rgba(218,238,253,.52);font:600 8px/1 var(--font-brand);letter-spacing:.12em}.service-card-state:before{display:inline-block;width:5px;height:5px;margin-right:7px;border-radius:50%;background:#75b8e8;content:"";box-shadow:0 0 9px rgba(117,184,232,.7)}
+    .service-card.product h3{margin:0 0 11px;color:#fff;font-size:clamp(20px,1.6vw,27px);line-height:1.08;letter-spacing:-.025em}.service-card.product p{margin:0;color:rgba(222,236,247,.68);font-size:13px;line-height:1.65}.service-card.product>b{display:none}
+    @keyframes service-pulse{0%,100%{opacity:.66;transform:scale(.9)}50%{opacity:1;transform:scale(1.08)}}
+    @media(max-width:900px){.service.stage-ready .section-stage{padding-top:94px}.service-intro{grid-template-columns:1.15fr .85fr;gap:30px}.service h2{font-size:clamp(48px,8vw,74px)}.service-grid.product-list{grid-template-columns:repeat(2,1fr);margin-top:28px}.service-card.product{min-height:140px}}
+    @media(max-width:700px){.service.stage-ready .section-stage{padding:82px 6vw 28px;background-position:58% center}.service-intro{display:block}.service-intro:before{top:-34px;right:-6vw;bottom:-42px;left:-6vw;background:linear-gradient(180deg,rgba(3,18,38,.6),rgba(3,18,38,.28) 72%,transparent);-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 72%,transparent);mask-image:linear-gradient(180deg,#000 0%,#000 72%,transparent);backdrop-filter:blur(2px)}.service h2{font-size:clamp(43px,12vw,58px);line-height:.92}.service-summary{margin-top:20px}.service-status{margin-top:14px}.service-grid.product-list{margin-top:24px;padding-top:18px;grid-auto-flow:column;grid-auto-columns:76vw;grid-template-columns:none;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}.service-grid.product-list::-webkit-scrollbar{display:none}.service-card.product{min-height:176px;scroll-snap-align:start;border-radius:13px}}
+    @media(prefers-reduced-motion:reduce){.service-status i{animation:none}.service-card.product{transition:none}.service-card.product:hover{transform:none}}
+  </style>
+  <style>
+    /* ===== Canonical multi-site navigation / 2026-07-24 ===== */
+    .site-header{
+      height:70px;padding:0;color:#fff;background:rgba(6,26,51,.97);
+      border-bottom:1px solid rgba(255,255,255,.08);
+      box-shadow:0 4px 8px rgba(6,26,51,.16)
+    }
+    .site-header-inner{
+      width:100%;max-width:1400px;height:100%;margin:0 auto;
+      padding:0 clamp(18px,2.4vw,40px);display:flex;align-items:center;
+      justify-content:space-between;gap:clamp(12px,1.6vw,28px)
+    }
+    .site-header>a,.site-header-inner>a{display:flex;align-items:center;flex-shrink:0}
+    .site-header .logo{width:auto;height:36px;object-fit:contain;filter:brightness(0) invert(1)}
+    .site-header .nav{position:static;height:100%;min-width:0;flex:1;display:flex;align-items:stretch;justify-content:center;gap:clamp(8px,1.55vw,24px)}
+    .site-header .nav a{position:relative;height:100%;padding:0 clamp(3px,.5vw,8px);display:flex;align-items:center;color:rgba(255,255,255,.94);background:transparent;border-radius:0;font-size:clamp(14px,1.05vw,16px);font-weight:500;white-space:nowrap}
+    .site-header .nav a:after{right:clamp(3px,.5vw,8px);bottom:0;left:clamp(3px,.5vw,8px);height:2px;background:#e63946;transform:scaleX(0);transform-origin:center;transition:transform .25s ease}
+    .site-header .nav a:hover:after,.site-header .nav a.active:after{transform:scaleX(1)}
+    .site-header .nav a:hover{background:transparent}
+    .site-header .tools{display:flex;align-items:center;gap:clamp(6px,.85vw,14px);flex-shrink:0}
+    .site-header .lang{gap:12px;margin-right:0}
+    .site-header .lang button{padding:5px 3px 7px;color:rgba(255,255,255,.58);border:0;border-bottom:2px solid transparent;background:transparent;font:500 14px/1 var(--font-brand)}
+    .site-header .lang button:hover,.site-header .lang button.active{color:#fff;border-color:#e63946}
+    .site-header .circle{width:34px;height:34px;color:#fff;border:1px solid rgba(255,255,255,.42);border-radius:50%;display:flex;align-items:center;justify-content:center}
+    .site-header .circle:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.72)}
+    .site-header .quote{min-height:36px;margin-left:4px;padding:8px clamp(10px,1.2vw,18px);display:flex;align-items:center;gap:6px;color:#fff;background:#e63946;border:1px solid #e63946;border-radius:6px;overflow:hidden;background-clip:padding-box;transform:translateZ(0);font-size:15px;font-weight:600;white-space:nowrap}
+    .site-header .quote:hover{color:#fff;background:#c92f3b;border-color:#c92f3b}
+    @media(max-width:1180px){.site-header .circle{display:none}}
+    @media(max-width:900px){
+      .site-header{height:64px}.site-header-inner{padding:0 16px;gap:10px}.site-header .logo{height:28px}
+      .site-header .nav,.site-header .circle,.site-header .quote{display:none}
+      .site-header .tools{margin-left:auto;gap:12px}.site-header .lang button{font-size:14px}
+    }
+  </style>
+  <style>
+    /* ===== Industrial title system / 2026-07-24 ===== */
+    .hero h1,
+    .section-intro h2,
+    .section h2,
+    .company-profile-heading h2,
+    .company-profile-copy h3,
+    .factory h2,
+    .delivery h2,
+    .service h2,
+    .about-inquiry-strip h2,
+    .milestone h3,
+    .card h3 {
+      text-wrap: balance;
+    }
+    .hero h1 {
+      max-width: min(900px, 82vw);
+      font-size: clamp(82px, 11.5vw, 188px);
+      line-height: .86;
+      letter-spacing: -.055em;
+    }
+    body.english .hero h1.en {
+      max-width: min(820px, 74vw);
+      font-size: clamp(76px, 10vw, 164px);
+      line-height: .88;
+      letter-spacing: -.04em;
+    }
+    .section-intro h2,
+    .section h2,
+    .factory h2,
+    .delivery h2,
+    .service h2 {
+      max-width: 940px;
+      line-height: .98;
+      letter-spacing: -.045em;
+    }
+    body.english .section-intro h2,
+    body.english .section h2,
+    body.english .factory h2,
+    body.english .delivery h2,
+    body.english .service h2,
+    body.english .about-inquiry-strip h2 {
+      max-width: 1020px;
+      letter-spacing: -.035em;
+    }
+    .company-profile-heading h2,
+    .company-profile-copy h3,
+    .milestone h3,
+    .card h3 {
+      line-height: 1.08;
+      letter-spacing: -.025em;
+    }
+    @media(max-width:700px) {
+      .hero h1,
+      body.english .hero h1.en {
+        max-width: 88vw;
+        font-size: clamp(52px, 14vw, 78px);
+        line-height: .92;
+        letter-spacing: -.03em;
+      }
+      .section-intro h2,
+      .section h2,
+      .factory h2,
+      .delivery h2,
+      .service h2,
+      .about-inquiry-strip h2 {
+        font-size: clamp(40px, 11.5vw, 56px);
+        line-height: 1;
+        letter-spacing: -.03em;
+      }
+    }
+  </style>
+</head>
+<body class="english">
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a href="/" aria-label="FLYDEER POWER home"><img class="logo" src="flydeer-logo.png" alt="FLYDEER POWER 深柴动力"></a>
+      <nav class="nav">
+        <a href="/"><span class="zh">首页</span><span class="en">Home</span></a>
+        <a href="/#products"><span class="zh">产品中心</span><span class="en">Products</span></a>
+        <a href="/products/open-frame-500/"><span class="zh">网上展厅</span><span class="en">Online Showroom</span></a>
+        <a class="active" aria-current="page" href="#top"><span class="zh">关于我们</span><span class="en">About Us</span></a>
+        <a href="/#cases"><span class="zh">项目案例</span><span class="en">Projects</span></a>
+        <a href="/#contact"><span class="zh">销售与服务</span><span class="en">Sales & Service</span></a>
+      </nav>
+      <div class="tools">
+        <div class="lang"><button type="button" data-lang="zh" aria-pressed="false">中文</button><button type="button" class="active" data-lang="en" aria-pressed="true">English</button></div>
+        <a class="circle" href="#contact" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+        <a class="circle" href="#contact" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"></path><circle cx="4" cy="4" r="2"></circle></svg></a>
+        <a class="circle" href="#contact" aria-label="Douyin"><svg width="30" height="30" viewBox="0 0 48 48" fill="currentColor"><path d="M33.5 8.5c1.5 3 4 5 7 5.5v4.5c-2.5 0-5-1-7-3v13c0 6.5-5 11.5-11.5 11.5S10.5 35 10.5 28.5 15.5 17 22 17v4.5c-4 0-7 3-7 7s3 7 7 7 7-3 7-7V8.5h4.5z"></path></svg></a>
+        <a class="quote" href="#contact"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"></path></svg><span class="zh">获取报价</span><span class="en">Get Quote</span></a>
+      </div>
+    </div>
+  </header>
+  <main id="top"><div class="intro-stage"><section class="hero"><video autoplay muted loop playsinline preload="auto"><source src="home-hero-web.mp4" type="video/mp4"></video><div class="hero-copy"><p class="eyebrow">FLYDEER POWER · SINCE 2002</p><h1 class="zh">深柴动力</h1><h1 class="en">FLYDEER<br>POWER</h1><div class="hero-bottom"><span class="zh">以可靠动力，驱动每一段向前的航程。<br>专注动力系统的研发、制造与全周期服务。</span><span class="en">Reliable power for every journey forward.<br>Engineering, manufacturing, and lifecycle support.</span><a class="round" href="#cases">↘</a></div></div><div class="corner">SYSTEM / SC-01<br>READY FOR MOTION</div></section><section id="cases" class="cases"><div class="section-intro"><p class="eyebrow">01 / FIELD RECORDS</p><h2 class="zh">真实项目，<br>见证可靠动力。</h2><h2 class="en">Real projects,<br>proven power.</h2></div><div class="gallery"><div class="track"><article class="card"><img class="case-photo" src="/about/project-cases/project-case-01.png" alt="Project case: Public Facility"><i class="grid"></i><b>01</b><div><p>REAL PROJECT</p><h3 class="zh">公共建筑项目</h3><h3 class="en">Public Facility</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article><article class="card"><img class="case-photo" src="/about/project-cases/project-case-02.png" alt="Project case: Transport Hub"><i class="grid"></i><b>02</b><div><p>REAL PROJECT</p><h3 class="zh">交通枢纽项目</h3><h3 class="en">Transport Hub</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article><article class="card"><img class="case-photo" src="/about/project-cases/project-case-03.png" alt="Project case: Industrial Park"><i class="grid"></i><b>03</b><div><p>REAL PROJECT</p><h3 class="zh">工业园区项目</h3><h3 class="en">Industrial Park</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article><article class="card"><img class="case-photo" src="/about/project-cases/project-case-04.png" alt="Project case: Renewable Energy Base"><i class="grid"></i><b>04</b><div><p>REAL PROJECT</p><h3 class="zh">新能源基地项目</h3><h3 class="en">Renewable Energy Base</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article><article class="card"><img class="case-photo" src="/about/project-cases/project-case-05.png" alt="Project case: Financial Institution"><i class="grid"></i><b>05</b><div><p>REAL PROJECT</p><h3 class="zh">金融机构项目</h3><h3 class="en">Financial Institution</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article><article class="card"><img class="case-photo" src="/about/project-cases/project-case-06.png" alt="Project case: Hospitality Complex"><i class="grid"></i><b>06</b><div><p>REAL PROJECT</p><h3 class="zh">文旅酒店项目</h3><h3 class="en">Hospitality Complex</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article><article class="card"><img class="case-photo" src="/about/project-cases/project-case-07.png" alt="Project case: Industrial Manufacturing"><i class="grid"></i><b>07</b><div><p>REAL PROJECT</p><h3 class="zh">工业制造项目</h3><h3 class="en">Industrial Manufacturing</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article><article class="card"><img class="case-photo" src="/about/project-cases/project-case-08.png" alt="Project case: Energy Facility"><i class="grid"></i><b>08</b><div><p>REAL PROJECT</p><h3 class="zh">能源设施项目</h3><h3 class="en">Energy Facility</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article><article class="card"><img class="case-photo" src="/about/project-cases/project-case-09.png" alt="Project case: Commercial Complex"><i class="grid"></i><b>09</b><div><p>REAL PROJECT</p><h3 class="zh">商业综合体项目</h3><h3 class="en">Commercial Complex</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article><article class="card"><img class="case-photo" src="/about/project-cases/project-case-10.png" alt="Project case: Airport Hub"><i class="grid"></i><b>10</b><div><p>REAL PROJECT</p><h3 class="zh">航空枢纽项目</h3><h3 class="en">Airport Hub</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article><article class="card"><img class="case-photo" src="/about/project-cases/project-case-11.png" alt="Project case: Telecom Facility"><i class="grid"></i><b>11</b><div><p>REAL PROJECT</p><h3 class="zh">通信设施项目</h3><h3 class="en">Telecom Facility</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article><article class="card"><img class="case-photo" src="/about/project-cases/project-case-12.png" alt="Project case: Manufacturing Base"><i class="grid"></i><b>12</b><div><p>REAL PROJECT</p><h3 class="zh">制造基地项目</h3><h3 class="en">Manufacturing Base</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article></div></div><p class="note">SCROLLING FIELD ARCHIVE / CONTINUOUS MOTION</p></section></div>
+  <section class="section light factory"><div class="factory-heading"><p class="eyebrow">02 / MANUFACTURING FLOOR</p><div class="factory-title-group"><div><h2 class="zh">从制造现场，<br>到可靠交付。</h2><h2 class="en">Built on the floor.<br>Proven in the field.</h2></div><p class="factory-lead zh">深柴动力围绕机组装配、产品测试、钣金制造与成品整备建立协同生产体系。真实工厂、真实工序，让每一套动力设备在交付前经过完整验证。</p><p class="factory-lead en block">Across assembly, product testing, fabrication, and final preparation, every FLYDEER POWER system moves through a coordinated manufacturing flow—verified on the factory floor before delivery.</p></div></div><div class="factory-gallery" aria-label="FLYDEER POWER factory production scenes"><figure class="factory-shot factory-shot--hero"><img src="/about/factory/factory-assembly.png" alt="FLYDEER POWER generator assembly floor" loading="lazy"><figcaption><span>01 / ASSEMBLY</span><strong><span class="zh">总装制造</span><span class="en">Integrated Assembly</span></strong></figcaption></figure><figure class="factory-shot"><img src="/about/factory/factory-mobile-lighting.jpg" alt="Mobile lighting systems in the FLYDEER POWER factory" loading="lazy"><figcaption><span>02 / MOBILE SYSTEMS</span><strong><span class="zh">移动照明设备</span><span class="en">Mobile Lighting Systems</span></strong></figcaption></figure><figure class="factory-shot"><img src="/about/factory/factory-gensets.jpg" alt="Enclosed generator sets prepared in the factory" loading="lazy"><figcaption><span>03 / GENSETS</span><strong><span class="zh">静音机组整备</span><span class="en">Enclosed Gensets</span></strong></figcaption></figure><figure class="factory-shot"><img src="/about/factory/factory-testing-center.jpg" alt="Generator set entering the product experience and testing center" loading="lazy"><figcaption><span>04 / TESTING</span><strong><span class="zh">产品体验与测试</span><span class="en">Product Testing</span></strong></figcaption></figure><figure class="factory-shot"><img src="/about/factory/factory-fabrication.jpg" alt="Precision fabrication area inside the factory" loading="lazy"><figcaption><span>05 / FABRICATION</span><strong><span class="zh">精密加工车间</span><span class="en">Precision Fabrication</span></strong></figcaption></figure><figure class="factory-shot"><img src="/about/factory/factory-work-bays.jpg" alt="Controlled independent work bays inside the factory" loading="lazy"><figcaption><span>06 / WORK BAYS</span><strong><span class="zh">独立作业工位</span><span class="en">Controlled Work Bays</span></strong></figcaption></figure></div></section>
+  <section class="section light journey"><div class="journey-page"><div class="journey-content"><div class="section-intro"><p class="eyebrow">03 / OUR JOURNEY</p><h2 class="zh">每一次跨越，<br>都源自长期主义。</h2><h2 class="en">Every milestone<br>is built for the long term.</h2></div><div class="timeline"><article class="milestone"><span>2002</span><i class="dot">01</i><div><h3 class="zh">深柴动力启航</h3><h3 class="en">FLYDEER POWER Launches</h3><p class="zh">以动力系统服务为起点，建立专业技术团队。</p><p class="en">Established a specialist engineering team focused on power-system services.</p></div></article><article class="milestone"><span>2008</span><i class="dot">02</i><div><h3 class="zh">制造体系升级</h3><h3 class="en">Manufacturing System Upgrade</h3><p class="zh">完善测试与质量管理流程，服务能力迈向规模化。</p><p class="en">Strengthened testing and quality management to scale our service capability.</p></div></article><article class="milestone"><span>2016</span><i class="dot">03</i><div><h3 class="zh">技术协同创新</h3><h3 class="en">Collaborative Innovation</h3><p class="zh">形成研发、制造与应用支持协同的工作机制。</p><p class="en">Integrated research, manufacturing, and application support into one workflow.</p></div></article><article class="milestone"><span>2026</span><i class="dot">04</i><div><h3 class="zh">面向未来动力</h3><h3 class="en">Powering What Is Next</h3><p class="zh">持续探索高效、可靠的动力解决方案。</p><p class="en">Continuing to explore efficient, dependable power solutions for the future.</p></div></article></div></div></div></section>
+  <section class="section dark products"><div class="section-intro"><p class="eyebrow">04 / CORE CAPABILITIES</p><h2 class="zh">为不同场景，<br>提供精准动力。</h2><h2 class="en">Precise power<br>for every application.</h2></div><div class="product-list"><article class="product"><span>01</span><div><h3 class="zh">船用动力</h3><h3 class="en">Marine Power</h3><p class="zh">面向复杂工况，提供稳定、耐久的动力支持。</p><p class="en">Reliable, durable power support for demanding operating conditions.</p></div><b>↗</b></article><article class="product"><span>02</span><div><h3 class="zh">工业动力</h3><h3 class="en">Industrial Power</h3><p class="zh">兼顾效率与可靠性，适配多元工业应用场景。</p><p class="en">Efficient and dependable solutions for diverse industrial applications.</p></div><b>↗</b></article><article class="product"><span>03</span><div><h3 class="zh">动力服务</h3><h3 class="en">Power Services</h3><p class="zh">从选型到运维，提供覆盖全周期的技术支持。</p><p class="en">Technical support across the full lifecycle.</p></div><b>↗</b></article></div></section></main>
+  <section id="contact" class="about-inquiry-strip" aria-labelledby="about-inquiry-title"><p class="eyebrow">05 / PROJECT INQUIRY</p><h2 id="about-inquiry-title" class="zh">为您的项目，<br>匹配可靠动力方案。</h2><h2 class="en">Reliable power,<br>configured for your project.</h2><div class="about-inquiry-actions"><a class="about-inquiry-primary" href="/#contact"><span class="zh">获取项目报价</span><span class="en">Request a Quote</span></a><a class="about-inquiry-secondary" href="/#products"><span class="zh">浏览产品中心</span><span class="en">Explore Products</span></a></div></section>
+  <footer><span>© 2026 FLYDEER POWER</span><span class="zh">深柴动力 · 关于我们</span><span class="en">FLYDEER POWER · ABOUT US</span><a href="#top">BACK TO TOP ↑</a></footer>
+  <script>
+    const companyProfileMarkup=`<section id="profile" class="company-profile" aria-labelledby="company-profile-title"><div class="company-profile-page"><header class="company-profile-heading"><p class="eyebrow">COMPANY / FLYDEER POWER</p><h2 id="company-profile-title" class="zh">关于深柴动力</h2><h2 class="en">About FLYDEER POWER</h2><span class="profile-rule"></span><p class="company-profile-kicker zh">值得信赖的发电机组制造商</p><p class="company-profile-kicker en">A trusted generator-set manufacturer</p></header><div class="company-profile-story"><div class="company-profile-copy"><h3 class="zh">二十年专注，铸就行业品牌</h3><h3 class="en">Two decades of focus,<br>one dependable brand.</h3><p class="zh">深柴动力是一家集柴油发电机组研发、生产、销售和服务于一体的综合性企业。公司拥有现代化生产基地，年产能超过5000台套。</p><p class="en">FLYDEER POWER integrates diesel generator-set research, manufacturing, sales, and lifecycle service. Our modern production base supports annual capacity of more than 5,000 units.</p><p class="zh">依托自主技术、完善的质量体系与市场化创新机制，深柴动力持续为国内外客户提供可靠、高效的动力解决方案。</p><p class="en">Built on independent engineering, a disciplined quality system, and market-led innovation, we deliver dependable and efficient power solutions worldwide.</p><a class="company-profile-link" href="#factory"><span class="zh">走进制造现场</span><span class="en">Explore Manufacturing</span></a></div><figure class="company-profile-image"><img src="/about/company-profile.png" alt="FLYDEER POWER headquarters building"><figcaption>FLYDEER POWER / HEADQUARTERS</figcaption></figure></div><div class="company-profile-stats" aria-label="FLYDEER POWER company facts"><div class="profile-stat"><strong>20+</strong><span class="zh">20+ 年行业经验</span><span class="en">Years of experience</span></div><div class="profile-stat"><strong>500+</strong><span class="zh">500+ 服务客户</span><span class="en">Customers served</span></div><div class="profile-stat"><strong>50+</strong><span class="zh">50+ 出口国家</span><span class="en">Export markets</span></div><div class="profile-stat"><strong>ISO</strong><span class="zh">ISO 权威认证</span><span class="en">Certified quality system</span></div></div></div></section>`;
+    document.querySelector('.intro-stage')?.insertAdjacentHTML('afterend',companyProfileMarkup);
+    document.querySelector('.company-profile-link')?.remove();
+    const profileQualifications=document.querySelector('.company-profile-stats');
+    if(profileQualifications){profileQualifications.className='company-profile-certificates';profileQualifications.setAttribute('aria-label','FLYDEER POWER certifications and qualifications');profileQualifications.innerHTML=`
+      <article class="profile-certificate-card"><figure class="profile-certificate-media"><img src="/about/qualification-01.png" alt="Privacy-protected quality management system certificate" draggable="false"></figure><div class="profile-certificate-copy"><small>01 / CERTIFIED</small><strong><span class="zh">质量管理</span><span class="en">Quality System</span></strong></div></article>
+      <article class="profile-certificate-card"><figure class="profile-certificate-media"><img src="/about/qualification-02.png" alt="Privacy-protected environmental management system certificate" draggable="false"></figure><div class="profile-certificate-copy"><small>02 / CERTIFIED</small><strong><span class="zh">环境管理</span><span class="en">Environmental</span></strong></div></article>
+      <article class="profile-certificate-card"><figure class="profile-certificate-media"><img src="/about/qualification-03.png" alt="Privacy-protected occupational health and safety certificate" draggable="false"></figure><div class="profile-certificate-copy"><small>03 / CERTIFIED</small><strong><span class="zh">职业健康</span><span class="en">Health &amp; Safety</span></strong></div></article>
+      <article class="profile-certificate-card"><figure class="profile-certificate-media"><img src="/about/qualification-04.png" alt="Privacy-protected machinery directive certificate" draggable="false"></figure><div class="profile-certificate-copy"><small>04 / COMPLIANCE</small><strong><span class="zh">机械指令</span><span class="en">Machinery CE</span></strong></div></article>
+      <article class="profile-certificate-card"><figure class="profile-certificate-media"><img src="/about/qualification-05.png" alt="Privacy-protected quality system certificate" draggable="false"></figure><div class="profile-certificate-copy"><small>05 / CERTIFIED</small><strong><span class="zh">质量认证</span><span class="en">Quality Certified</span></strong></div></article>
+      <article class="profile-certificate-card"><figure class="profile-certificate-media"><img src="/about/qualification-06.png" alt="Privacy-protected European compliance certificate" draggable="false"></figure><div class="profile-certificate-copy"><small>06 / COMPLIANCE</small><strong><span class="zh">欧盟认证</span><span class="en">EU Compliance</span></strong></div></article>`;}
+    const deliveryMarkup=`<section id="delivery" class="section dark delivery" aria-labelledby="delivery-title"><div class="delivery-heading"><p class="eyebrow">03 / DELIVERY ON SITE</p><div class="delivery-title-group"><div><h2 id="delivery-title" class="zh">从设备进场，<br>到稳定运行。</h2><h2 class="en">From site arrival<br>to dependable operation.</h2></div><p class="delivery-lead zh">从运输进场、吊装就位到现场调试，深柴动力以规范流程和技术协同保障每一次交付安全、有序、可追溯，让可靠动力真正落地运行。</p><p class="delivery-lead en block">From site arrival and crane placement to commissioning, FLYDEER POWER coordinates every delivery with disciplined execution and on-site technical support—bringing dependable power into operation.</p></div></div><div class="delivery-gallery" aria-label="FLYDEER POWER delivery, installation, and commissioning scenes"><figure class="delivery-shot delivery-shot--hero"><img src="/about/delivery/delivery-site-07.jpg" alt="FLYDEER POWER generator commissioning at an industrial site" loading="lazy"><figcaption><span>01 / COMMISSIONING</span><strong><span class="zh">现场联调</span><span class="en">On-site Commissioning</span></strong></figcaption></figure><figure class="delivery-shot"><img src="/about/delivery/delivery-site-01.jpg" alt="Enclosed generator sets installed at the customer site" loading="lazy"><figcaption><span>02 / INSTALLED</span><strong><span class="zh">设备就位</span><span class="en">Equipment in Position</span></strong></figcaption></figure><figure class="delivery-shot"><img src="/about/delivery/delivery-site-02.jpg" alt="Generator set inspected during on-site delivery" loading="lazy"><figcaption><span>03 / INSPECTION</span><strong><span class="zh">到场检查</span><span class="en">Arrival Inspection</span></strong></figcaption></figure><figure class="delivery-shot"><img src="/about/delivery/delivery-site-03.jpg" alt="Open generator set delivered to a construction site" loading="lazy"><figcaption><span>04 / SITE READY</span><strong><span class="zh">交付准备</span><span class="en">Delivery Ready</span></strong></figcaption></figure><figure class="delivery-shot"><img src="/about/delivery/delivery-site-04.jpg" alt="Generator set lifted by crane into its operating position" loading="lazy"><figcaption><span>05 / LIFTING</span><strong><span class="zh">吊装就位</span><span class="en">Crane Placement</span></strong></figcaption></figure><figure class="delivery-shot"><img src="/about/delivery/delivery-site-05.jpg" alt="Generator set unloaded from a transport vehicle" loading="lazy"><figcaption><span>06 / UNLOADING</span><strong><span class="zh">运输卸载</span><span class="en">Transport &amp; Unloading</span></strong></figcaption></figure><figure class="delivery-shot"><img src="/about/delivery/delivery-site-06.jpg" alt="Protected generator set positioned inside the project site" loading="lazy"><figcaption><span>07 / PLACEMENT</span><strong><span class="zh">精准落位</span><span class="en">Final Placement</span></strong></figcaption></figure></div></section>`;
+    const factorySection=document.querySelector('.factory');
+    factorySection?.setAttribute('id','factory');
+    factorySection?.insertAdjacentHTML('afterend',deliveryMarkup);
+    document.querySelector('.journey')?.remove();
+    const serviceSection=document.querySelector('.products');
+    if(serviceSection){serviceSection.id='service';serviceSection.classList.add('service');serviceSection.setAttribute('aria-labelledby','service-title');serviceSection.innerHTML=`<div class="section-intro service-intro"><div><p class="eyebrow">04 / AFTER-SALES SERVICE</p><h2 id="service-title" class="zh">交付之后，<br>服务始终在线。</h2><h2 class="en">Support that stays<br>after delivery.</h2></div><div class="service-summary"><p class="zh">从安装调试、运行检查到维护与故障支持，深柴动力持续协同现场，让设备在复杂工况下保持可靠运行。</p><p class="en block">From commissioning and operating checks to maintenance and troubleshooting support, FLYDEER POWER stays connected to help equipment perform reliably in demanding conditions.</p><div class="service-status"><i></i>FIELD SUPPORT / READY</div></div></div><div class="product-list service-grid" aria-label="FLYDEER POWER after-sales service capabilities"><article class="product service-card"><div class="service-card-head"><span class="service-card-index">01 / RESPONSE</span><span class="service-card-state">CONNECTED</span></div><div><h3 class="zh">响应与诊断</h3><h3 class="en">Response &amp; Diagnostics</h3><p class="zh">快速了解运行状态，协同判断问题并制定清晰的处理路径。</p><p class="en">Assess operating conditions, identify issues, and define a clear resolution path.</p></div></article><article class="product service-card"><div class="service-card-head"><span class="service-card-index">02 / ON-SITE</span><span class="service-card-state">SUPPORTED</span></div><div><h3 class="zh">现场技术支持</h3><h3 class="en">On-site Technical Support</h3><p class="zh">覆盖安装调试、运行检查及现场问题处理，保障设备顺利投入使用。</p><p class="en">Support for commissioning, operating checks, and on-site technical issues.</p></div></article><article class="product service-card"><div class="service-card-head"><span class="service-card-index">03 / PARTS</span><span class="service-card-state">AVAILABLE</span></div><div><h3 class="zh">备件与耗材保障</h3><h3 class="en">Parts &amp; Consumables</h3><p class="zh">根据机型与实际工况，匹配常用备件和维护耗材需求。</p><p class="en">Matching common service parts and consumables to each model and duty cycle.</p></div></article><article class="product service-card"><div class="service-card-head"><span class="service-card-index">04 / LIFECYCLE</span><span class="service-card-state">ONGOING</span></div><div><h3 class="zh">全周期维护</h3><h3 class="en">Lifecycle Maintenance</h3><p class="zh">通过巡检、保养与运行建议，帮助动力设备保持长期可靠。</p><p class="en">Inspections, maintenance, and operating guidance for long-term reliability.</p></div></article></div>`;}
+    document.querySelector('.about-inquiry-strip .eyebrow').textContent='05 / PROJECT INQUIRY';
+    const deliverySection=document.querySelector('.delivery');
+    if(deliverySection){const stage=document.createElement('div');stage.className='section-stage';while(deliverySection.firstChild)stage.append(deliverySection.firstChild);deliverySection.append(stage);deliverySection.classList.add('stage-ready');const updateDeliveryEntry=()=>{const raw=Math.max(0,Math.min(1,-deliverySection.getBoundingClientRect().top/(innerHeight*.72))),p=raw*raw*(3-2*raw),copyRaw=Math.max(0,Math.min(1,(raw-.18)/.48)),copy=copyRaw*copyRaw*(3-2*copyRaw),galleryRaw=Math.max(0,Math.min(1,(raw-.36)/.5)),gallery=galleryRaw*galleryRaw*(3-2*galleryRaw);deliverySection.style.setProperty('--delivery-stage-y',`${(1-p)*innerHeight}px`);deliverySection.style.setProperty('--delivery-panel-shadow',(1-p)*.24);deliverySection.style.setProperty('--delivery-copy-opacity',copy);deliverySection.style.setProperty('--delivery-copy-y',`${(1-copy)*56}px`);deliverySection.style.setProperty('--delivery-gallery-opacity',gallery);deliverySection.style.setProperty('--delivery-gallery-y',`${(1-gallery)*72}px`)};addEventListener('scroll',updateDeliveryEntry,{passive:true});addEventListener('resize',updateDeliveryEntry);updateDeliveryEntry()}
+    const b=document.body,buttons=document.querySelectorAll('[data-lang]'),track=document.querySelector('.track'),cases=document.querySelector('.cases'),caseIntro=document.querySelector('.cases .section-intro'),gallery=document.querySelector('.cases .gallery'),caseNote=document.querySelector('.cases .note'),caseMotion=document.createElement('div'),journey=document.querySelector('.journey'),journeyContent=document.querySelector('.journey-content');
+    const LANGUAGE_STORAGE_KEY='flydeer-language';
+    const normalizeLanguage=(value,fallback='en')=>value==='zh'||value==='en'?value:fallback;
+    const getInitialLanguage=()=>{
+      const queryLanguage=new URLSearchParams(location.search).get('lang');
+      if(queryLanguage==='zh'||queryLanguage==='en')return queryLanguage;
+      try{
+        const storedLanguage=localStorage.getItem(LANGUAGE_STORAGE_KEY);
+        if(storedLanguage==='zh'||storedLanguage==='en')return storedLanguage;
+      }catch{}
+      return'en';
+    };
+    const withLanguage=(href,language)=>{
+      const target=new URL(href,location.href);
+      if(target.protocol!=='http:'&&target.protocol!=='https:')return href;
+      target.searchParams.set('lang',normalizeLanguage(language));
+      return target.href;
+    };
+    const updateLanguageLinks=language=>document.querySelectorAll('a[href^="http"],a[href^="/"]').forEach(link=>{
+      link.dataset.baseHref||=link.getAttribute('href');
+      link.setAttribute('href',withLanguage(link.dataset.baseHref,language));
+    });
+    const applyLanguage=language=>{
+      const activeLanguage=normalizeLanguage(language);
+      const english=activeLanguage==='en';
+      b.classList.toggle('english',english);
+      document.documentElement.lang=english?'en':'zh-CN';
+      document.title=english?'FLYDEER POWER | About Us':'深柴动力｜关于我们';
+      buttons.forEach(button=>{
+        const active=button.dataset.lang===activeLanguage;
+        button.classList.toggle('active',active);
+        button.setAttribute('aria-pressed',String(active));
+      });
+      try{localStorage.setItem(LANGUAGE_STORAGE_KEY,activeLanguage)}catch{}
+      const currentUrl=new URL(location.href);
+      if(currentUrl.searchParams.get('lang')!==activeLanguage){
+        currentUrl.searchParams.set('lang',activeLanguage);
+        history.replaceState(history.state,'',`${currentUrl.pathname}${currentUrl.search}${currentUrl.hash}`);
+      }
+      updateLanguageLinks(activeLanguage);
+      requestAnimationFrame(()=>window.dispatchEvent(new Event('resize')));
+    };
+    buttons.forEach(button=>button.onclick=()=>applyLanguage(button.dataset.lang));
+    applyLanguage(getInitialLanguage());
+    if(track){[...track.children].forEach(card=>{const duplicate=card.cloneNode(true);duplicate.setAttribute('aria-hidden','true');track.append(duplicate)})}
+    if(cases&&caseIntro&&gallery&&caseNote){caseMotion.className='case-motion';caseIntro.before(caseMotion);caseMotion.append(caseIntro,gallery,caseNote);cases.classList.add('motion-ready')}
+    if(journey&&journeyContent){const updateJourney=()=>{if(caseMotion.offsetHeight)journey.style.marginTop=`-${caseMotion.offsetHeight}px`;const entry=innerHeight*.78,hold=innerHeight*.34,offset=Math.max(0,-journey.getBoundingClientRect().top),raw=Math.max(0,Math.min(1,offset/entry)),p=raw*raw*(3-2*raw),pageStyle=getComputedStyle(journeyContent.parentElement),contentViewport=innerHeight-parseFloat(pageStyle.paddingTop)-parseFloat(pageStyle.paddingBottom),contentTravel=Math.max(0,journeyContent.offsetHeight-contentViewport),contentOffset=Math.min(contentTravel,Math.max(0,offset-entry-hold)),edge=Math.max(0,Math.min(1,(1-raw)/.25));journey.style.setProperty('--journey-x',`${(1-p)*102}vw`);journey.style.setProperty('--journey-tilt',`${(1-p)*-3.2}deg`);journey.style.setProperty('--journey-scale',.982+p*.018);journey.style.setProperty('--journey-shadow',(1-p)*.24);journey.style.setProperty('--journey-edge',edge);journey.style.setProperty('--journey-reveal',p);journey.style.setProperty('--journey-content-in-y',`${(1-p)*42}px`);journey.style.setProperty('--journey-content-y',`-${contentOffset}px`);journey.style.minHeight=`${Math.ceil(innerHeight+entry+hold+contentTravel)}px`;if(cases){cases.classList.add('overlay-fade');cases.style.setProperty('--case-overlay-opacity',1-p);cases.style.setProperty('--case-overlay-blur',`${p*4}px`)}};journey.classList.add('js-motion');addEventListener('scroll',updateJourney,{passive:true});addEventListener('resize',updateJourney);updateJourney()}
+    const stageSections=document.querySelectorAll('.products,.factory');stageSections.forEach(section=>{const stage=document.createElement('div');stage.className='section-stage';while(section.firstChild)stage.append(section.firstChild);section.append(stage);section.classList.add('stage-ready')});const products=document.querySelector('.products');if(products){const updateProductEntry=()=>{const raw=Math.max(0,Math.min(1,-products.getBoundingClientRect().top/(innerHeight*.72))),p=raw*raw*(3-2*raw),copyRaw=Math.max(0,Math.min(1,(raw-.28)/.55)),copy=copyRaw*copyRaw*(3-2*copyRaw),listRaw=Math.max(0,Math.min(1,(raw-.46)/.46)),list=listRaw*listRaw*(3-2*listRaw);products.style.setProperty('--product-enter',raw);products.style.setProperty('--product-stage-y',`${(1-p)*innerHeight}px`);products.style.setProperty('--product-panel-shadow',(1-p)*.24);products.style.setProperty('--product-copy-opacity',copy);products.style.setProperty('--product-copy-x',`${(1-copy)*-64}px`);products.style.setProperty('--product-list-opacity',list);products.style.setProperty('--product-list-x',`${(1-list)*80}px`)};addEventListener('scroll',updateProductEntry,{passive:true});addEventListener('resize',updateProductEntry);updateProductEntry()}const factory=document.querySelector('.factory');if(factory){const updateFactoryEntry=()=>{const raw=Math.max(0,Math.min(1,-factory.getBoundingClientRect().top/(innerHeight*.72))),p=raw*raw*(3-2*raw),copyRaw=Math.max(0,Math.min(1,(raw-.2)/.5)),copy=copyRaw*copyRaw*(3-2*copyRaw),galleryRaw=Math.max(0,Math.min(1,(raw-.38)/.5)),gallery=galleryRaw*galleryRaw*(3-2*galleryRaw);factory.style.setProperty('--factory-enter',raw);factory.style.setProperty('--factory-stage-x',`${(1-p)*-innerWidth}px`);factory.style.setProperty('--factory-panel-shadow',(1-p)*.22);factory.style.setProperty('--factory-copy-opacity',copy);factory.style.setProperty('--factory-copy-x',`${(1-copy)*-64}px`);factory.style.setProperty('--factory-gallery-opacity',gallery);factory.style.setProperty('--factory-gallery-y',`${(1-gallery)*64}px`)};addEventListener('scroll',updateFactoryEntry,{passive:true});addEventListener('resize',updateFactoryEntry);updateFactoryEntry()}
+    const companyProfile=document.querySelector('.company-profile');if(companyProfile){const updateCompanyProfile=()=>{const raw=Math.max(0,Math.min(1,-companyProfile.getBoundingClientRect().top/(innerHeight*.78))),p=raw*raw*(3-2*raw),headingRaw=Math.max(0,Math.min(1,(raw-.12)/.38)),heading=headingRaw*headingRaw*(3-2*headingRaw),storyRaw=Math.max(0,Math.min(1,(raw-.24)/.44)),story=storyRaw*storyRaw*(3-2*storyRaw),statsRaw=Math.max(0,Math.min(1,(raw-.42)/.42)),stats=statsRaw*statsRaw*(3-2*statsRaw);companyProfile.style.setProperty('--profile-page-y',`${(1-p)*innerHeight}px`);companyProfile.style.setProperty('--profile-shadow',(1-p)*.24);companyProfile.style.setProperty('--profile-heading-opacity',heading);companyProfile.style.setProperty('--profile-heading-y',`${(1-heading)*46}px`);companyProfile.style.setProperty('--profile-story-opacity',story);companyProfile.style.setProperty('--profile-story-y',`${(1-story)*58}px`);companyProfile.style.setProperty('--profile-stats-opacity',stats);companyProfile.style.setProperty('--profile-stats-y',`${(1-stats)*64}px`)};addEventListener('scroll',updateCompanyProfile,{passive:true});addEventListener('resize',updateCompanyProfile);updateCompanyProfile()}
+    if(deliverySection){const updateDeliveryMirror=()=>{const raw=Math.max(0,Math.min(1,-deliverySection.getBoundingClientRect().top/(innerHeight*.72))),p=raw*raw*(3-2*raw),copyRaw=Math.max(0,Math.min(1,(raw-.18)/.48)),copy=copyRaw*copyRaw*(3-2*copyRaw);deliverySection.style.setProperty('--delivery-stage-x',`${(1-p)*innerWidth}px`);deliverySection.style.setProperty('--delivery-copy-x',`${(1-copy)*64}px`)};addEventListener('scroll',updateDeliveryMirror,{passive:true});addEventListener('resize',updateDeliveryMirror);updateDeliveryMirror()}
+    if(companyProfile&&cases){cases.classList.add('overlay-fade');const updateProfileHandoff=()=>{const raw=Math.max(0,Math.min(1,-companyProfile.getBoundingClientRect().top/(innerHeight*.42))),fade=raw*raw*(3-2*raw);cases.style.setProperty('--case-overlay-opacity',1-fade);cases.style.setProperty('--case-overlay-blur',`${fade*2}px`)};addEventListener('scroll',updateProfileHandoff,{passive:true});addEventListener('resize',updateProfileHandoff);updateProfileHandoff()}
+  </script>
+</body></html>

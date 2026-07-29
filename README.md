@@ -1,6 +1,20 @@
-# 深柴动力主网站
+# 深柴动力统一站点
 
-React 19 + Vite 8 构建的深柴动力双语企业主站。当前页面采用工业蓝、冷白、大字号标题、技术编号与实色面板，支持中文和英文切换。
+React 19 + Vite 8 构建的深柴动力双语统一站点。主站、关于我们和 5 个 3D 产品展厅共用一个同源项目与一个部署产物，页面采用工业蓝、冷白、大字号标题、技术编号与实色面板，支持中文和英文切换。
+
+## 统一站点入口
+
+| 地址 | 页面 |
+| --- | --- |
+| `/` | 主站首页 |
+| `/about/` | 关于我们 |
+| `/products/open-frame-500/` | 500kW 开放式机组 |
+| `/products/open-frame-1200/` | 1200kW 开放式机组 |
+| `/products/silent/` | 静音型机组 |
+| `/products/mobile-trailer/` | 移动拖车型机组 |
+| `/products/high-voltage/` | 高压/预留产品页 |
+
+旧子站目录仍保留在部署文件夹中作为恢复源，不参与统一构建。
 
 ## 首页结构
 
@@ -32,14 +46,14 @@ pnpm run build
 
 项目只保留 `pnpm-lock.yaml`；不要提交 `node_modules/`、`dist/`、本地快照、压缩包或历史素材目录。
 
-## Cloudflare Pages
+## Cloudflare Pages / 一键部署
 
 - 构建命令：`pnpm run build`
 - 输出目录：`dist`
 - 根目录：项目根目录
 - 依赖锁文件：`pnpm-lock.yaml`
 
-当前生产构建约 62.58 MB，最大单文件为 `hero-power-range-sharp4k.mp4`，约 21.87 MB；没有文件超过 Cloudflare Pages 的 25 MiB 单文件限制。
+Cloudflare Pages 只需要部署本项目构建出的 `dist`，不再分别配置主站和子站域名。当前统一构建会生成 `dist/index.html`、`dist/about/index.html` 和 5 个产品入口目录；没有单个文件超过 100 MB。
 
 ## 关键文件
 
@@ -50,6 +64,9 @@ pnpm run build
 - `src/components/Advantages.jsx`：可信理由、真实项目图和资质矩阵。
 - `src/components/Cases.jsx`：项目案例曲线与滚动插入效果。
 - `src/components/Contact.jsx`：醒目的电话、邮箱和公司信息。
+- `products/<slug>/`：各产品 3D 展厅的独立入口、组件和样式。
+- `public/product-assets/<slug>/`：按产品隔离的模型与图片；`public/product-assets/shared/` 为共享模型依赖。
+- `public/about/`：关于我们静态页面及其同源资源。
 - `scripts/check-video-assets.mjs`：视频完整性检查。
 - `项目交接文档.md`：设计决策、清理记录和维护注意事项。
 
