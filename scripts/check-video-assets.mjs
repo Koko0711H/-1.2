@@ -3,6 +3,8 @@ import { resolve } from 'node:path'
 
 const videoFiles = [
   'hero-power-range-sharp4k.mp4',
+  'hero-power-range-mobile.mp4',
+  'about/home-hero-mobile.mp4',
   'silent-generator.mp4',
   'open-frame.mp4',
   'open-frame-small.mp4',

@@ -12,7 +12,7 @@ React 19 + Vite 8 构建的深柴动力双语统一站点。主站、关于我�
 | `/products/open-frame-1200/` | 1200kW 开放式机组 |
 | `/products/silent/` | 静音型机组 |
 | `/products/mobile-trailer/` | 移动拖车型机组 |
-| `/products/high-voltage/` | 高压/预留产品页 |
+| `/products/high-voltage/` | 高压配电系统 |
 
 旧子站目录仍保留在部署文件夹中作为恢复源，不参与统一构建。
 
@@ -40,7 +40,7 @@ pnpm run lint
 pnpm run build
 ```
 
-- `pnpm run check:videos`：检查 6 个本地 MP4 文件和文件头，不依赖本地服务器。
+- `pnpm run check:videos`：检查 8 个本地 MP4 文件和文件头，不依赖本地服务器。
 - `pnpm run lint`：检查当前源码。
 - `pnpm run build`：生成 `dist/` 生产目录。
 
@@ -53,13 +53,14 @@ pnpm run build
 - 根目录：项目根目录
 - 依赖锁文件：`pnpm-lock.yaml`
 
-Cloudflare Pages 只需要部署本项目构建出的 `dist`，不再分别配置主站和子站域名。当前统一构建会生成 `dist/index.html`、`dist/about/index.html` 和 5 个产品入口目录；没有单个文件超过 100 MB。
+Cloudflare Pages 只需要部署本项目构建出的 `dist`，不再分别配置主站和子站域名。当前统一构建会生成 `dist/index.html`、`dist/about/index.html` 和 5 个产品入口目录。2026-07-31 的生产构建共 161 个文件、约 95.26 MiB，最大单文件约 6.39 MiB，低于 Cloudflare Pages 的 25 MiB 单文件限制。
 
 ## 关键文件
 
 - `src/App.jsx`：首页模块顺序和整体入口。
 - `src/i18n.jsx`：中英文文案。
 - `src/main-redesign.css`：主要页面视觉、覆盖转场和响应式样式。
+- `src/mobile-site.css`：主站手机端媒体视窗、横向卡片、触控尺寸和正常阅读流。
 - `src/components/Hero.jsx`：唯一首页开屏视频。
 - `src/components/Advantages.jsx`：可信理由、真实项目图和资质矩阵。
 - `src/components/Cases.jsx`：项目案例曲线与滚动插入效果。
@@ -81,6 +82,17 @@ Cloudflare Pages 只需要部署本项目构建出的 `dist`，不再分别配�
 
 1. 运行 `pnpm run check:videos`、`pnpm run lint` 和 `pnpm run build`。
 2. 检查中文和英文切换。
-3. 检查桌面端与 390px 手机端无横向溢出、无缺图和不可读视频。
+3. 检查桌面端与 360px、390px、412px 手机端无横向溢出、无缺图和不可读视频。
 4. 确认首页顺序仍为：开屏视频 → 为什么选择我们 → 探索产品 → 聚焦行业 → 关于深柴动力 → 项目案例 → 销售与服务。
 5. 检查待推送提交中没有 `.zip`、本地快照或超过平台限制的大文件。
+
+## 2026-07-31 媒体清晰度与手机端重构
+
+- 首页手机端开屏改为完整的 16:9 视频视窗，标题、说明和“探索产品”按钮进入正常文档流，不再通过放大裁切填满竖屏，也不再产生首屏后的大段空白。
+- “聚焦行业”改为可横向滑动的完整比例图片卡片；项目案例和销售服务图片降低遮罩、提高亮度，同时保留工业蓝层级和文字对比度。
+- 5 个产品展厅共用 `products/shared/product-mobile.css`：手机端 3D 模型放入独立圆角展示台，自适应相机距离与模型比例，确保机组完整可见；阶段导航为底部横向触控条，按钮高度满足 44px 以上。
+- 修复产品页手机端 `html/body/#root` 固定高度导致页面无法滚动的问题。阶段按钮现在会推进到对应内容，上滑也可正常返回。
+- 高压产品页已由占位内容更新为正式的“高压配电系统”中英文说明；所有产品页统一使用 `FLYDEER POWER · 始于 2002` 和“产品总览 / Product Overview”。
+- 关于我们页面的项目、公司介绍、工厂、交付和服务模块在手机端改为正常阅读流或横向图片卡片，不再沿用桌面端粘性舞台的位移和透明度，避免重叠、裁切和空白段。
+- 媒体采用桌面/手机自适应版本、WebP 图片、懒加载和 Cloudflare 长缓存头；视频校验脚本当前覆盖 8 个 MP4。
+- 实际浏览器回归已覆盖 360×800、390×844、412×915 和桌面 1440×900；7 个入口的菜单、语言保持、产品阶段导航、触控尺寸、滚动和横向溢出检查全部通过。

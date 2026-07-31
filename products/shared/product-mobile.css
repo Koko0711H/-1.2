@@ -1,0 +1,853 @@
+.product-mobile-menu-toggle,
+.product-mobile-menu-backdrop,
+.product-mobile-actions {
+  display: none;
+}
+
+.st-item {
+  color: inherit;
+  border: 0;
+  font: inherit;
+  text-align: inherit;
+}
+
+@media (max-width: 900px) {
+  html {
+    height: auto !important;
+    min-height: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  body {
+    height: auto !important;
+    min-height: 100dvh;
+    max-width: 100%;
+    overflow: visible;
+  }
+
+  #root,
+  .app {
+    height: auto !important;
+    max-width: 100%;
+    min-height: 100dvh;
+    overflow: visible;
+  }
+
+  body.product-mobile-menu-open {
+    overflow: hidden;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .scene,
+  .ui-layer,
+  .preloader {
+    width: 100%;
+    height: 100dvh;
+    min-height: 100svh;
+  }
+
+  .navbar,
+  .navbar.scrolled {
+    z-index: 110;
+    height: calc(64px + env(safe-area-inset-top));
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .navbar-inner {
+    position: relative;
+    z-index: 3;
+    height: 64px;
+    padding: 0 max(16px, env(safe-area-inset-right)) 0 max(16px, env(safe-area-inset-left));
+    justify-content: space-between;
+    gap: 10px;
+    background: rgba(6, 26, 51, 0.98);
+  }
+
+  .nav-logo {
+    height: 28px;
+  }
+
+  .header-right {
+    display: none;
+  }
+
+  .navbar .nav-links {
+    position: fixed;
+    z-index: 3;
+    top: calc(64px + env(safe-area-inset-top));
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    max-height: calc(100dvh - 64px - env(safe-area-inset-top));
+    padding: 14px max(18px, env(safe-area-inset-right)) calc(24px + env(safe-area-inset-bottom)) max(18px, env(safe-area-inset-left));
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0;
+    overflow-y: auto;
+    background: rgba(6, 26, 51, 0.99);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 22px 60px rgba(0, 0, 0, 0.42);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-12px);
+    pointer-events: none;
+    transition: opacity 0.22s ease, transform 0.22s ease, visibility 0s linear 0.22s;
+  }
+
+  .navbar.mobile-open .nav-links {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+    transition-delay: 0s;
+  }
+
+  .navbar .nav-links > a,
+  .navbar .nav-links > a:hover {
+    flex: 0 0 auto;
+    width: 100%;
+    min-height: 50px;
+    padding: 0 4px;
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.94);
+    background: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0;
+    font-size: 16px;
+  }
+
+  .navbar .nav-links > a::after {
+    right: auto;
+    bottom: 11px;
+    left: 4px;
+    width: 26px;
+  }
+
+  .product-mobile-menu-toggle {
+    position: relative;
+    z-index: 4;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .product-mobile-menu-toggle span {
+    width: 18px;
+    height: 1.5px;
+    display: block;
+    background: currentColor;
+    transition: transform 0.22s ease, opacity 0.22s ease;
+  }
+
+  .navbar.mobile-open .product-mobile-menu-toggle span:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+  }
+
+  .navbar.mobile-open .product-mobile-menu-toggle span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .navbar.mobile-open .product-mobile-menu-toggle span:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+
+  .product-mobile-menu-backdrop {
+    position: fixed;
+    z-index: 1;
+    inset: calc(64px + env(safe-area-inset-top)) 0 0;
+    width: 100%;
+    height: auto;
+    border: 0;
+    background: rgba(0, 0, 0, 0.42);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .navbar.mobile-open .product-mobile-menu-backdrop {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .product-mobile-actions {
+    padding-top: 18px;
+    display: grid;
+    gap: 13px;
+  }
+
+  .product-mobile-languages {
+    display: flex;
+    gap: 10px;
+  }
+
+  .navbar .product-mobile-languages .lang-btn {
+    min-width: 88px;
+    min-height: 44px;
+    padding: 0 16px;
+    color: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 8px;
+  }
+
+  .navbar .product-mobile-languages .lang-btn.active {
+    color: #fff;
+    border-color: #e63946;
+    background: rgba(230, 57, 70, 0.1);
+  }
+
+  .product-mobile-quote {
+    width: 100%;
+    min-height: 48px;
+    padding: 0 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    color: #fff;
+    background: #e63946;
+    border-radius: 9px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .product-mobile-contact {
+    display: grid;
+    gap: 8px;
+  }
+
+  .product-mobile-contact a {
+    min-height: 44px;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.74);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 8px;
+    overflow-wrap: anywhere;
+    text-decoration: none;
+  }
+
+  .product-switcher {
+    top: calc(76px + env(safe-area-inset-top));
+    right: 12px;
+    left: 12px;
+    width: fit-content;
+    max-width: calc(100% - 24px);
+  }
+
+  .product-switcher-toggle {
+    min-height: 44px;
+    padding: 0 14px;
+    font-size: 13px;
+  }
+
+  .product-switcher-menu {
+    width: min(244px, calc(100vw - 24px));
+    max-height: calc(100dvh - 140px);
+    overflow-y: auto;
+  }
+
+  .product-switcher-menu a {
+    min-height: 44px;
+    padding: 11px 13px;
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+  }
+
+  .content-overlay {
+    padding: 0 14px;
+  }
+
+  .content-left,
+  .content-left.home-left,
+  .content-left.chassis-left,
+  .content-left.airflow-left,
+  .content-left.engine-left,
+  .content-left.allinone-left {
+    position: absolute;
+    top: calc(132px + env(safe-area-inset-top));
+    right: 14px;
+    bottom: auto;
+    left: 14px;
+    max-width: none;
+    text-align: left;
+    transform: none;
+  }
+
+  .title-box {
+    max-width: min(88vw, 430px);
+    padding: 13px 15px;
+    border-radius: 10px;
+    background: rgba(3, 22, 44, 0.66);
+  }
+
+  .content-title,
+  .content-title.home-title,
+  .content-title.chassis-title,
+  .content-title.airflow-title,
+  .content-title.engine-title,
+  .content-title.allinone-title {
+    max-width: 78vw;
+    margin-bottom: 5px;
+    font-size: clamp(23px, 7vw, 34px);
+    line-height: 1.08;
+  }
+
+  .content-subtitle,
+  .content-subtitle.home-subtitle,
+  .content-subtitle.chassis-subtitle,
+  .content-subtitle.airflow-subtitle,
+  .content-subtitle.engine-subtitle,
+  .content-subtitle.allinone-subtitle {
+    max-width: 76vw;
+    font-size: 10px;
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+  }
+
+  .home-top-right,
+  .engine-img,
+  .allinone-top-right .module-img,
+  .airflow-top-right .module-img,
+  .chassis-right .module-img,
+  .section-number,
+  .deco-line-left,
+  .deco-line-right,
+  .tech-tags,
+  .bottom-info,
+  .bottom-info-left {
+    display: none;
+  }
+
+  .home-bottom-right,
+  .allinone-top-right,
+  .engine-text-block,
+  .airflow-top-right,
+  .chassis-right,
+  .content-right {
+    position: absolute;
+    top: auto;
+    right: 14px;
+    bottom: calc(72px + env(safe-area-inset-bottom));
+    left: 14px;
+    width: auto;
+    max-width: min(88vw, 470px);
+    max-height: 105px;
+    padding: 11px 13px;
+    overflow-y: auto;
+    text-align: left;
+    background: rgba(3, 22, 44, 0.64);
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    border-radius: 10px;
+    backdrop-filter: blur(8px);
+  }
+
+  .home-intro-text,
+  .allinone-desc-text,
+  .engine-desc-text,
+  .airflow-desc-text,
+  .chassis-desc-text,
+  .content-desc {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 12px;
+    line-height: 1.55;
+    letter-spacing: 0;
+    text-align: left;
+    text-indent: 0;
+    white-space: normal;
+  }
+
+  .home-intro-text + .home-intro-text {
+    margin-top: 5px;
+  }
+
+  .statetable-container {
+    top: auto;
+    right: 0;
+    bottom: max(8px, env(safe-area-inset-bottom));
+    left: 0;
+    width: 100%;
+    padding: 0 10px;
+    overflow-x: auto;
+    transform: none;
+    scrollbar-width: none;
+  }
+
+  .statetable-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .statetable-content {
+    width: max-content;
+    min-width: 100%;
+    padding: 0;
+    display: flex;
+    gap: 6px;
+  }
+
+  .backgroundLine {
+    display: none;
+  }
+
+  .st-item {
+    min-width: 104px;
+    min-height: 44px;
+    margin: 0;
+    padding: 0 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: inherit;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 9px;
+    background: rgba(3, 22, 44, 0.68);
+    font: inherit;
+    text-align: center;
+  }
+
+  .st-item.active {
+    background: rgba(10, 40, 80, 0.94);
+    border-color: rgba(151, 212, 247, 0.45);
+  }
+
+  .table-name {
+    font-size: 10px;
+    line-height: 1.25;
+    letter-spacing: 0.04em;
+    white-space: normal;
+  }
+
+  .scroll-hint {
+    right: 14px;
+    bottom: calc(62px + env(safe-area-inset-bottom));
+    left: auto;
+    align-items: flex-end;
+    transform: none;
+  }
+
+  .scroll-hint > span:not(.scroll-arrow) {
+    font-size: 13px;
+    letter-spacing: 0.12em;
+  }
+
+  .scroll-line {
+    display: none;
+  }
+
+  .inquiry-footer {
+    min-height: 100dvh;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .inquiry-footer-inner {
+    width: calc(100% - 24px);
+    margin: calc(78px + env(safe-area-inset-top)) auto 18px;
+    padding: 28px 18px;
+    flex: 0 0 auto;
+    border-radius: 16px;
+  }
+
+  .inquiry-footer h2 {
+    font-size: clamp(30px, 9vw, 42px);
+  }
+
+  .inquiry-copy {
+    margin-top: 16px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .inquiry-actions {
+    margin-top: 24px;
+  }
+
+  .inquiry-primary,
+  .inquiry-secondary {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .inquiry-site-footer {
+    margin-top: auto;
+    padding: 15px 16px calc(15px + env(safe-area-inset-bottom));
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 420px) {
+  .content-left,
+  .content-left.home-left,
+  .content-left.chassis-left,
+  .content-left.airflow-left,
+  .content-left.engine-left,
+  .content-left.allinone-left {
+    top: calc(128px + env(safe-area-inset-top));
+  }
+
+  .title-box {
+    padding: 11px 12px;
+  }
+
+  .content-title,
+  .content-title.home-title,
+  .content-title.chassis-title,
+  .content-title.airflow-title,
+  .content-title.engine-title,
+  .content-title.allinone-title {
+    font-size: clamp(21px, 6.6vw, 29px);
+  }
+
+  .home-bottom-right,
+  .allinone-top-right,
+  .engine-text-block,
+  .airflow-top-right,
+  .chassis-right,
+  .content-right {
+    max-height: 88px;
+  }
+}
+
+@media (max-width: 900px) and (max-height: 600px) {
+  .content-left,
+  .content-left.home-left,
+  .content-left.chassis-left,
+  .content-left.airflow-left,
+  .content-left.engine-left,
+  .content-left.allinone-left {
+    top: calc(118px + env(safe-area-inset-top));
+  }
+
+  .home-bottom-right,
+  .allinone-top-right,
+  .engine-text-block,
+  .airflow-top-right,
+  .chassis-right,
+  .content-right {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar .nav-links,
+  .product-mobile-menu-toggle span {
+    transition: none;
+  }
+}
+
+/* Mobile product dossier: keep wide industrial models complete and readable. */
+@media (max-width: 900px) {
+  body {
+    background: #06172b;
+  }
+
+  .app {
+    --product-stage-top: calc(126px + env(safe-area-inset-top));
+    --product-stage-height: clamp(250px, 42dvh, 380px);
+    min-height: 100dvh;
+    background:
+      radial-gradient(circle at 50% 26%, rgba(47, 111, 169, 0.22), transparent 42%),
+      linear-gradient(180deg, #071a31 0%, #041225 100%);
+  }
+
+  .app .scene {
+    top: var(--product-stage-top);
+    right: 12px;
+    left: 12px;
+    width: auto;
+    height: var(--product-stage-height);
+    min-height: 0;
+    overflow: hidden;
+    border: 1px solid rgba(157, 204, 238, 0.25);
+    border-radius: 18px;
+    background:
+      radial-gradient(ellipse at 50% 52%, rgba(73, 144, 204, 0.25), rgba(10, 34, 62, 0.74) 58%, #041021 100%);
+    box-shadow:
+      0 18px 44px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  }
+
+  .app .scene > canvas,
+  .app .scroll-light-atmosphere {
+    border-radius: inherit;
+  }
+
+  .app .screen-light-halo {
+    background:
+      radial-gradient(ellipse 94% 88% at var(--light-x) var(--light-y), rgba(201, 232, 255, 0.24) 0%, rgba(111, 184, 242, 0.1) 36%, rgba(65, 146, 216, 0.028) 58%, transparent 82%);
+    filter: none;
+  }
+
+  .app .ui-layer {
+    height: 100dvh;
+    min-height: 100svh;
+  }
+
+  .app .content-overlay {
+    padding: 0 12px;
+  }
+
+  .app .content-left,
+  .app .content-left.home-left,
+  .app .content-left.chassis-left,
+  .app .content-left.airflow-left,
+  .app .content-left.engine-left,
+  .app .content-left.allinone-left {
+    top: calc(var(--product-stage-top) + var(--product-stage-height) + 14px);
+    right: 12px;
+    left: 12px;
+    max-width: none;
+    text-align: left;
+    transform: none;
+  }
+
+  .app .title-box {
+    width: 100%;
+    max-width: none;
+    min-height: 76px;
+    padding: 13px 16px 12px;
+    border-color: rgba(157, 204, 238, 0.2);
+    border-radius: 14px;
+    background: rgba(10, 34, 62, 0.94);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+    backdrop-filter: none;
+  }
+
+  .app .content-title,
+  .app .content-title.home-title,
+  .app .content-title.chassis-title,
+  .app .content-title.airflow-title,
+  .app .content-title.engine-title,
+  .app .content-title.allinone-title {
+    max-width: 100%;
+    margin-bottom: 6px;
+    color: #f7fbff;
+    font-size: clamp(22px, 6.4vw, 30px);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+  }
+
+  .app .content-subtitle,
+  .app .content-subtitle.home-subtitle,
+  .app .content-subtitle.chassis-subtitle,
+  .app .content-subtitle.airflow-subtitle,
+  .app .content-subtitle.engine-subtitle,
+  .app .content-subtitle.allinone-subtitle {
+    max-width: 100%;
+    color: rgba(202, 224, 241, 0.72);
+    font-size: 10px;
+    line-height: 1.35;
+    letter-spacing: 0.1em;
+  }
+
+  .app .home-bottom-right,
+  .app .allinone-top-right,
+  .app .engine-text-block,
+  .app .airflow-top-right,
+  .app .chassis-right,
+  .app .content-right {
+    top: calc(var(--product-stage-top) + var(--product-stage-height) + 102px);
+    right: 12px;
+    bottom: auto;
+    left: 12px;
+    width: auto;
+    max-width: none;
+    max-height: 94px;
+    padding: 12px 15px;
+    border-color: rgba(157, 204, 238, 0.16);
+    border-radius: 13px;
+    background: rgba(6, 27, 51, 0.92);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+    backdrop-filter: none;
+  }
+
+  .app .home-intro-text,
+  .app .allinone-desc-text,
+  .app .engine-desc-text,
+  .app .airflow-desc-text,
+  .app .chassis-desc-text,
+  .app .content-desc {
+    color: rgba(235, 245, 252, 0.86);
+    font-size: 12px;
+    line-height: 1.55;
+  }
+
+  .app .home-intro-text + .home-intro-text {
+    display: none;
+  }
+
+  .app .statetable-container {
+    top: auto;
+    right: 0;
+    bottom: max(8px, env(safe-area-inset-bottom));
+    left: 0;
+    padding: 0 12px;
+  }
+
+  .app .statetable-content {
+    width: max-content;
+    min-width: 100%;
+    padding: 0;
+    display: flex;
+    gap: 8px;
+  }
+
+  .app .st-item {
+    min-width: 112px;
+    min-height: 46px;
+    padding: 0 13px;
+    border-color: rgba(157, 204, 238, 0.18);
+    border-radius: 11px;
+    background: rgba(7, 28, 53, 0.96);
+  }
+
+  .app .st-item.active {
+    border-color: rgba(154, 211, 247, 0.62);
+    background: #16466f;
+    box-shadow: inset 0 0 0 1px rgba(214, 238, 255, 0.07);
+  }
+
+  .app .table-name {
+    color: rgba(220, 237, 249, 0.7);
+    font-size: 11px;
+  }
+
+  .app .scroll-hint {
+    top: calc(var(--product-stage-top) + var(--product-stage-height) - 42px);
+    right: 22px;
+    bottom: auto;
+    padding: 7px 10px;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid rgba(185, 220, 246, 0.18);
+    border-radius: 999px;
+    background: rgba(3, 20, 39, 0.76);
+    transform: none;
+  }
+
+  .app .scroll-hint > span:not(.scroll-arrow) {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+  }
+
+  .app .scroll-hint .scroll-arrow {
+    width: 14px;
+    height: 14px;
+    margin: 0;
+  }
+
+  .app .scroll-hint .scroll-arrow::before {
+    width: 7px;
+    height: 7px;
+    border-width: 1.5px;
+  }
+
+  .app .scroll-hint .scroll-arrow::after {
+    display: none;
+  }
+
+  .app .tech-grid {
+    background-size: 36px 36px;
+  }
+
+  .app .home-top-right,
+  .app .engine-img,
+  .app .allinone-top-right .module-img,
+  .app .airflow-top-right .module-img,
+  .app .chassis-right .module-img,
+  .app .section-number,
+  .app .deco-line-left,
+  .app .deco-line-right,
+  .app .tech-tags,
+  .app .bottom-info,
+  .app .bottom-info-left {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .app {
+    --product-stage-top: calc(122px + env(safe-area-inset-top));
+    --product-stage-height: clamp(246px, 41dvh, 340px);
+  }
+
+  .app .content-left,
+  .app .content-left.home-left,
+  .app .content-left.chassis-left,
+  .app .content-left.airflow-left,
+  .app .content-left.engine-left,
+  .app .content-left.allinone-left {
+    top: calc(var(--product-stage-top) + var(--product-stage-height) + 12px);
+  }
+
+  .app .title-box {
+    min-height: 72px;
+    padding: 11px 13px;
+  }
+
+  .app .home-bottom-right,
+  .app .allinone-top-right,
+  .app .engine-text-block,
+  .app .airflow-top-right,
+  .app .chassis-right,
+  .app .content-right {
+    top: calc(var(--product-stage-top) + var(--product-stage-height) + 92px);
+    max-height: 84px;
+    padding: 10px 13px;
+  }
+}
+
+@media (max-width: 900px) and (max-height: 620px) {
+  .app {
+    --product-stage-top: calc(116px + env(safe-area-inset-top));
+    --product-stage-height: 44dvh;
+  }
+
+  .app .home-bottom-right,
+  .app .allinone-top-right,
+  .app .engine-text-block,
+  .app .airflow-top-right,
+  .app .chassis-right,
+  .app .content-right {
+    display: none;
+  }
+
+  .app .title-box {
+    min-height: 64px;
+    padding: 10px 13px;
+  }
+
+  .app .content-title,
+  .app .content-title.home-title,
+  .app .content-title.chassis-title,
+  .app .content-title.airflow-title,
+  .app .content-title.engine-title,
+  .app .content-title.allinone-title {
+    font-size: 21px;
+  }
+}

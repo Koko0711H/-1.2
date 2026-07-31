@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0c100f" />
   <title>FLYDEER POWER | About Us</title>
+  <link rel="icon" type="image/png" href="flydeer-logo.png" />
   <style>
     :root{--orange:#0a2850;--ink:#111614;--paper:#fff;--line:rgba(255,255,255,.22)}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--ink);color:#fff;font-family:Arial,"Microsoft YaHei",sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}
     .site-header{position:fixed;z-index:30;top:0;left:0;right:0;height:66px;padding:0 clamp(22px,3.65vw,52px);display:flex;align-items:center;justify-content:space-between;color:#fff;background:linear-gradient(180deg,rgba(0,0,0,.42),transparent);transition:color .35s,background .35s}.logo{width:120px;filter:brightness(0) invert(1)}.nav{display:flex;align-items:stretch;height:100%;gap:clamp(25px,2.7vw,43px)}.nav a{position:relative;display:flex;align-items:center;font-size:16px;white-space:nowrap}.nav a:after{position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--orange);content:"";transform:scaleX(0);transition:.2s}.nav a:hover:after,.nav .active:after{transform:scaleX(1)}.tools{display:flex;align-items:center;gap:12px}.lang{display:flex;gap:18px;margin-right:8px}.lang button{border:0;border-bottom:2px solid transparent;padding:5px 0 8px;background:transparent;color:rgba(255,255,255,.58);font:15px inherit;cursor:pointer}.lang button.active{color:#fff;border-color:var(--orange)}.circle{width:34px;height:34px;border:1px solid rgba(255,255,255,.55);border-radius:50%;display:grid;place-items:center;font-size:14px}.quote{border:1px solid rgba(255,255,255,.65);padding:10px 15px;font-size:15px}
@@ -264,7 +265,7 @@
   </style>
   <style>
     /* ===== Page 04: after-sales field support ===== */
-    .service.stage-ready .section-stage{padding:104px 4.3vw 44px;display:flex;flex-direction:column;justify-content:space-between;color:#fff;background:linear-gradient(180deg,rgba(2,12,27,.54) 0%,rgba(2,12,27,.12) 50%,rgba(2,12,27,.62) 100%),linear-gradient(90deg,rgba(3,17,36,.58) 0%,rgba(3,17,36,.25) 48%,rgba(3,17,36,.04) 100%),url('/about/after-sales-service.png') center/cover no-repeat}
+    .service.stage-ready .section-stage{padding:104px 4.3vw 44px;display:flex;flex-direction:column;justify-content:space-between;color:#fff;background:linear-gradient(180deg,rgba(2,12,27,.54) 0%,rgba(2,12,27,.12) 50%,rgba(2,12,27,.62) 100%),linear-gradient(90deg,rgba(3,17,36,.58) 0%,rgba(3,17,36,.25) 48%,rgba(3,17,36,.04) 100%),url('/about/after-sales-service.webp') center/cover no-repeat}
     .service.stage-ready .section-stage:before{position:absolute;z-index:0;inset:0;content:"";background:radial-gradient(circle at 72% 42%,rgba(93,164,225,.14),transparent 28%),linear-gradient(115deg,transparent 0 58%,rgba(151,199,239,.07) 58.15%,transparent 58.4%);pointer-events:none}
     .service.stage-ready .section-stage:after{height:6px;width:auto;right:0;bottom:auto;left:0;background:linear-gradient(90deg,#3b86c8,#a9d6f7 46%,rgba(169,214,247,.1));box-shadow:0 0 32px rgba(92,166,225,.42)}
     .service-intro{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(280px,.55fr);align-items:end;gap:clamp(32px,7vw,130px)}
@@ -388,18 +389,244 @@
       }
     }
   </style>
+  <style>
+    /* Mobile parity layer: the same navigation and actions, without viewport overflow. */
+    .about-menu-toggle,.about-menu-backdrop,.about-mobile-actions{display:none}
+    @media(max-width:900px){
+      html,body{max-width:100%;overflow-x:clip}
+      body.mobile-nav-open{overflow:hidden}
+      .site-header{height:calc(64px + env(safe-area-inset-top));padding:env(safe-area-inset-top) 0 0;z-index:80}
+      .site-header-inner{position:relative;z-index:3;width:100%;height:64px;padding:0 max(16px,env(safe-area-inset-right)) 0 max(16px,env(safe-area-inset-left));background:rgba(6,26,51,.98)}
+      .site-header .tools{margin-left:auto;gap:8px}
+      .site-header .lang{gap:8px;margin:0}
+      .site-header .lang button{min-height:44px;padding:0 3px;font-size:12px}
+      .site-header .nav{position:fixed;z-index:3;top:calc(64px + env(safe-area-inset-top));right:0;bottom:0;left:0;width:100%;height:auto;max-height:calc(100dvh - 64px - env(safe-area-inset-top));padding:14px max(18px,env(safe-area-inset-right)) calc(24px + env(safe-area-inset-bottom)) max(18px,env(safe-area-inset-left));display:flex;flex-direction:column;align-items:stretch;gap:0;overflow-y:auto;background:rgba(6,26,51,.99);border-top:1px solid rgba(255,255,255,.1);box-shadow:0 22px 60px rgba(0,10,28,.38);opacity:0;visibility:hidden;transform:translateY(-12px);pointer-events:none;transition:opacity .22s ease,transform .22s ease,visibility 0s linear .22s}
+      .site-header.mobile-open .nav{opacity:1;visibility:visible;transform:none;pointer-events:auto;transition-delay:0s}
+      .site-header .nav>a{flex:0 0 auto;width:100%;min-height:50px;padding:0 4px;display:flex;align-items:center;border-bottom:1px solid rgba(255,255,255,.1);font-size:16px}
+      .site-header .nav>a:after{right:auto;bottom:11px;left:4px;width:26px}
+      .about-menu-toggle{position:relative;z-index:4;width:44px;height:44px;padding:0;display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;color:#fff;border:1px solid rgba(255,255,255,.24);border-radius:10px;background:rgba(255,255,255,.05)}
+      .about-menu-toggle span{width:18px;height:1.5px;display:block;background:currentColor;transition:transform .22s ease,opacity .22s ease}
+      .site-header.mobile-open .about-menu-toggle span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+      .site-header.mobile-open .about-menu-toggle span:nth-child(2){opacity:0}
+      .site-header.mobile-open .about-menu-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+      .about-menu-backdrop{position:fixed;z-index:1;inset:calc(64px + env(safe-area-inset-top)) 0 0;width:100%;height:auto;border:0;background:rgba(0,9,24,.42);opacity:0;visibility:hidden;pointer-events:none}
+      .site-header.mobile-open .about-menu-backdrop{display:block;opacity:1;visibility:visible;pointer-events:auto}
+      .about-mobile-actions{padding-top:18px;display:grid;gap:10px}
+      .about-mobile-quote{min-height:48px;padding:0 18px;display:flex;align-items:center;justify-content:center;color:#fff;background:#e63946;border-radius:9px;font-weight:700}
+      .about-mobile-contact{display:grid;grid-template-columns:1fr;gap:8px}
+      .about-mobile-contact a,.about-mobile-social a{min-height:44px;padding:0 12px;display:flex;align-items:center;color:rgba(255,255,255,.74);border:1px solid rgba(255,255,255,.14);border-radius:8px;overflow-wrap:anywhere}
+      .about-mobile-social{display:flex;flex-wrap:wrap;gap:8px}
+      .about-mobile-social a{font-size:12px}
+      .hero{min-height:max(620px,100svh)}
+      .round{width:48px;height:48px;display:inline-grid;place-items:center}
+      .company-profile-page,.factory.stage-ready .section-stage,.delivery.stage-ready .section-stage,.service.stage-ready .section-stage{padding-right:16px;padding-left:16px}
+      .company-profile-story,.company-profile-image,.factory-heading,.delivery-heading,.service-intro,.factory-gallery,.delivery-gallery,.service-grid{max-width:100%;min-width:0}
+      .profile-certificate-card{scroll-snap-align:start}
+      .about-inquiry-actions a{min-height:48px}
+      footer a{min-height:44px;display:inline-flex;align-items:center}
+    }
+    @media(max-width:420px){
+      .site-header .logo{width:98px;height:auto}
+      .site-header .tools{gap:6px}
+      .site-header .lang{gap:6px}
+      .factory.stage-ready .section-stage,.delivery.stage-ready .section-stage{padding-top:82px}
+      .factory-gallery,.delivery-gallery{height:270px;grid-template-rows:270px}
+      .factory-gallery{grid-auto-columns:82vw}
+      .delivery-gallery{grid-auto-columns:82vw}
+      .factory h2,.delivery h2,.service h2,.about-inquiry-strip h2{font-size:clamp(36px,10.5vw,46px)}
+      .about-inquiry-strip{padding-right:16px;padding-left:16px}
+      footer{padding-right:16px;padding-left:16px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .site-header .nav,.about-menu-toggle span{transition:none}
+    }
+  </style>
+  <style>
+    /* Mobile reading flow: replace overlapping desktop scroll stages with clear sections. */
+    @media(max-width:700px){
+      .intro-stage{height:auto!important;min-height:0!important}
+      .hero{position:relative!important;top:auto!important;height:100svh!important;min-height:640px!important}
+      .hero video{filter:brightness(1.08) saturate(.94)}
+      .hero:after{background:linear-gradient(90deg,rgba(1,12,27,.48),rgba(1,12,27,.08) 76%),linear-gradient(0deg,rgba(1,12,27,.42),transparent 56%)}
+      .hero-copy{z-index:3}
+
+      .cases,
+      .cases.motion-ready{
+        min-height:0!important;
+        margin:0!important;
+        padding:76px 16px 72px!important;
+        opacity:1!important;
+        filter:none!important;
+        color:#fff;
+        background:linear-gradient(180deg,#071d37 0%,#0a294a 100%)!important;
+        perspective:none!important;
+      }
+      .cases.motion-ready .case-motion{
+        position:relative!important;
+        top:auto!important;
+        height:auto!important;
+        min-height:0!important;
+        padding:0!important;
+        opacity:1!important;
+        filter:none!important;
+        animation:none!important;
+        transform:none!important;
+      }
+      .cases .section-intro{display:block!important;opacity:1!important;filter:none!important;transform:none!important}
+      .cases .eyebrow,.delivery .eyebrow,.service .eyebrow{color:#9bcff1!important}
+      .cases .section-intro h2{max-width:340px;font-size:clamp(42px,12vw,56px);line-height:.98;letter-spacing:-.055em}
+      .cases .gallery{
+        width:calc(100% + 16px)!important;
+        margin:34px 0 20px!important;
+        overflow-x:auto!important;
+        overflow-y:hidden!important;
+        transform:none!important;
+        overscroll-behavior-inline:contain;
+        scroll-snap-type:x mandatory;
+        scrollbar-width:none;
+      }
+      .cases .gallery::-webkit-scrollbar{display:none}
+      .cases .track{
+        width:max-content!important;
+        gap:12px!important;
+        padding-right:16px;
+        animation:none!important;
+        transform:none!important;
+      }
+      .cases .card{
+        flex:0 0 82vw!important;
+        width:82vw!important;
+        height:auto!important;
+        aspect-ratio:16/10;
+        padding:16px!important;
+        border:1px solid rgba(174,213,242,.25);
+        border-radius:16px!important;
+        scroll-snap-align:start;
+        box-shadow:0 16px 36px rgba(0,0,0,.24);
+      }
+      .cases .card:after{background:linear-gradient(180deg,rgba(2,13,27,.03) 34%,rgba(2,13,27,.72) 100%)}
+      .cases .card h3{font-size:25px}
+      .cases .note{opacity:.64!important;filter:none!important;transform:none!important;text-align:left}
+
+      .company-profile,
+      .factory.stage-ready,
+      .delivery.stage-ready,
+      .products.stage-ready,
+      .service.stage-ready,
+      .journey{
+        min-height:0!important;
+        margin:0!important;
+        padding:0!important;
+        opacity:1!important;
+        filter:none!important;
+        transform:none!important;
+      }
+      .company-profile-page,
+      .factory.stage-ready .section-stage,
+      .delivery.stage-ready .section-stage,
+      .products.stage-ready .section-stage,
+      .service.stage-ready .section-stage,
+      .journey-page{
+        position:relative!important;
+        top:auto!important;
+        right:auto!important;
+        bottom:auto!important;
+        left:auto!important;
+        width:100%!important;
+        height:auto!important;
+        min-height:0!important;
+        padding:74px 16px!important;
+        overflow:visible!important;
+        opacity:1!important;
+        filter:none!important;
+        animation:none!important;
+        transform:none!important;
+        box-shadow:none!important;
+      }
+      .company-profile-page{display:block!important;background:linear-gradient(145deg,#f8fbfd,#e8f0f7)!important}
+      .company-profile-heading,
+      .company-profile-story,
+      .company-profile-certificates,
+      .factory-heading,
+      .factory-gallery,
+      .delivery-heading,
+      .delivery-gallery,
+      .products .section-intro,
+      .products .product-list,
+      .service-intro,
+      .service-grid,
+      .journey-content>.section-intro,
+      .journey .timeline{
+        opacity:1!important;
+        filter:none!important;
+        transform:none!important;
+      }
+      .company-profile-heading{text-align:left}
+      .company-profile-heading h2{font-size:clamp(40px,11vw,50px)}
+      .company-profile-heading .profile-rule{margin:14px 0 12px}
+      .company-profile-story{display:block!important;margin-top:28px}
+      .company-profile-copy h3{font-size:26px}
+      .company-profile-copy p{font-size:14px;line-height:1.72}
+      .company-profile-image{height:auto!important;aspect-ratio:16/10;margin-top:24px;border-radius:16px}
+      .company-profile-image img{filter:none!important}
+      .company-profile-certificates{margin-top:22px!important;grid-auto-columns:70vw!important}
+
+      .factory.stage-ready .section-stage,
+      .delivery.stage-ready .section-stage{padding-top:74px!important;padding-bottom:74px!important}
+      .factory.stage-ready .section-stage:after,
+      .delivery.stage-ready .section-stage:after,
+      .products.stage-ready .section-stage:after{display:none}
+      .factory h2,.delivery h2,.products h2,.service h2,.journey h2{font-size:clamp(40px,11vw,50px)!important;line-height:.98!important}
+      .factory-lead,.delivery-lead{margin-top:18px;font-size:14px;line-height:1.7}
+      .factory-gallery,.delivery-gallery{
+        height:auto!important;
+        margin-top:30px!important;
+        grid-auto-columns:82vw!important;
+        grid-template-rows:240px!important;
+      }
+      .factory-shot,.delivery-shot{height:240px!important;border-radius:16px!important}
+      .factory-shot img,.delivery-shot img{filter:none!important}
+
+      .journey-page{background:#fff!important}
+      .journey .timeline{margin-top:54px}
+      .journey .milestone{grid-template-columns:58px 34px minmax(0,1fr);padding-bottom:38px}
+
+      .products.stage-ready .section-stage{background:#081d37!important;color:#fff}
+      .products .product-list{margin-top:44px!important}
+      .products .product{grid-template-columns:44px minmax(0,1fr) 20px;padding:22px 0}
+      .products .product p{color:rgba(228,239,248,.7)}
+
+      .service.stage-ready .section-stage{
+        min-height:0!important;
+        background:
+          linear-gradient(180deg,rgba(2,14,30,.46),rgba(2,14,30,.72)),
+          url('/about/after-sales-service.webp') 56% center/cover no-repeat!important;
+      }
+      .service-intro:before{display:none}
+      .service-summary>p{color:rgba(239,247,252,.86)}
+      .service-grid.product-list{grid-auto-columns:82vw!important;margin-top:30px!important}
+      .service-card.product{min-height:186px!important;border-radius:16px!important;background:rgba(7,35,64,.88)!important;backdrop-filter:none!important}
+
+      .about-inquiry-strip{padding:74px 16px}
+    }
+  </style>
 </head>
 <body class="english">
   <header class="site-header">
     <div class="site-header-inner">
-      <a href="/" aria-label="FLYDEER POWER home"><img class="logo" src="flydeer-logo.png" alt="FLYDEER POWER 深柴动力"></a>
-      <nav class="nav">
+      <a href="/" aria-label="FLYDEER POWER home"><img class="logo" src="flydeer-logo.png" alt="FLYDEER POWER 深柴动力" decoding="async"></a>
+      <nav class="nav" id="about-primary-navigation" aria-label="Primary navigation">
         <a href="/"><span class="zh">首页</span><span class="en">Home</span></a>
         <a href="/#products"><span class="zh">产品中心</span><span class="en">Products</span></a>
         <a href="/products/open-frame-500/"><span class="zh">网上展厅</span><span class="en">Online Showroom</span></a>
         <a class="active" aria-current="page" href="#top"><span class="zh">关于我们</span><span class="en">About Us</span></a>
         <a href="/#cases"><span class="zh">项目案例</span><span class="en">Projects</span></a>
         <a href="/#contact"><span class="zh">销售与服务</span><span class="en">Sales & Service</span></a>
+        <div class="about-mobile-actions">
+          <a class="about-mobile-quote" href="/#contact"><span class="zh">获取报价</span><span class="en">Get Quote</span></a>
+          <div class="about-mobile-contact"><a href="tel:+8618205938836">+86 182 0593 8836</a><a href="mailto:flydeerpower@googlel.com">flydeerpower@googlel.com</a></div>
+          <div class="about-mobile-social"><a href="#contact">Facebook</a><a href="#contact">LinkedIn</a><a href="#contact">Douyin</a></div>
+        </div>
       </nav>
       <div class="tools">
         <div class="lang"><button type="button" data-lang="zh" aria-pressed="false">中文</button><button type="button" class="active" data-lang="en" aria-pressed="true">English</button></div>
@@ -408,27 +635,29 @@
         <a class="circle" href="#contact" aria-label="Douyin"><svg width="30" height="30" viewBox="0 0 48 48" fill="currentColor"><path d="M33.5 8.5c1.5 3 4 5 7 5.5v4.5c-2.5 0-5-1-7-3v13c0 6.5-5 11.5-11.5 11.5S10.5 35 10.5 28.5 15.5 17 22 17v4.5c-4 0-7 3-7 7s3 7 7 7 7-3 7-7V8.5h4.5z"></path></svg></a>
         <a class="quote" href="#contact"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"></path></svg><span class="zh">获取报价</span><span class="en">Get Quote</span></a>
       </div>
+      <button class="about-menu-toggle" type="button" aria-label="Open navigation menu" aria-controls="about-primary-navigation" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
+    <button class="about-menu-backdrop" type="button" aria-label="Close navigation menu" tabindex="-1"></button>
   </header>
-  <main id="top"><div class="intro-stage"><section class="hero"><video autoplay muted loop playsinline preload="auto"><source src="home-hero-web.mp4" type="video/mp4"></video><div class="hero-copy"><p class="eyebrow">FLYDEER POWER · SINCE 2002</p><h1 class="zh">深柴动力</h1><h1 class="en">FLYDEER<br>POWER</h1><div class="hero-bottom"><span class="zh">以可靠动力，驱动每一段向前的航程。<br>专注动力系统的研发、制造与全周期服务。</span><span class="en">Reliable power for every journey forward.<br>Engineering, manufacturing, and lifecycle support.</span><a class="round" href="#cases">↘</a></div></div><div class="corner">SYSTEM / SC-01<br>READY FOR MOTION</div></section><section id="cases" class="cases"><div class="section-intro"><p class="eyebrow">01 / FIELD RECORDS</p><h2 class="zh">真实项目，<br>见证可靠动力。</h2><h2 class="en">Real projects,<br>proven power.</h2></div><div class="gallery"><div class="track"><article class="card"><img class="case-photo" src="/about/project-cases/project-case-01.png" alt="Project case: Public Facility"><i class="grid"></i><b>01</b><div><p>REAL PROJECT</p><h3 class="zh">公共建筑项目</h3><h3 class="en">Public Facility</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article><article class="card"><img class="case-photo" src="/about/project-cases/project-case-02.png" alt="Project case: Transport Hub"><i class="grid"></i><b>02</b><div><p>REAL PROJECT</p><h3 class="zh">交通枢纽项目</h3><h3 class="en">Transport Hub</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article><article class="card"><img class="case-photo" src="/about/project-cases/project-case-03.png" alt="Project case: Industrial Park"><i class="grid"></i><b>03</b><div><p>REAL PROJECT</p><h3 class="zh">工业园区项目</h3><h3 class="en">Industrial Park</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article><article class="card"><img class="case-photo" src="/about/project-cases/project-case-04.png" alt="Project case: Renewable Energy Base"><i class="grid"></i><b>04</b><div><p>REAL PROJECT</p><h3 class="zh">新能源基地项目</h3><h3 class="en">Renewable Energy Base</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article><article class="card"><img class="case-photo" src="/about/project-cases/project-case-05.png" alt="Project case: Financial Institution"><i class="grid"></i><b>05</b><div><p>REAL PROJECT</p><h3 class="zh">金融机构项目</h3><h3 class="en">Financial Institution</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article><article class="card"><img class="case-photo" src="/about/project-cases/project-case-06.png" alt="Project case: Hospitality Complex"><i class="grid"></i><b>06</b><div><p>REAL PROJECT</p><h3 class="zh">文旅酒店项目</h3><h3 class="en">Hospitality Complex</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article><article class="card"><img class="case-photo" src="/about/project-cases/project-case-07.png" alt="Project case: Industrial Manufacturing"><i class="grid"></i><b>07</b><div><p>REAL PROJECT</p><h3 class="zh">工业制造项目</h3><h3 class="en">Industrial Manufacturing</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article><article class="card"><img class="case-photo" src="/about/project-cases/project-case-08.png" alt="Project case: Energy Facility"><i class="grid"></i><b>08</b><div><p>REAL PROJECT</p><h3 class="zh">能源设施项目</h3><h3 class="en">Energy Facility</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article><article class="card"><img class="case-photo" src="/about/project-cases/project-case-09.png" alt="Project case: Commercial Complex"><i class="grid"></i><b>09</b><div><p>REAL PROJECT</p><h3 class="zh">商业综合体项目</h3><h3 class="en">Commercial Complex</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article><article class="card"><img class="case-photo" src="/about/project-cases/project-case-10.png" alt="Project case: Airport Hub"><i class="grid"></i><b>10</b><div><p>REAL PROJECT</p><h3 class="zh">航空枢纽项目</h3><h3 class="en">Airport Hub</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article><article class="card"><img class="case-photo" src="/about/project-cases/project-case-11.png" alt="Project case: Telecom Facility"><i class="grid"></i><b>11</b><div><p>REAL PROJECT</p><h3 class="zh">通信设施项目</h3><h3 class="en">Telecom Facility</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article><article class="card"><img class="case-photo" src="/about/project-cases/project-case-12.png" alt="Project case: Manufacturing Base"><i class="grid"></i><b>12</b><div><p>REAL PROJECT</p><h3 class="zh">制造基地项目</h3><h3 class="en">Manufacturing Base</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article></div></div><p class="note">SCROLLING FIELD ARCHIVE / CONTINUOUS MOTION</p></section></div>
-  <section class="section light factory"><div class="factory-heading"><p class="eyebrow">02 / MANUFACTURING FLOOR</p><div class="factory-title-group"><div><h2 class="zh">从制造现场，<br>到可靠交付。</h2><h2 class="en">Built on the floor.<br>Proven in the field.</h2></div><p class="factory-lead zh">深柴动力围绕机组装配、产品测试、钣金制造与成品整备建立协同生产体系。真实工厂、真实工序，让每一套动力设备在交付前经过完整验证。</p><p class="factory-lead en block">Across assembly, product testing, fabrication, and final preparation, every FLYDEER POWER system moves through a coordinated manufacturing flow—verified on the factory floor before delivery.</p></div></div><div class="factory-gallery" aria-label="FLYDEER POWER factory production scenes"><figure class="factory-shot factory-shot--hero"><img src="/about/factory/factory-assembly.png" alt="FLYDEER POWER generator assembly floor" loading="lazy"><figcaption><span>01 / ASSEMBLY</span><strong><span class="zh">总装制造</span><span class="en">Integrated Assembly</span></strong></figcaption></figure><figure class="factory-shot"><img src="/about/factory/factory-mobile-lighting.jpg" alt="Mobile lighting systems in the FLYDEER POWER factory" loading="lazy"><figcaption><span>02 / MOBILE SYSTEMS</span><strong><span class="zh">移动照明设备</span><span class="en">Mobile Lighting Systems</span></strong></figcaption></figure><figure class="factory-shot"><img src="/about/factory/factory-gensets.jpg" alt="Enclosed generator sets prepared in the factory" loading="lazy"><figcaption><span>03 / GENSETS</span><strong><span class="zh">静音机组整备</span><span class="en">Enclosed Gensets</span></strong></figcaption></figure><figure class="factory-shot"><img src="/about/factory/factory-testing-center.jpg" alt="Generator set entering the product experience and testing center" loading="lazy"><figcaption><span>04 / TESTING</span><strong><span class="zh">产品体验与测试</span><span class="en">Product Testing</span></strong></figcaption></figure><figure class="factory-shot"><img src="/about/factory/factory-fabrication.jpg" alt="Precision fabrication area inside the factory" loading="lazy"><figcaption><span>05 / FABRICATION</span><strong><span class="zh">精密加工车间</span><span class="en">Precision Fabrication</span></strong></figcaption></figure><figure class="factory-shot"><img src="/about/factory/factory-work-bays.jpg" alt="Controlled independent work bays inside the factory" loading="lazy"><figcaption><span>06 / WORK BAYS</span><strong><span class="zh">独立作业工位</span><span class="en">Controlled Work Bays</span></strong></figcaption></figure></div></section>
+  <main id="top"><div class="intro-stage"><section class="hero"><video autoplay muted loop playsinline preload="auto"><source src="home-hero-mobile.mp4" type="video/mp4" media="(max-width: 700px)"><source src="home-hero-web.mp4" type="video/mp4"></video><div class="hero-copy"><p class="eyebrow">FLYDEER POWER · SINCE 2002</p><h1 class="zh">深柴动力</h1><h1 class="en">FLYDEER<br>POWER</h1><div class="hero-bottom"><span class="zh">以可靠动力，驱动每一段向前的航程。<br>专注动力系统的研发、制造与全周期服务。</span><span class="en">Reliable power for every journey forward.<br>Engineering, manufacturing, and lifecycle support.</span><a class="round" href="#cases">↘</a></div></div><div class="corner">SYSTEM / SC-01<br>READY FOR MOTION</div></section><section id="cases" class="cases"><div class="section-intro"><p class="eyebrow">01 / FIELD RECORDS</p><h2 class="zh">真实项目，<br>见证可靠动力。</h2><h2 class="en">Real projects,<br>proven power.</h2></div><div class="gallery"><div class="track"><article class="card"><img class="case-photo" src="/about/project-cases/project-case-01.webp" alt="Project case: Public Facility" decoding="async" loading="lazy"><i class="grid"></i><b>01</b><div><p>REAL PROJECT</p><h3 class="zh">公共建筑项目</h3><h3 class="en">Public Facility</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article><article class="card"><img class="case-photo" src="/about/project-cases/project-case-02.webp" alt="Project case: Transport Hub" decoding="async" loading="lazy"><i class="grid"></i><b>02</b><div><p>REAL PROJECT</p><h3 class="zh">交通枢纽项目</h3><h3 class="en">Transport Hub</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article><article class="card"><img class="case-photo" src="/about/project-cases/project-case-03.webp" alt="Project case: Industrial Park" decoding="async" loading="lazy"><i class="grid"></i><b>03</b><div><p>REAL PROJECT</p><h3 class="zh">工业园区项目</h3><h3 class="en">Industrial Park</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article><article class="card"><img class="case-photo" src="/about/project-cases/project-case-04.webp" alt="Project case: Renewable Energy Base" decoding="async" loading="lazy"><i class="grid"></i><b>04</b><div><p>REAL PROJECT</p><h3 class="zh">新能源基地项目</h3><h3 class="en">Renewable Energy Base</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article><article class="card"><img class="case-photo" src="/about/project-cases/project-case-05.webp" alt="Project case: Financial Institution" decoding="async" loading="lazy"><i class="grid"></i><b>05</b><div><p>REAL PROJECT</p><h3 class="zh">金融机构项目</h3><h3 class="en">Financial Institution</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article><article class="card"><img class="case-photo" src="/about/project-cases/project-case-06.webp" alt="Project case: Hospitality Complex" decoding="async" loading="lazy"><i class="grid"></i><b>06</b><div><p>REAL PROJECT</p><h3 class="zh">文旅酒店项目</h3><h3 class="en">Hospitality Complex</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article><article class="card"><img class="case-photo" src="/about/project-cases/project-case-07.webp" alt="Project case: Industrial Manufacturing" decoding="async" loading="lazy"><i class="grid"></i><b>07</b><div><p>REAL PROJECT</p><h3 class="zh">工业制造项目</h3><h3 class="en">Industrial Manufacturing</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article><article class="card"><img class="case-photo" src="/about/project-cases/project-case-08.webp" alt="Project case: Energy Facility" decoding="async" loading="lazy"><i class="grid"></i><b>08</b><div><p>REAL PROJECT</p><h3 class="zh">能源设施项目</h3><h3 class="en">Energy Facility</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article><article class="card"><img class="case-photo" src="/about/project-cases/project-case-09.webp" alt="Project case: Commercial Complex" decoding="async" loading="lazy"><i class="grid"></i><b>09</b><div><p>REAL PROJECT</p><h3 class="zh">商业综合体项目</h3><h3 class="en">Commercial Complex</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article><article class="card"><img class="case-photo" src="/about/project-cases/project-case-10.webp" alt="Project case: Airport Hub" decoding="async" loading="lazy"><i class="grid"></i><b>10</b><div><p>REAL PROJECT</p><h3 class="zh">航空枢纽项目</h3><h3 class="en">Airport Hub</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article><article class="card"><img class="case-photo" src="/about/project-cases/project-case-11.webp" alt="Project case: Telecom Facility" decoding="async" loading="lazy"><i class="grid"></i><b>11</b><div><p>REAL PROJECT</p><h3 class="zh">通信设施项目</h3><h3 class="en">Telecom Facility</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article><article class="card"><img class="case-photo" src="/about/project-cases/project-case-12.webp" alt="Project case: Manufacturing Base" decoding="async" loading="lazy"><i class="grid"></i><b>12</b><div><p>REAL PROJECT</p><h3 class="zh">制造基地项目</h3><h3 class="en">Manufacturing Base</h3><small>FLYDEER POWER · FIELD RECORD</small></div></article></div></div><p class="note">SCROLLING FIELD ARCHIVE / CONTINUOUS MOTION</p></section></div>
+  <section class="section light factory"><div class="factory-heading"><p class="eyebrow">02 / MANUFACTURING FLOOR</p><div class="factory-title-group"><div><h2 class="zh">从制造现场，<br>到可靠交付。</h2><h2 class="en">Built on the floor.<br>Proven in the field.</h2></div><p class="factory-lead zh">深柴动力围绕机组装配、产品测试、钣金制造与成品整备建立协同生产体系。真实工厂、真实工序，让每一套动力设备在交付前经过完整验证。</p><p class="factory-lead en block">Across assembly, product testing, fabrication, and final preparation, every FLYDEER POWER system moves through a coordinated manufacturing flow—verified on the factory floor before delivery.</p></div></div><div class="factory-gallery" aria-label="FLYDEER POWER factory production scenes"><figure class="factory-shot factory-shot--hero"><img src="/about/factory/factory-assembly.webp" alt="FLYDEER POWER generator assembly floor" loading="lazy" decoding="async"><figcaption><span>01 / ASSEMBLY</span><strong><span class="zh">总装制造</span><span class="en">Integrated Assembly</span></strong></figcaption></figure><figure class="factory-shot"><img src="/about/factory/factory-mobile-lighting.webp" alt="Mobile lighting systems in the FLYDEER POWER factory" loading="lazy" decoding="async"><figcaption><span>02 / MOBILE SYSTEMS</span><strong><span class="zh">移动照明设备</span><span class="en">Mobile Lighting Systems</span></strong></figcaption></figure><figure class="factory-shot"><img src="/about/factory/factory-gensets.webp" alt="Enclosed generator sets prepared in the factory" loading="lazy" decoding="async"><figcaption><span>03 / GENSETS</span><strong><span class="zh">静音机组整备</span><span class="en">Enclosed Gensets</span></strong></figcaption></figure><figure class="factory-shot"><img src="/about/factory/factory-testing-center.webp" alt="Generator set entering the product experience and testing center" loading="lazy" decoding="async"><figcaption><span>04 / TESTING</span><strong><span class="zh">产品体验与测试</span><span class="en">Product Testing</span></strong></figcaption></figure><figure class="factory-shot"><img src="/about/factory/factory-fabrication.webp" alt="Precision fabrication area inside the factory" loading="lazy" decoding="async"><figcaption><span>05 / FABRICATION</span><strong><span class="zh">精密加工车间</span><span class="en">Precision Fabrication</span></strong></figcaption></figure><figure class="factory-shot"><img src="/about/factory/factory-work-bays.webp" alt="Controlled independent work bays inside the factory" loading="lazy" decoding="async"><figcaption><span>06 / WORK BAYS</span><strong><span class="zh">独立作业工位</span><span class="en">Controlled Work Bays</span></strong></figcaption></figure></div></section>
   <section class="section light journey"><div class="journey-page"><div class="journey-content"><div class="section-intro"><p class="eyebrow">03 / OUR JOURNEY</p><h2 class="zh">每一次跨越，<br>都源自长期主义。</h2><h2 class="en">Every milestone<br>is built for the long term.</h2></div><div class="timeline"><article class="milestone"><span>2002</span><i class="dot">01</i><div><h3 class="zh">深柴动力启航</h3><h3 class="en">FLYDEER POWER Launches</h3><p class="zh">以动力系统服务为起点，建立专业技术团队。</p><p class="en">Established a specialist engineering team focused on power-system services.</p></div></article><article class="milestone"><span>2008</span><i class="dot">02</i><div><h3 class="zh">制造体系升级</h3><h3 class="en">Manufacturing System Upgrade</h3><p class="zh">完善测试与质量管理流程，服务能力迈向规模化。</p><p class="en">Strengthened testing and quality management to scale our service capability.</p></div></article><article class="milestone"><span>2016</span><i class="dot">03</i><div><h3 class="zh">技术协同创新</h3><h3 class="en">Collaborative Innovation</h3><p class="zh">形成研发、制造与应用支持协同的工作机制。</p><p class="en">Integrated research, manufacturing, and application support into one workflow.</p></div></article><article class="milestone"><span>2026</span><i class="dot">04</i><div><h3 class="zh">面向未来动力</h3><h3 class="en">Powering What Is Next</h3><p class="zh">持续探索高效、可靠的动力解决方案。</p><p class="en">Continuing to explore efficient, dependable power solutions for the future.</p></div></article></div></div></div></section>
   <section class="section dark products"><div class="section-intro"><p class="eyebrow">04 / CORE CAPABILITIES</p><h2 class="zh">为不同场景，<br>提供精准动力。</h2><h2 class="en">Precise power<br>for every application.</h2></div><div class="product-list"><article class="product"><span>01</span><div><h3 class="zh">船用动力</h3><h3 class="en">Marine Power</h3><p class="zh">面向复杂工况，提供稳定、耐久的动力支持。</p><p class="en">Reliable, durable power support for demanding operating conditions.</p></div><b>↗</b></article><article class="product"><span>02</span><div><h3 class="zh">工业动力</h3><h3 class="en">Industrial Power</h3><p class="zh">兼顾效率与可靠性，适配多元工业应用场景。</p><p class="en">Efficient and dependable solutions for diverse industrial applications.</p></div><b>↗</b></article><article class="product"><span>03</span><div><h3 class="zh">动力服务</h3><h3 class="en">Power Services</h3><p class="zh">从选型到运维，提供覆盖全周期的技术支持。</p><p class="en">Technical support across the full lifecycle.</p></div><b>↗</b></article></div></section></main>
   <section id="contact" class="about-inquiry-strip" aria-labelledby="about-inquiry-title"><p class="eyebrow">05 / PROJECT INQUIRY</p><h2 id="about-inquiry-title" class="zh">为您的项目，<br>匹配可靠动力方案。</h2><h2 class="en">Reliable power,<br>configured for your project.</h2><div class="about-inquiry-actions"><a class="about-inquiry-primary" href="/#contact"><span class="zh">获取项目报价</span><span class="en">Request a Quote</span></a><a class="about-inquiry-secondary" href="/#products"><span class="zh">浏览产品中心</span><span class="en">Explore Products</span></a></div></section>
   <footer><span>© 2026 FLYDEER POWER</span><span class="zh">深柴动力 · 关于我们</span><span class="en">FLYDEER POWER · ABOUT US</span><a href="#top">BACK TO TOP ↑</a></footer>
   <script>
-    const companyProfileMarkup=`<section id="profile" class="company-profile" aria-labelledby="company-profile-title"><div class="company-profile-page"><header class="company-profile-heading"><p class="eyebrow">COMPANY / FLYDEER POWER</p><h2 id="company-profile-title" class="zh">关于深柴动力</h2><h2 class="en">About FLYDEER POWER</h2><span class="profile-rule"></span><p class="company-profile-kicker zh">值得信赖的发电机组制造商</p><p class="company-profile-kicker en">A trusted generator-set manufacturer</p></header><div class="company-profile-story"><div class="company-profile-copy"><h3 class="zh">二十年专注，铸就行业品牌</h3><h3 class="en">Two decades of focus,<br>one dependable brand.</h3><p class="zh">深柴动力是一家集柴油发电机组研发、生产、销售和服务于一体的综合性企业。公司拥有现代化生产基地，年产能超过5000台套。</p><p class="en">FLYDEER POWER integrates diesel generator-set research, manufacturing, sales, and lifecycle service. Our modern production base supports annual capacity of more than 5,000 units.</p><p class="zh">依托自主技术、完善的质量体系与市场化创新机制，深柴动力持续为国内外客户提供可靠、高效的动力解决方案。</p><p class="en">Built on independent engineering, a disciplined quality system, and market-led innovation, we deliver dependable and efficient power solutions worldwide.</p><a class="company-profile-link" href="#factory"><span class="zh">走进制造现场</span><span class="en">Explore Manufacturing</span></a></div><figure class="company-profile-image"><img src="/about/company-profile.png" alt="FLYDEER POWER headquarters building"><figcaption>FLYDEER POWER / HEADQUARTERS</figcaption></figure></div><div class="company-profile-stats" aria-label="FLYDEER POWER company facts"><div class="profile-stat"><strong>20+</strong><span class="zh">20+ 年行业经验</span><span class="en">Years of experience</span></div><div class="profile-stat"><strong>500+</strong><span class="zh">500+ 服务客户</span><span class="en">Customers served</span></div><div class="profile-stat"><strong>50+</strong><span class="zh">50+ 出口国家</span><span class="en">Export markets</span></div><div class="profile-stat"><strong>ISO</strong><span class="zh">ISO 权威认证</span><span class="en">Certified quality system</span></div></div></div></section>`;
+    const companyProfileMarkup=`<section id="profile" class="company-profile" aria-labelledby="company-profile-title"><div class="company-profile-page"><header class="company-profile-heading"><p class="eyebrow">COMPANY / FLYDEER POWER</p><h2 id="company-profile-title" class="zh">关于深柴动力</h2><h2 class="en">About FLYDEER POWER</h2><span class="profile-rule"></span><p class="company-profile-kicker zh">值得信赖的发电机组制造商</p><p class="company-profile-kicker en">A trusted generator-set manufacturer</p></header><div class="company-profile-story"><div class="company-profile-copy"><h3 class="zh">二十年专注，铸就行业品牌</h3><h3 class="en">Two decades of focus,<br>one dependable brand.</h3><p class="zh">深柴动力是一家集柴油发电机组研发、生产、销售和服务于一体的综合性企业。公司拥有现代化生产基地，年产能超过5000台套。</p><p class="en">FLYDEER POWER integrates diesel generator-set research, manufacturing, sales, and lifecycle service. Our modern production base supports annual capacity of more than 5,000 units.</p><p class="zh">依托自主技术、完善的质量体系与市场化创新机制，深柴动力持续为国内外客户提供可靠、高效的动力解决方案。</p><p class="en">Built on independent engineering, a disciplined quality system, and market-led innovation, we deliver dependable and efficient power solutions worldwide.</p><a class="company-profile-link" href="#factory"><span class="zh">走进制造现场</span><span class="en">Explore Manufacturing</span></a></div><figure class="company-profile-image"><img src="/about/company-profile.webp" alt="FLYDEER POWER headquarters building" decoding="async" loading="lazy"><figcaption>FLYDEER POWER / HEADQUARTERS</figcaption></figure></div><div class="company-profile-stats" aria-label="FLYDEER POWER company facts"><div class="profile-stat"><strong>20+</strong><span class="zh">20+ 年行业经验</span><span class="en">Years of experience</span></div><div class="profile-stat"><strong>500+</strong><span class="zh">500+ 服务客户</span><span class="en">Customers served</span></div><div class="profile-stat"><strong>50+</strong><span class="zh">50+ 出口国家</span><span class="en">Export markets</span></div><div class="profile-stat"><strong>ISO</strong><span class="zh">ISO 权威认证</span><span class="en">Certified quality system</span></div></div></div></section>`;
     document.querySelector('.intro-stage')?.insertAdjacentHTML('afterend',companyProfileMarkup);
     document.querySelector('.company-profile-link')?.remove();
     const profileQualifications=document.querySelector('.company-profile-stats');
     if(profileQualifications){profileQualifications.className='company-profile-certificates';profileQualifications.setAttribute('aria-label','FLYDEER POWER certifications and qualifications');profileQualifications.innerHTML=`
-      <article class="profile-certificate-card"><figure class="profile-certificate-media"><img src="/about/qualification-01.png" alt="Privacy-protected quality management system certificate" draggable="false"></figure><div class="profile-certificate-copy"><small>01 / CERTIFIED</small><strong><span class="zh">质量管理</span><span class="en">Quality System</span></strong></div></article>
-      <article class="profile-certificate-card"><figure class="profile-certificate-media"><img src="/about/qualification-02.png" alt="Privacy-protected environmental management system certificate" draggable="false"></figure><div class="profile-certificate-copy"><small>02 / CERTIFIED</small><strong><span class="zh">环境管理</span><span class="en">Environmental</span></strong></div></article>
-      <article class="profile-certificate-card"><figure class="profile-certificate-media"><img src="/about/qualification-03.png" alt="Privacy-protected occupational health and safety certificate" draggable="false"></figure><div class="profile-certificate-copy"><small>03 / CERTIFIED</small><strong><span class="zh">职业健康</span><span class="en">Health &amp; Safety</span></strong></div></article>
-      <article class="profile-certificate-card"><figure class="profile-certificate-media"><img src="/about/qualification-04.png" alt="Privacy-protected machinery directive certificate" draggable="false"></figure><div class="profile-certificate-copy"><small>04 / COMPLIANCE</small><strong><span class="zh">机械指令</span><span class="en">Machinery CE</span></strong></div></article>
-      <article class="profile-certificate-card"><figure class="profile-certificate-media"><img src="/about/qualification-05.png" alt="Privacy-protected quality system certificate" draggable="false"></figure><div class="profile-certificate-copy"><small>05 / CERTIFIED</small><strong><span class="zh">质量认证</span><span class="en">Quality Certified</span></strong></div></article>
-      <article class="profile-certificate-card"><figure class="profile-certificate-media"><img src="/about/qualification-06.png" alt="Privacy-protected European compliance certificate" draggable="false"></figure><div class="profile-certificate-copy"><small>06 / COMPLIANCE</small><strong><span class="zh">欧盟认证</span><span class="en">EU Compliance</span></strong></div></article>`;}
-    const deliveryMarkup=`<section id="delivery" class="section dark delivery" aria-labelledby="delivery-title"><div class="delivery-heading"><p class="eyebrow">03 / DELIVERY ON SITE</p><div class="delivery-title-group"><div><h2 id="delivery-title" class="zh">从设备进场，<br>到稳定运行。</h2><h2 class="en">From site arrival<br>to dependable operation.</h2></div><p class="delivery-lead zh">从运输进场、吊装就位到现场调试，深柴动力以规范流程和技术协同保障每一次交付安全、有序、可追溯，让可靠动力真正落地运行。</p><p class="delivery-lead en block">From site arrival and crane placement to commissioning, FLYDEER POWER coordinates every delivery with disciplined execution and on-site technical support—bringing dependable power into operation.</p></div></div><div class="delivery-gallery" aria-label="FLYDEER POWER delivery, installation, and commissioning scenes"><figure class="delivery-shot delivery-shot--hero"><img src="/about/delivery/delivery-site-07.jpg" alt="FLYDEER POWER generator commissioning at an industrial site" loading="lazy"><figcaption><span>01 / COMMISSIONING</span><strong><span class="zh">现场联调</span><span class="en">On-site Commissioning</span></strong></figcaption></figure><figure class="delivery-shot"><img src="/about/delivery/delivery-site-01.jpg" alt="Enclosed generator sets installed at the customer site" loading="lazy"><figcaption><span>02 / INSTALLED</span><strong><span class="zh">设备就位</span><span class="en">Equipment in Position</span></strong></figcaption></figure><figure class="delivery-shot"><img src="/about/delivery/delivery-site-02.jpg" alt="Generator set inspected during on-site delivery" loading="lazy"><figcaption><span>03 / INSPECTION</span><strong><span class="zh">到场检查</span><span class="en">Arrival Inspection</span></strong></figcaption></figure><figure class="delivery-shot"><img src="/about/delivery/delivery-site-03.jpg" alt="Open generator set delivered to a construction site" loading="lazy"><figcaption><span>04 / SITE READY</span><strong><span class="zh">交付准备</span><span class="en">Delivery Ready</span></strong></figcaption></figure><figure class="delivery-shot"><img src="/about/delivery/delivery-site-04.jpg" alt="Generator set lifted by crane into its operating position" loading="lazy"><figcaption><span>05 / LIFTING</span><strong><span class="zh">吊装就位</span><span class="en">Crane Placement</span></strong></figcaption></figure><figure class="delivery-shot"><img src="/about/delivery/delivery-site-05.jpg" alt="Generator set unloaded from a transport vehicle" loading="lazy"><figcaption><span>06 / UNLOADING</span><strong><span class="zh">运输卸载</span><span class="en">Transport &amp; Unloading</span></strong></figcaption></figure><figure class="delivery-shot"><img src="/about/delivery/delivery-site-06.jpg" alt="Protected generator set positioned inside the project site" loading="lazy"><figcaption><span>07 / PLACEMENT</span><strong><span class="zh">精准落位</span><span class="en">Final Placement</span></strong></figcaption></figure></div></section>`;
+      <article class="profile-certificate-card"><figure class="profile-certificate-media"><img src="/about/qualification-01.png" alt="Privacy-protected quality management system certificate" draggable="false" decoding="async" loading="lazy"></figure><div class="profile-certificate-copy"><small>01 / CERTIFIED</small><strong><span class="zh">质量管理</span><span class="en">Quality System</span></strong></div></article>
+      <article class="profile-certificate-card"><figure class="profile-certificate-media"><img src="/about/qualification-02.png" alt="Privacy-protected environmental management system certificate" draggable="false" decoding="async" loading="lazy"></figure><div class="profile-certificate-copy"><small>02 / CERTIFIED</small><strong><span class="zh">环境管理</span><span class="en">Environmental</span></strong></div></article>
+      <article class="profile-certificate-card"><figure class="profile-certificate-media"><img src="/about/qualification-03.png" alt="Privacy-protected occupational health and safety certificate" draggable="false" decoding="async" loading="lazy"></figure><div class="profile-certificate-copy"><small>03 / CERTIFIED</small><strong><span class="zh">职业健康</span><span class="en">Health &amp; Safety</span></strong></div></article>
+      <article class="profile-certificate-card"><figure class="profile-certificate-media"><img src="/about/qualification-04.png" alt="Privacy-protected machinery directive certificate" draggable="false" decoding="async" loading="lazy"></figure><div class="profile-certificate-copy"><small>04 / COMPLIANCE</small><strong><span class="zh">机械指令</span><span class="en">Machinery CE</span></strong></div></article>
+      <article class="profile-certificate-card"><figure class="profile-certificate-media"><img src="/about/qualification-05.png" alt="Privacy-protected quality system certificate" draggable="false" decoding="async" loading="lazy"></figure><div class="profile-certificate-copy"><small>05 / CERTIFIED</small><strong><span class="zh">质量认证</span><span class="en">Quality Certified</span></strong></div></article>
+      <article class="profile-certificate-card"><figure class="profile-certificate-media"><img src="/about/qualification-06.png" alt="Privacy-protected European compliance certificate" draggable="false" decoding="async" loading="lazy"></figure><div class="profile-certificate-copy"><small>06 / COMPLIANCE</small><strong><span class="zh">欧盟认证</span><span class="en">EU Compliance</span></strong></div></article>`;}
+    const deliveryMarkup=`<section id="delivery" class="section dark delivery" aria-labelledby="delivery-title"><div class="delivery-heading"><p class="eyebrow">03 / DELIVERY ON SITE</p><div class="delivery-title-group"><div><h2 id="delivery-title" class="zh">从设备进场，<br>到稳定运行。</h2><h2 class="en">From site arrival<br>to dependable operation.</h2></div><p class="delivery-lead zh">从运输进场、吊装就位到现场调试，深柴动力以规范流程和技术协同保障每一次交付安全、有序、可追溯，让可靠动力真正落地运行。</p><p class="delivery-lead en block">From site arrival and crane placement to commissioning, FLYDEER POWER coordinates every delivery with disciplined execution and on-site technical support—bringing dependable power into operation.</p></div></div><div class="delivery-gallery" aria-label="FLYDEER POWER delivery, installation, and commissioning scenes"><figure class="delivery-shot delivery-shot--hero"><img src="/about/delivery/delivery-site-07.webp" alt="FLYDEER POWER generator commissioning at an industrial site" loading="lazy" decoding="async"><figcaption><span>01 / COMMISSIONING</span><strong><span class="zh">现场联调</span><span class="en">On-site Commissioning</span></strong></figcaption></figure><figure class="delivery-shot"><img src="/about/delivery/delivery-site-01.webp" alt="Enclosed generator sets installed at the customer site" loading="lazy" decoding="async"><figcaption><span>02 / INSTALLED</span><strong><span class="zh">设备就位</span><span class="en">Equipment in Position</span></strong></figcaption></figure><figure class="delivery-shot"><img src="/about/delivery/delivery-site-02.webp" alt="Generator set inspected during on-site delivery" loading="lazy" decoding="async"><figcaption><span>03 / INSPECTION</span><strong><span class="zh">到场检查</span><span class="en">Arrival Inspection</span></strong></figcaption></figure><figure class="delivery-shot"><img src="/about/delivery/delivery-site-03.webp" alt="Open generator set delivered to a construction site" loading="lazy" decoding="async"><figcaption><span>04 / SITE READY</span><strong><span class="zh">交付准备</span><span class="en">Delivery Ready</span></strong></figcaption></figure><figure class="delivery-shot"><img src="/about/delivery/delivery-site-04.webp" alt="Generator set lifted by crane into its operating position" loading="lazy" decoding="async"><figcaption><span>05 / LIFTING</span><strong><span class="zh">吊装就位</span><span class="en">Crane Placement</span></strong></figcaption></figure><figure class="delivery-shot"><img src="/about/delivery/delivery-site-05.webp" alt="Generator set unloaded from a transport vehicle" loading="lazy" decoding="async"><figcaption><span>06 / UNLOADING</span><strong><span class="zh">运输卸载</span><span class="en">Transport &amp; Unloading</span></strong></figcaption></figure><figure class="delivery-shot"><img src="/about/delivery/delivery-site-06.webp" alt="Protected generator set positioned inside the project site" loading="lazy" decoding="async"><figcaption><span>07 / PLACEMENT</span><strong><span class="zh">精准落位</span><span class="en">Final Placement</span></strong></figcaption></figure></div></section>`;
     const factorySection=document.querySelector('.factory');
     factorySection?.setAttribute('id','factory');
     factorySection?.insertAdjacentHTML('afterend',deliveryMarkup);
@@ -439,6 +668,19 @@
     const deliverySection=document.querySelector('.delivery');
     if(deliverySection){const stage=document.createElement('div');stage.className='section-stage';while(deliverySection.firstChild)stage.append(deliverySection.firstChild);deliverySection.append(stage);deliverySection.classList.add('stage-ready');const updateDeliveryEntry=()=>{const raw=Math.max(0,Math.min(1,-deliverySection.getBoundingClientRect().top/(innerHeight*.72))),p=raw*raw*(3-2*raw),copyRaw=Math.max(0,Math.min(1,(raw-.18)/.48)),copy=copyRaw*copyRaw*(3-2*copyRaw),galleryRaw=Math.max(0,Math.min(1,(raw-.36)/.5)),gallery=galleryRaw*galleryRaw*(3-2*galleryRaw);deliverySection.style.setProperty('--delivery-stage-y',`${(1-p)*innerHeight}px`);deliverySection.style.setProperty('--delivery-panel-shadow',(1-p)*.24);deliverySection.style.setProperty('--delivery-copy-opacity',copy);deliverySection.style.setProperty('--delivery-copy-y',`${(1-copy)*56}px`);deliverySection.style.setProperty('--delivery-gallery-opacity',gallery);deliverySection.style.setProperty('--delivery-gallery-y',`${(1-gallery)*72}px`)};addEventListener('scroll',updateDeliveryEntry,{passive:true});addEventListener('resize',updateDeliveryEntry);updateDeliveryEntry()}
     const b=document.body,buttons=document.querySelectorAll('[data-lang]'),track=document.querySelector('.track'),cases=document.querySelector('.cases'),caseIntro=document.querySelector('.cases .section-intro'),gallery=document.querySelector('.cases .gallery'),caseNote=document.querySelector('.cases .note'),caseMotion=document.createElement('div'),journey=document.querySelector('.journey'),journeyContent=document.querySelector('.journey-content');
+    const siteHeader=document.querySelector('.site-header'),aboutMenuToggle=document.querySelector('.about-menu-toggle'),aboutMenuBackdrop=document.querySelector('.about-menu-backdrop'),aboutNav=document.querySelector('#about-primary-navigation');
+    const setAboutMenu=open=>{
+      siteHeader?.classList.toggle('mobile-open',open);
+      b.classList.toggle('mobile-nav-open',open);
+      aboutMenuToggle?.setAttribute('aria-expanded',String(open));
+      if(aboutMenuToggle){const english=b.classList.contains('english');aboutMenuToggle.setAttribute('aria-label',english?(open?'Close navigation menu':'Open navigation menu'):(open?'关闭导航菜单':'打开导航菜单'))}
+      if(aboutMenuBackdrop)aboutMenuBackdrop.tabIndex=open?0:-1;
+    };
+    aboutMenuToggle?.addEventListener('click',()=>setAboutMenu(!siteHeader.classList.contains('mobile-open')));
+    aboutMenuBackdrop?.addEventListener('click',()=>setAboutMenu(false));
+    aboutNav?.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>setAboutMenu(false)));
+    addEventListener('keydown',event=>{if(event.key==='Escape')setAboutMenu(false)});
+    addEventListener('resize',()=>{if(innerWidth>900)setAboutMenu(false)});
     const LANGUAGE_STORAGE_KEY='flydeer-language';
     const normalizeLanguage=(value,fallback='en')=>value==='zh'||value==='en'?value:fallback;
     const getInitialLanguage=()=>{
@@ -466,6 +708,8 @@
       b.classList.toggle('english',english);
       document.documentElement.lang=english?'en':'zh-CN';
       document.title=english?'FLYDEER POWER | About Us':'深柴动力｜关于我们';
+      if(aboutMenuToggle)aboutMenuToggle.setAttribute('aria-label',english?(siteHeader?.classList.contains('mobile-open')?'Close navigation menu':'Open navigation menu'):(siteHeader?.classList.contains('mobile-open')?'关闭导航菜单':'打开导航菜单'));
+      if(aboutNav)aboutNav.setAttribute('aria-label',english?'Primary navigation':'主导航');
       buttons.forEach(button=>{
         const active=button.dataset.lang===activeLanguage;
         button.classList.toggle('active',active);

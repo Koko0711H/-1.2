@@ -6,6 +6,7 @@ import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js"
 import "./App.css"
 import { getInitialLanguage, syncLanguageToUrl, withLanguage } from "./languageRouting"
+import ProductNavigation from "../../shared/ProductNavigation"
 
 // Error display for debugging
 window.addEventListener("error", (e) => {
@@ -26,7 +27,7 @@ window.addEventListener("unhandledrejection", (e) => {
 
 const STAGES = [
   { id: "home", label: "深柴动力", cam: [-2, 1.5, 5], target: [0, 0, 0], fov: 40, rot: 0,
-    subtitle: "FLYDEER POWER · 始于 2004",
+    subtitle: "FLYDEER POWER · 始于 2002",
     desc: "专业柴油发电机组研发制造商，专注为客户提供可靠的电力解决方案" },
   { id: "allinone", label: "ALL-IN-ONE", cam: [0, 5, 7.5], target: [0, 0, 0], fov: 26, rot: -1.5,
     subtitle: "设计与快速部署",
@@ -47,6 +48,7 @@ function ModelGroup({ url, progress }) {
   const groupRef = useRef()
   const [scene, setScene] = useState(null)
   const rot = useRef(0)
+  const { size } = useThree()
   useEffect(() => {
     let c = false
     const loader = new GLTFLoader()
@@ -77,12 +79,13 @@ function ModelGroup({ url, progress }) {
     }
   })
   if (!scene) return null
-  return <group ref={groupRef}><primitive object={scene} scale={2.5} /></group>
+  return <group ref={groupRef}><primitive object={scene} scale={size.width <= 900 ? 3.1 : 2.5} /></group>
 }
 
 function CameraController({ progress }) {
-  const { camera, gl } = useThree()
+  const { camera, gl, size } = useThree()
   const pos = useRef(new THREE.Vector3())
+  const cameraPoint = useRef(new THREE.Vector3())
   const target = useRef(new THREE.Vector3())
   const fov = useRef(42)
   const controlsRef = useRef()
@@ -104,7 +107,7 @@ function CameraController({ progress }) {
     const lp = Math.min(Math.max((progress * total) % 1, 0), 1)
     const s = STAGES[si], n = STAGES[ni]
     if (!s || !n) return
-    pos.current.set(
+    cameraPoint.current.set(
       s.cam[0] + (n.cam[0] - s.cam[0]) * lp,
       s.cam[1] + (n.cam[1] - s.cam[1]) * lp,
       s.cam[2] + (n.cam[2] - s.cam[2]) * lp
@@ -114,6 +117,9 @@ function CameraController({ progress }) {
       s.target[1] + (n.target[1] - s.target[1]) * lp,
       s.target[2] + (n.target[2] - s.target[2]) * lp
     )
+    const aspect = size.height > 0 ? size.width / size.height : 1.65
+    const mobileFit = size.width <= 900 ? Math.max(1, Math.min(1.18, 1.2 / aspect)) : 1
+    pos.current.copy(target.current).add(cameraPoint.current.sub(target.current).multiplyScalar(mobileFit))
     fov.current = s.fov + (n.fov - s.fov) * lp
     const timeSinceUser = Date.now() - lastUser.current
     if (timeSinceUser > 2000) {
@@ -214,9 +220,8 @@ function ScrollLightAtmosphere({ progress }) {
   const mix = (key) => from[key] + (to[key] - from[key]) * blend
   const driftX = Math.sin(progress * Math.PI * 3) * 1.2
   const driftY = Math.cos(progress * Math.PI * 2.5) * 0.8
-  const enter = Math.min(Math.max((progress - 0.012) / 0.045, 0), 1)
   const leave = Math.min(Math.max((0.965 - progress) / 0.035, 0), 1)
-  const visibility = enter * leave
+  const visibility = leave
 
   return (
     <div className="scroll-light-atmosphere" style={{ opacity: visibility }} aria-hidden="true">
@@ -231,8 +236,6 @@ function ScrollLightAtmosphere({ progress }) {
     </div>
   )
 }
-
-const LINE_PATH = "M2.30809 318.07Q21.0208 316.441 50.1395 311.552Q108.449 301.761 160.401 285.447Q187.503 276.937 211.151 264.212Q225.389 256.551 250.01 240.238Q275.87 223.104 291.318 214.863Q317.146 201.086 347.378 191.695Q407.665 172.97 460.721 167.081Q495.936 163.173 558.47 163.173Q585.817 163.173 628.557 141.714Q654.353 128.763 708.923 94.4123Q742.671 73.1683 758.993 63.6874Q786.229 47.8662 806.111 39.6039Q862.305 16.252 914.714 7.87042Q961.797 0.340553 1040.78 0.0125411Q1117.18 -0.304734 1171.71 7.40653Q1227.48 15.2934 1289.78 35.6259Q1321.15 45.8667 1370.62 65.0861Q1407.99 79.6092 1425.84 85.4202Q1454.72 94.8298 1481 99.0339Q1520.17 105.3 1617.15 102.785Q1665.69 101.526 1706.36 99.0087"
 
 function Preloader({ loaded }) {
   const [pct, setPct] = useState(0)
@@ -266,19 +269,19 @@ function StateTable({ stages, currentIdx, onSelect }) {
       <div className="statetable-content">
         <div className="backgroundLine" />
         {stages.map((s, i) => (
-          <div key={s.id} className={"st-item" + (i === currentIdx ? " active" : "")} onClick={() => onSelect(i)}>
+          <button type="button" key={s.id} className={"st-item" + (i === currentIdx ? " active" : "")} onClick={() => onSelect(i)}>
             <p className="table-name">{t("stage_" + s.id)}</p>
-          </div>
+          </button>
         ))}
       </div>
     </div>
   )
 }
 
-function ContentOverlay({ stages, currentIdx, progress, ready }) {
+function ContentOverlay({ stages, currentIdx, ready }) {
   const { t } = useLang();
 
-  const visible = ready && progress > 0.005
+  const visible = ready
   if (currentIdx < 0 || currentIdx >= stages.length) return null
   const s = stages[currentIdx]
   const isHome = s.id === "home"
@@ -353,7 +356,7 @@ function ContentOverlay({ stages, currentIdx, progress, ready }) {
       <div className="section-number"><span className="current">{String(currentIdx + 1).padStart(2, "0")}</span><span className="total"> / {String(stages.length).padStart(2, "0")}</span></div>
       <div className={"content-left" + (isHome ? " home-left" : "") + (isAllinone ? " allinone-left" : "") + (isEngine ? " engine-left" : "") + (isAirflow ? " airflow-left" : "") + (isChassis ? " chassis-left" : "")}>
         <div className="title-box" key={s.id}>
-          <h2 className={"content-title" + (isHome ? " home-title" : "") + (isAllinone ? " allinone-title" : "") + (isEngine ? " engine-title" : "") + (isAirflow ? " airflow-title" : "") + (isChassis ? " chassis-title" : "")}>{t("stage_" + s.id)}</h2>
+          <h2 className={"content-title" + (isHome ? " home-title" : "") + (isAllinone ? " allinone-title" : "") + (isEngine ? " engine-title" : "") + (isAirflow ? " airflow-title" : "") + (isChassis ? " chassis-title" : "")}>{isHome ? t("homeTitle") : t("stage_" + s.id)}</h2>
           <p className={"content-subtitle" + (isHome ? " home-subtitle" : "") + (isAllinone ? " allinone-subtitle" : "") + (isEngine ? " engine-subtitle" : "") + (isAirflow ? " airflow-subtitle" : "") + (isChassis ? " chassis-subtitle" : "")}>{t("sub_" + s.id)}</p>
         </div>
       </div>
@@ -362,41 +365,9 @@ function ContentOverlay({ stages, currentIdx, progress, ready }) {
   )
 }
 
-function SocialLinks() {
-  return <>
-    <a className="social-icon" href="#" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-    <a className="social-icon" href="#" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
-    <a className="social-icon" href="#" aria-label="抖音"><svg width="30" height="30" viewBox="0 0 48 48" fill="currentColor"><path d="M33.5 8.5c1.5 3 4 5 7 5.5v4.5c-2.5 0-5-1-7-3v13c0 6.5-5 11.5-11.5 11.5S10.5 35 10.5 28.5 15.5 17 22 17v4.5c-4 0-7 3-7 7s3 7 7 7 7-3 7-7V8.5h4.5z"/></svg></a>
-  </>
-}
-
-function QuoteIcon() {
-  return <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
-}
-
 function Navbar() {
   const { lang, setLang, t } = useLang();
-  return (
-    <header className="navbar">
-      <div className="navbar-inner">
-      <a className="nav-logo-link" href={withLanguage("/", lang)} aria-label={lang === "zh" ? "深柴动力首页" : "FLYDEER POWER home"}><img className="nav-logo" src="/logo.png" alt="FLYDEER POWER 深柴动力" /></a>
-      <nav className="nav-links">
-        <a href={withLanguage("/", lang)}>{t("navHome")}</a>
-        <a href={withLanguage("/#products", lang)}>{t("navProducts")}</a>
-        <a className="active" aria-current="page" href={withLanguage("/products/open-frame-500/", lang)}>{lang === "zh" ? "网上展厅" : "Online Showroom"}</a>
-        <a href={withLanguage("/about/", lang)}>{t("navAbout")}</a>
-        <a href={withLanguage("/#cases", lang)}>{t("navCases")}</a>
-        <a href={withLanguage("/#contact", lang)}>{t("navService")}</a>
-      </nav>
-      <div className="header-right">
-        <button type="button" className={"lang-btn" + (lang === "zh" ? " active" : "")} aria-pressed={lang === "zh"} onClick={() => setLang("zh")}>中文</button>
-        <button type="button" className={"lang-btn" + (lang === "en" ? " active" : "")} aria-pressed={lang === "en"} onClick={() => setLang("en")}>English</button>
-        <SocialLinks />
-        <a className="quote-btn" href={withLanguage("/#contact", lang)}><QuoteIcon />{lang === "zh" ? "获取报价" : "Get Quote"}</a>
-      </div>
-      </div>
-    </header>
-  );
+  return <ProductNavigation lang={lang} setLang={setLang} t={t} localize={(href) => withLanguage(href, lang)} />
 }
 
 
@@ -600,13 +571,13 @@ const T = {
     airflowDesc: "采用斜向导流进气结构，进气更加顺畅、排气阻力低、散热效率高。",
     chassisDesc: "为您考虑到了恶劣工况的使用环境，确保在任何情况下机组结构都能稳定运行",
     homeBigTitle: "500kW发电机组",
-    stage_home: "深柴动力",
+    stage_home: "产品总览",
     stage_allinone: "ALL-IN-ONE",
     stage_engine: "动力系统稳定输出",
     stage_airflow: "气流设计",
     stage_chassis: "减震设计结构",
-    subHome: "FLYDEER POWER · 始于 2004",
-    sub_home: "FLYDEER POWER · 始于 2004",
+    subHome: "FLYDEER POWER · 始于 2002",
+    sub_home: "FLYDEER POWER · 始于 2002",
     sub_allinone: "设计与快速部署",
     sub_engine: "多元动力 · 按需匹配",
     sub_airflow: "AIRFLOW DESIGN",
@@ -623,13 +594,13 @@ const T = {
     airflowDesc: "The angled airflow-guiding intake design improves intake flow, reduces exhaust resistance, and increases cooling efficiency.",
     chassisDesc: "Designed for harsh working conditions, ensuring stable operation of the unit in any environment.",
     homeBigTitle: "500kW Generator Set",
-    stage_home: "FLYDEER POWER",
+    stage_home: "Product Overview",
     stage_allinone: "ALL-IN-ONE",
     stage_engine: "Engine System",
     stage_airflow: "Airflow Design",
     stage_chassis: "Vibration-Damping Structure",
-    subHome: "FLYDEER POWER · Since 2004",
-    sub_home: "FLYDEER POWER · Since 2004",
+    subHome: "FLYDEER POWER · Since 2002",
+    sub_home: "FLYDEER POWER · Since 2002",
     sub_allinone: "Design & Fast Deployment",
     sub_engine: "Multiple Power · On Demand",
     sub_airflow: "AIRFLOW DESIGN",

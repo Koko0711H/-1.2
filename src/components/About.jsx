@@ -46,7 +46,12 @@ function About() {
                 </a>
               </div>
               <div className="about-image fade-up">
-                <img src="/flydeer-building.png" alt={t('aboutImgAlt')} />
+                <img
+                  src="/flydeer-building.webp"
+                  alt={t('aboutImgAlt')}
+                  loading="lazy"
+                  decoding="async"
+                />
                 <span className="about-image-caption">FLYDEER POWER / HEADQUARTERS</span>
               </div>
             </div>

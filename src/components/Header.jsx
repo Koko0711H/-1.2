@@ -4,6 +4,7 @@ import { withLanguage } from '../languageRouting'
 
 function Header() {
   const [activeSection, setActiveSection] = useState('top')
+  const [mobileOpen, setMobileOpen] = useState(false)
   const { lang, setLang, t } = useLang()
 
   useEffect(() => {
@@ -22,13 +23,35 @@ function Header() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  useEffect(() => {
+    const closeOnEscape = (event) => {
+      if (event.key === 'Escape') setMobileOpen(false)
+    }
+    const closeOnDesktop = () => {
+      if (window.innerWidth > 900) setMobileOpen(false)
+    }
+
+    document.body.classList.toggle('mobile-menu-open', mobileOpen)
+    window.addEventListener('keydown', closeOnEscape)
+    window.addEventListener('resize', closeOnDesktop)
+
+    return () => {
+      document.body.classList.remove('mobile-menu-open')
+      window.removeEventListener('keydown', closeOnEscape)
+      window.removeEventListener('resize', closeOnDesktop)
+    }
+  }, [mobileOpen])
+
   const scrollTo = (id) => {
     const el = document.getElementById(id)
-    if (el) el.scrollIntoView({ behavior: 'smooth' })
+    if (el) {
+      setMobileOpen(false)
+      el.scrollIntoView({ behavior: 'smooth' })
+    }
   }
 
   return (
-    <header className="header brand-header">
+    <header className={`header brand-header${mobileOpen ? ' mobile-open' : ''}`}>
       <div className="header-inner">
         <a
           className="logo"
@@ -45,7 +68,7 @@ function Header() {
             className="logo-img"
           />
         </a>
-        <nav className="nav-links">
+        <nav className="nav-links" id="primary-navigation" aria-label={lang === 'zh' ? '主导航' : 'Primary navigation'}>
           {[
             { key: 'navHome', action: 'top' },
             { key: 'navProducts', action: 'products' },
@@ -60,15 +83,39 @@ function Header() {
               aria-current={item.action === activeSection ? 'page' : undefined}
               href={item.href ? withLanguage(item.href, lang) : `#${item.action}`}
               onClick={(event) => item.href
-                ? undefined
+                ? setMobileOpen(false)
                 : (event.preventDefault(), item.action === 'top'
-                  ? window.scrollTo({ top: 0, behavior: 'smooth' })
+                  ? (setMobileOpen(false), window.scrollTo({ top: 0, behavior: 'smooth' }))
                   : scrollTo(item.action))
               }
             >
               {t(item.key)}
             </a>
           ))}
+          <div className="mobile-nav-actions">
+            <div className="mobile-nav-languages" aria-label={lang === 'zh' ? '语言切换' : 'Language'}>
+              <button
+                type="button"
+                className={`lang-btn ${lang === 'zh' ? 'active' : ''}`}
+                aria-pressed={lang === 'zh'}
+                onClick={() => setLang('zh')}
+              >中文</button>
+              <button
+                type="button"
+                className={`lang-btn ${lang === 'en' ? 'active' : ''}`}
+                aria-pressed={lang === 'en'}
+                onClick={() => setLang('en')}
+              >English</button>
+            </div>
+            <a className="mobile-quote-btn" href="#contact" onClick={() => setMobileOpen(false)}>
+              {t('getQuote')}
+            </a>
+            <div className="mobile-nav-social">
+              <a href="#contact" onClick={() => setMobileOpen(false)}>Facebook</a>
+              <a href="#contact" onClick={() => setMobileOpen(false)}>LinkedIn</a>
+              <a href="#contact" onClick={() => setMobileOpen(false)}>Douyin</a>
+            </div>
+          </div>
         </nav>
         <div className="header-right">
           <button
@@ -101,7 +148,28 @@ function Header() {
             {t('getQuote')}
           </a>
         </div>
+        <button
+          type="button"
+          className="mobile-menu-toggle"
+          aria-label={mobileOpen
+            ? (lang === 'zh' ? '关闭导航菜单' : 'Close navigation menu')
+            : (lang === 'zh' ? '打开导航菜单' : 'Open navigation menu')}
+          aria-controls="primary-navigation"
+          aria-expanded={mobileOpen}
+          onClick={() => setMobileOpen((open) => !open)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
       </div>
+      <button
+        type="button"
+        className="mobile-menu-backdrop"
+        aria-label={lang === 'zh' ? '关闭导航菜单' : 'Close navigation menu'}
+        tabIndex={mobileOpen ? 0 : -1}
+        onClick={() => setMobileOpen(false)}
+      />
     </header>
   )
 }

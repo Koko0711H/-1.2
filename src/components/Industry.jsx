@@ -68,6 +68,8 @@ function Industry() {
                 src={industryImgs[item.img]}
                 alt={t(item.titleKey)}
                 className="industry-ring-image"
+                loading="lazy"
+                decoding="async"
               />
               <span className="industry-ring-overlay">
                 <span className="industry-ring-type">APPLICATION FIELD</span>

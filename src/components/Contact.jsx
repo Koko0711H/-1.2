@@ -73,7 +73,7 @@ function Contact() {
           <div className="service-stage-grid">
             {serviceCards.map((item, index) => (
               <article className="service-stage-card" key={item.title}>
-                <img src={item.image} alt={item.title} loading="lazy" />
+                <img src={item.image} alt={item.title} loading="lazy" decoding="async" />
                 <div className="service-stage-shade" aria-hidden="true" />
                 <div className="service-stage-copy">
                   <span>{String(index + 1).padStart(2, "0")} / {item.tag}</span>

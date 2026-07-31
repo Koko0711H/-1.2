@@ -10,6 +10,7 @@ function Hero() {
   const slide = {
     titleKey: 'heroTitle1',
     subKey: 'heroSub1',
+    mobileVideo: '/hero-power-range-mobile.mp4',
     video: '/hero-power-range-sharp4k.mp4'
   }
 
@@ -58,6 +59,7 @@ function Hero() {
     <section ref={heroSectionRef} className="hero-section">
       <div className="hero-bg">
         <video ref={videoRef} className="hero-bg-video" autoPlay muted playsInline onEnded={handleVideoEnd}>
+          <source src={slide.mobileVideo} type="video/mp4" media="(max-width: 700px)" />
           <source src={slide.video} type="video/mp4" />
         </video>
       </div>

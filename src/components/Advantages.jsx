@@ -108,6 +108,7 @@ function Advantages() {
                   src={src}
                   alt={`${t(activeTopic.titleKey)} ${imageIndex + 1}`}
                   loading={imageIndex === 0 ? 'eager' : 'lazy'}
+                  decoding="async"
                 />
                 <figcaption>
                   <span>{String(imageIndex + 1).padStart(2, '0')}</span>
@@ -163,7 +164,7 @@ function Advantages() {
               aria-label={`${t(item.titleKey)} ${item.imageIndex + 1}`}
               onClick={() => setActiveIndex(item.topicIndex)}
             >
-              <img src={item.src} alt="" loading="lazy" />
+              <img src={item.src} alt="" loading="lazy" decoding="async" />
               <span>{String(index + 1).padStart(2, '0')}</span>
             </button>
           ))}
@@ -183,7 +184,7 @@ function Advantages() {
           {certificationItems.map((item) => (
             <article className="advantage-certificate" key={item.code}>
               <figure>
-                <img src={item.image} alt={`${t(item.titleKey)} · ${item.standard}`} loading="lazy" />
+                <img src={item.image} alt={`${t(item.titleKey)} · ${item.standard}`} loading="lazy" decoding="async" />
               </figure>
               <div className="advantage-certificate-meta">
                 <span>{item.code}</span>

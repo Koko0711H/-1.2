@@ -16,28 +16,28 @@ function RichDetail() {
     <div className="rich-detail">
       <p style={{ fontSize: "14px", color: "var(--text-light)", lineHeight: 1.8, marginBottom: 16, padding: "12px", background: "var(--light-bg)", borderRadius: "6px" }}>{t("prod1Detail")}</p>
       <div className="rich-item">
-        <img src="/prod1-detail-1.jpg" alt={t("rich1Title")} className="rich-img" />
+        <img src="/prod1-detail-1.jpg" alt={t("rich1Title")} className="rich-img" loading="lazy" decoding="async" />
         <div className="rich-text">
           <h4>{t("rich1Title")}</h4>
           <p>{t("rich1Desc")}</p>
         </div>
       </div>
       <div className="rich-item">
-        <img src="/prod1-detail-2.jpg" alt={t("rich2Title")} className="rich-img" />
+        <img src="/prod1-detail-2.jpg" alt={t("rich2Title")} className="rich-img" loading="lazy" decoding="async" />
         <div className="rich-text">
           <h4>{t("rich2Title")}</h4>
           <p>{t("rich2Desc")}</p>
         </div>
       </div>
       <div className="rich-item">
-        <img src="/prod1-detail-3.jpg" alt={t("rich3Title")} className="rich-img" />
+        <img src="/prod1-detail-3.jpg" alt={t("rich3Title")} className="rich-img" loading="lazy" decoding="async" />
         <div className="rich-text">
           <h4>{t("rich3Title")}</h4>
           <p>{t("rich3Desc")}</p>
         </div>
       </div>
       <div className="rich-item">
-        <img src="/prod1-detail-4.jpg" alt={t("rich4Title")} className="rich-img" />
+        <img src="/prod1-detail-4.jpg" alt={t("rich4Title")} className="rich-img" loading="lazy" decoding="async" />
         <div className="rich-text">
           <h4>{t("rich4Title")}</h4>
           <p>{t("rich4Desc")}</p>
@@ -53,21 +53,21 @@ function OpenFrameRichDetail() {
     <div className="rich-detail">
       <p style={{ fontSize: "14px", color: "var(--text-light)", lineHeight: 1.8, marginBottom: 16, padding: "12px", background: "var(--light-bg)", borderRadius: "6px" }}>{t("prod2Detail")}</p>
       <div className="rich-item">
-        <img src="/prod2-detail-1.png" alt={t("rich2_1Title")} className="rich-img" />
+        <img src="/prod2-detail-1.png" alt={t("rich2_1Title")} className="rich-img" loading="lazy" decoding="async" />
         <div className="rich-text">
           <h4>{t("rich2_1Title")}</h4>
           <p>{t("rich2_1Desc")}</p>
         </div>
       </div>
       <div className="rich-item">
-        <img src="/prod2-detail-2.jpg" alt={t("rich2_2Title")} className="rich-img" />
+        <img src="/prod2-detail-2.jpg" alt={t("rich2_2Title")} className="rich-img" loading="lazy" decoding="async" />
         <div className="rich-text">
           <h4>{t("rich2_2Title")}</h4>
           <p>{t("rich2_2Desc")}</p>
         </div>
       </div>
       <div className="rich-item">
-        <img src="/prod2-detail-3.jpg" alt={t("rich2_3Title")} className="rich-img" />
+        <img src="/prod2-detail-3.jpg" alt={t("rich2_3Title")} className="rich-img" loading="lazy" decoding="async" />
         <div className="rich-text">
           <h4>{t("rich2_3Title")}</h4>
           <p>{t("rich2_3Desc")}</p>
@@ -82,28 +82,28 @@ function MobileTrailerRichDetail() {
     <div className="rich-detail">
       <p style={{ fontSize: "14px", color: "var(--text-light)", lineHeight: 1.8, marginBottom: 16, padding: "12px", background: "var(--light-bg)", borderRadius: "6px" }}>{t("prod3Detail")}</p>
       <div className="rich-item">
-        <img src="/prod3-detail-1.jpg" alt={t("rich3_1Title")} className="rich-img" />
+        <img src="/prod3-detail-1.jpg" alt={t("rich3_1Title")} className="rich-img" loading="lazy" decoding="async" />
         <div className="rich-text">
           <h4>{t("rich3_1Title")}</h4>
           <p>{t("rich3_1Desc")}</p>
         </div>
       </div>
       <div className="rich-item">
-        <img src="/prod3-detail-2.jpg" alt={t("rich3_2Title")} className="rich-img" />
+        <img src="/prod3-detail-2.jpg" alt={t("rich3_2Title")} className="rich-img" loading="lazy" decoding="async" />
         <div className="rich-text">
           <h4>{t("rich3_2Title")}</h4>
           <p>{t("rich3_2Desc")}</p>
         </div>
       </div>
       <div className="rich-item">
-        <img src="/prod3-detail-3.jpg" alt={t("rich3_3Title")} className="rich-img" />
+        <img src="/prod3-detail-3.jpg" alt={t("rich3_3Title")} className="rich-img" loading="lazy" decoding="async" />
         <div className="rich-text">
           <h4>{t("rich3_3Title")}</h4>
           <p>{t("rich3_3Desc")}</p>
         </div>
       </div>
       <div className="rich-item">
-        <img src="/prod3-detail-4.jpg" alt={t("rich3_4Title")} className="rich-img" />
+        <img src="/prod3-detail-4.jpg" alt={t("rich3_4Title")} className="rich-img" loading="lazy" decoding="async" />
         <div className="rich-text">
           <h4>{t("rich3_4Title")}</h4>
           <p>{t("rich3_4Desc")}</p>
@@ -204,7 +204,7 @@ function ProductCard({ item, index }) {
             <source src={item.src} type="video/mp4" />
           </video>
         ) : (
-          <img src={item.src} alt={t(item.name)} className="product-showcase-photo" />
+          <img src={item.src} alt={t(item.name)} className="product-showcase-photo" loading="lazy" decoding="async" />
         )}
       </div>
     </article>

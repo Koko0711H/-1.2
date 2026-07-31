@@ -6,6 +6,7 @@ import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js"
 import "./App.css"
 import { getInitialLanguage, syncLanguageToUrl, withLanguage } from "./languageRouting"
+import ProductNavigation from "../../shared/ProductNavigation"
 
 // Error display for debugging
 window.addEventListener("error", (e) => {
@@ -25,21 +26,11 @@ window.addEventListener("unhandledrejection", (e) => {
 
 
 const STAGES = [
-  { id: "home", label: "开发中", cam: [-2, 1.5, 5], target: [0, 0, 0], fov: 40, rot: 0,
-    subtitle: "开发中",
-    desc: "开发中" },
-  { id: "allinone", label: "开发中", cam: [0, 5, 7.5], target: [0, 0, 0], fov: 26, rot: -1.5,
-    subtitle: "开发中",
-    desc: "开发中" },
-  { id: "engine", label: "开发中", cam: [0, 1.5, 6], target: [0, 0, 0], fov: 28, rot: 0,
-    subtitle: "开发中",
-    desc: "开发中" },
-  { id: "airflow", label: "开发中", cam: [-7.5, 5, 4.5], target: [0, 0, 0], fov: 24, rot: 1.5,
-    subtitle: "开发中",
-    desc: "开发中" },
-  { id: "chassis", label: "开发中", cam: [-5.5, -1.5, 1.8], target: [0, 0.5, 0], fov: 30, rot: 3.0,
-    subtitle: "开发中",
-    desc: "开发中" },
+  { id: "home", label: "高压配电系统", cam: [-2, 1.5, 5], target: [0, 0, 0], fov: 40, rot: 0 },
+  { id: "allinone", label: "集成成套", cam: [0, 5, 7.5], target: [0, 0, 0], fov: 26, rot: -1.5 },
+  { id: "engine", label: "模块化柜体", cam: [0, 1.5, 6], target: [0, 0, 0], fov: 28, rot: 0 },
+  { id: "airflow", label: "运行防护", cam: [-7.5, 5, 4.5], target: [0, 0, 0], fov: 24, rot: 1.5 },
+  { id: "chassis", label: "工程交付", cam: [-5.5, -1.5, 1.8], target: [0, 0.5, 0], fov: 30, rot: 3.0 },
 ]
 
 
@@ -47,6 +38,7 @@ function ModelGroup({ url, progress }) {
   const groupRef = useRef()
   const [scene, setScene] = useState(null)
   const rot = useRef(0)
+  const { size } = useThree()
   useEffect(() => {
     let c = false
     const loader = new GLTFLoader()
@@ -77,12 +69,13 @@ function ModelGroup({ url, progress }) {
     }
   })
   if (!scene) return null
-  return <group ref={groupRef}><primitive object={scene} scale={2.5} /></group>
+  return <group ref={groupRef}><primitive object={scene} scale={size.width <= 900 ? 3.1 : 2.5} /></group>
 }
 
 function CameraController({ progress }) {
-  const { camera, gl } = useThree()
+  const { camera, gl, size } = useThree()
   const pos = useRef(new THREE.Vector3())
+  const cameraPoint = useRef(new THREE.Vector3())
   const target = useRef(new THREE.Vector3())
   const fov = useRef(42)
   const controlsRef = useRef()
@@ -104,7 +97,7 @@ function CameraController({ progress }) {
     const lp = Math.min(Math.max((progress * total) % 1, 0), 1)
     const s = STAGES[si], n = STAGES[ni]
     if (!s || !n) return
-    pos.current.set(
+    cameraPoint.current.set(
       s.cam[0] + (n.cam[0] - s.cam[0]) * lp,
       s.cam[1] + (n.cam[1] - s.cam[1]) * lp,
       s.cam[2] + (n.cam[2] - s.cam[2]) * lp
@@ -114,6 +107,9 @@ function CameraController({ progress }) {
       s.target[1] + (n.target[1] - s.target[1]) * lp,
       s.target[2] + (n.target[2] - s.target[2]) * lp
     )
+    const aspect = size.height > 0 ? size.width / size.height : 1.65
+    const mobileFit = size.width <= 900 ? Math.max(1, Math.min(1.18, 1.2 / aspect)) : 1
+    pos.current.copy(target.current).add(cameraPoint.current.sub(target.current).multiplyScalar(mobileFit))
     fov.current = s.fov + (n.fov - s.fov) * lp
     const timeSinceUser = Date.now() - lastUser.current
     if (timeSinceUser > 2000) {
@@ -196,64 +192,6 @@ function Particles() {
   )
 }
 
-function LightingController({ progress }) {
-  const keyRef = useRef()
-  const fillRef = useRef()
-  const rimRef = useRef()
-  const sweepRef = useRef()
-  const rigs = useMemo(() => [
-    { key: [6, 9, 6], fill: [-5, 4, 3], rim: [0, 5, -7], sweep: [-7, 7, 2], power: [4.8, 1.7, 2.2, 3.2] },
-    { key: [-7, 9, 4], fill: [6, 4, -3], rim: [0, 6, 7], sweep: [7, 8, 0], power: [5.3, 1.5, 2.5, 3.7] },
-    { key: [7, 6, -4], fill: [-5, 8, 5], rim: [-3, 3, 7], sweep: [-7, 5, -5], power: [5.0, 1.8, 2.7, 3.4] },
-    { key: [-8, 7, -2], fill: [5, 9, 5], rim: [7, 3, -7], sweep: [1, 10, 7], power: [5.4, 1.6, 2.4, 3.8] },
-    { key: [2, 4, 8], fill: [-7, 5, -2], rim: [7, 7, 1], sweep: [0, 1, 7], power: [4.9, 1.9, 2.8, 3.3] },
-  ], [])
-  const keyPos = useRef(new THREE.Vector3(...rigs[0].key))
-  const fillPos = useRef(new THREE.Vector3(...rigs[0].fill))
-  const rimPos = useRef(new THREE.Vector3(...rigs[0].rim))
-  const sweepPos = useRef(new THREE.Vector3(...rigs[0].sweep))
-
-  useFrame(() => {
-    const scaled = Math.min(Math.max(progress, 0), 0.9999) * (rigs.length - 1)
-    const fromIndex = Math.floor(scaled)
-    const toIndex = Math.min(fromIndex + 1, rigs.length - 1)
-    const raw = scaled - fromIndex
-    const blend = raw * raw * (3 - 2 * raw)
-    const from = rigs[fromIndex]
-    const to = rigs[toIndex]
-    const move = (ref, current, a, b) => {
-      if (!ref.current) return
-      current.set(
-        a[0] + (b[0] - a[0]) * blend,
-        a[1] + (b[1] - a[1]) * blend,
-        a[2] + (b[2] - a[2]) * blend
-      )
-      ref.current.position.lerp(current, 0.1)
-    }
-
-    move(keyRef, keyPos.current, from.key, to.key)
-    move(fillRef, fillPos.current, from.fill, to.fill)
-    move(rimRef, rimPos.current, from.rim, to.rim)
-    move(sweepRef, sweepPos.current, from.sweep, to.sweep)
-
-    const refs = [keyRef, fillRef, rimRef, sweepRef]
-    refs.forEach((ref, index) => {
-      if (!ref.current) return
-      const target = from.power[index] + (to.power[index] - from.power[index]) * blend
-      ref.current.intensity += (target - ref.current.intensity) * 0.1
-    })
-  })
-
-  return (
-    <>
-      <directionalLight ref={keyRef} position={rigs[0].key} intensity={rigs[0].power[0]} color="#ffffff" castShadow shadow-mapSize={[1024, 1024]} />
-      <directionalLight ref={fillRef} position={rigs[0].fill} intensity={rigs[0].power[1]} color="#ffffff" />
-      <directionalLight ref={rimRef} position={rigs[0].rim} intensity={rigs[0].power[2]} color="#ffffff" />
-      <spotLight ref={sweepRef} position={rigs[0].sweep} intensity={rigs[0].power[3]} color="#ffffff" angle={0.52} penumbra={0.78} distance={30} decay={1.35} />
-    </>
-  )
-}
-
 function ScrollLightAtmosphere({ progress }) {
   const glows = [
     { x: 82, y: 16, strength: 0.9 },
@@ -272,9 +210,8 @@ function ScrollLightAtmosphere({ progress }) {
   const mix = (key) => from[key] + (to[key] - from[key]) * blend
   const driftX = Math.sin(progress * Math.PI * 3) * 1.2
   const driftY = Math.cos(progress * Math.PI * 2.5) * 0.8
-  const enter = Math.min(Math.max((progress - 0.012) / 0.045, 0), 1)
   const leave = Math.min(Math.max((0.965 - progress) / 0.035, 0), 1)
-  const visibility = enter * leave
+  const visibility = leave
 
   return (
     <div className="scroll-light-atmosphere" style={{ opacity: visibility }} aria-hidden="true">
@@ -289,8 +226,6 @@ function ScrollLightAtmosphere({ progress }) {
     </div>
   )
 }
-
-const LINE_PATH = "M2.30809 318.07Q21.0208 316.441 50.1395 311.552Q108.449 301.761 160.401 285.447Q187.503 276.937 211.151 264.212Q225.389 256.551 250.01 240.238Q275.87 223.104 291.318 214.863Q317.146 201.086 347.378 191.695Q407.665 172.97 460.721 167.081Q495.936 163.173 558.47 163.173Q585.817 163.173 628.557 141.714Q654.353 128.763 708.923 94.4123Q742.671 73.1683 758.993 63.6874Q786.229 47.8662 806.111 39.6039Q862.305 16.252 914.714 7.87042Q961.797 0.340553 1040.78 0.0125411Q1117.18 -0.304734 1171.71 7.40653Q1227.48 15.2934 1289.78 35.6259Q1321.15 45.8667 1370.62 65.0861Q1407.99 79.6092 1425.84 85.4202Q1454.72 94.8298 1481 99.0339Q1520.17 105.3 1617.15 102.785Q1665.69 101.526 1706.36 99.0087"
 
 function Preloader({ loaded }) {
   const [pct, setPct] = useState(0)
@@ -324,16 +259,16 @@ function StateTable({ stages, currentIdx, onSelect }) {
       <div className="statetable-content">
         <div className="backgroundLine" />
         {stages.map((s, i) => (
-          <div key={s.id} className={"st-item" + (i === currentIdx ? " active" : "")} onClick={() => onSelect(i)}>
+          <button type="button" key={s.id} className={"st-item" + (i === currentIdx ? " active" : "")} onClick={() => onSelect(i)}>
             <p className="table-name">{t("stage_" + s.id)}</p>
-          </div>
+          </button>
         ))}
       </div>
     </div>
   )
 }
 
-function ContentOverlay({ stages, currentIdx, progress, ready }) {
+function ContentOverlay({ stages, currentIdx, ready }) {
   const { t } = useLang();
 
   const visible = ready
@@ -373,12 +308,10 @@ function ContentOverlay({ stages, currentIdx, progress, ready }) {
         {isA && (
           <div className="allinone-top-right text-block-animate">
             <p className="allinone-desc-text">{t("allinoneDesc")}</p>
-            <img className="module-img" src="/product-assets/high-voltage/images/white-placeholder.svg" alt="白色占位图" />
           </div>
         )}
         {isE && (
           <div>
-            <img className="engine-img" src="/product-assets/high-voltage/images/white-placeholder.svg" alt="白色占位图" />
             <div className="engine-text-block">
               <p className="engine-desc-text">{t("engineDesc")}</p>
             </div>
@@ -386,13 +319,11 @@ function ContentOverlay({ stages, currentIdx, progress, ready }) {
         )}
         {isAf && (
           <div className="airflow-top-right text-block-animate">
-            <img className="module-img" src="/product-assets/high-voltage/images/white-placeholder.svg" alt="白色占位图" />
             <p className="airflow-desc-text">{t("airflowDesc")}</p>
           </div>
         )}
         {isC && (
           <div className="chassis-right text-block-animate">
-            <img className="module-img chassis-img" src="/product-assets/high-voltage/images/white-placeholder.svg" alt="白色占位图" />
             <p className="chassis-desc-text">{t("chassisDesc")}</p>
           </div>
         )}
@@ -411,7 +342,7 @@ function ContentOverlay({ stages, currentIdx, progress, ready }) {
       <div className="section-number"><span className="current">{String(currentIdx + 1).padStart(2, "0")}</span><span className="total"> / {String(stages.length).padStart(2, "0")}</span></div>
       <div className={"content-left" + (isHome ? " home-left" : "") + (isAllinone ? " allinone-left" : "") + (isEngine ? " engine-left" : "") + (isAirflow ? " airflow-left" : "") + (isChassis ? " chassis-left" : "")}>
         <div className="title-box" key={s.id}>
-          <h2 className={"content-title" + (isHome ? " home-title" : "") + (isAllinone ? " allinone-title" : "") + (isEngine ? " engine-title" : "") + (isAirflow ? " airflow-title" : "") + (isChassis ? " chassis-title" : "")}>{t("stage_" + s.id)}</h2>
+          <h2 className={"content-title" + (isHome ? " home-title" : "") + (isAllinone ? " allinone-title" : "") + (isEngine ? " engine-title" : "") + (isAirflow ? " airflow-title" : "") + (isChassis ? " chassis-title" : "")}>{isHome ? t("homeTitle") : t("stage_" + s.id)}</h2>
           <p className={"content-subtitle" + (isHome ? " home-subtitle" : "") + (isAllinone ? " allinone-subtitle" : "") + (isEngine ? " engine-subtitle" : "") + (isAirflow ? " airflow-subtitle" : "") + (isChassis ? " chassis-subtitle" : "")}>{t("sub_" + s.id)}</p>
         </div>
       </div>
@@ -421,62 +352,28 @@ function ContentOverlay({ stages, currentIdx, progress, ready }) {
 }
 
 function TechTags() {
-  const { t } = useLang();
   return (
     <div className="tech-tags">
-      <div className="tech-tag">{t("placeholder")}<span className="label">{t("placeholder")}</span></div>
-      <div className="tech-tag">{t("placeholder")}<span className="label">{t("placeholder")}</span></div>
-      <div className="tech-tag">{t("placeholder")}<span className="label">{t("placeholder")}</span></div>
-      <div className="tech-tag">{t("placeholder")}<span className="label">{t("placeholder")}</span></div>
+      <div className="tech-tag">HV<span className="label">POWER DISTRIBUTION</span></div>
+      <div className="tech-tag">MODULAR<span className="label">SYSTEM ARCHITECTURE</span></div>
+      <div className="tech-tag">CONTROLLED<span className="label">OPERATION</span></div>
+      <div className="tech-tag">PROJECT<span className="label">ENGINEERING</span></div>
     </div>
   )
 }
 
 function FooterInfo() {
-  const { t } = useLang();
   return (
     <>
-      <div className="bottom-info">{t("placeholder")}</div>
-      <div className="bottom-info-left">{t("placeholder")}</div>
+      <div className="bottom-info">© 2026 FLYDEER POWER</div>
+      <div className="bottom-info-left">HV DISTRIBUTION SYSTEM</div>
     </>
   )
 }
 
-function SocialLinks() {
-  return <>
-    <a className="social-icon" href="#" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-    <a className="social-icon" href="#" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
-    <a className="social-icon" href="#" aria-label="抖音"><svg width="30" height="30" viewBox="0 0 48 48" fill="currentColor"><path d="M33.5 8.5c1.5 3 4 5 7 5.5v4.5c-2.5 0-5-1-7-3v13c0 6.5-5 11.5-11.5 11.5S10.5 35 10.5 28.5 15.5 17 22 17v4.5c-4 0-7 3-7 7s3 7 7 7 7-3 7-7V8.5h4.5z"/></svg></a>
-  </>
-}
-
-function QuoteIcon() {
-  return <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
-}
-
 function Navbar() {
   const { lang, setLang, t } = useLang();
-  return (
-    <header className="navbar">
-      <div className="navbar-inner">
-      <a className="nav-logo-link" href={withLanguage("/", lang)} aria-label={lang === "zh" ? "深柴动力首页" : "FLYDEER POWER home"}><img className="nav-logo" src="/logo.png" alt="FLYDEER POWER 深柴动力" /></a>
-      <nav className="nav-links">
-        <a href={withLanguage("/", lang)}>{t("navHome")}</a>
-        <a href={withLanguage("/#products", lang)}>{t("navProducts")}</a>
-        <a className="active" aria-current="page" href={withLanguage("/products/open-frame-500/", lang)}>{lang === "zh" ? "网上展厅" : "Online Showroom"}</a>
-        <a href={withLanguage("/about/", lang)}>{t("navAbout")}</a>
-        <a href={withLanguage("/#cases", lang)}>{t("navCases")}</a>
-        <a href={withLanguage("/#contact", lang)}>{t("navService")}</a>
-      </nav>
-      <div className="header-right">
-        <button type="button" className={"lang-btn" + (lang === "zh" ? " active" : "")} aria-pressed={lang === "zh"} onClick={() => setLang("zh")}>中文</button>
-        <button type="button" className={"lang-btn" + (lang === "en" ? " active" : "")} aria-pressed={lang === "en"} onClick={() => setLang("en")}>English</button>
-        <SocialLinks />
-        <a className="quote-btn" href={withLanguage("/#contact", lang)}><QuoteIcon />{lang === "zh" ? "获取报价" : "Get Quote"}</a>
-      </div>
-      </div>
-    </header>
-  );
+  return <ProductNavigation lang={lang} setLang={setLang} t={t} localize={(href) => withLanguage(href, lang)} />
 }
 
 
@@ -666,50 +563,48 @@ const T = {
   zh: {
     navHome: "首页", navProducts: "产品中心", navAbout: "关于我们",
     navCases: "项目案例", navService: "销售与服务", scroll: "滚动探索",
-    placeholder: "开发中",
-    homeTitle: "开发中",
-    homeIntro1: "开发中",
-    homeIntro2: "开发中",
-    allinoneDesc: "开发中",
-    engineDesc: "开发中",
-    airflowDesc: "开发中",
-    chassisDesc: "开发中",
-    homeBigTitle: "如感兴趣可咨询",
-    stage_home: "开发中",
-    stage_allinone: "开发中",
-    stage_engine: "开发中",
-    stage_airflow: "开发中",
-    stage_chassis: "开发中",
-    subHome: "开发中",
-    sub_home: "开发中",
-    sub_allinone: "开发中",
-    sub_engine: "开发中",
-    sub_airflow: "开发中",
-    sub_chassis: "开发中",
+    homeTitle: "高压配电系统",
+    homeIntro1: "面向大功率发电与高压配电场景，将柜体、控制与保护单元纳入统一系统设计。",
+    homeIntro2: "结合项目负载、接入条件与运行需求，提供清晰、可靠、便于维护的成套方案。",
+    allinoneDesc: "从一次系统到控制逻辑进行协同配置，减少现场接口复杂度，提高成套交付效率。",
+    engineDesc: "模块化柜体布局兼顾扩展、检修与设备间组织，便于按项目容量进行组合配置。",
+    airflowDesc: "围绕隔离、联锁、监测与操作路径进行系统化设计，增强日常运行的可控性。",
+    chassisDesc: "结合现场空间、进出线方向与安装条件完成工程配置，支持后续调试与技术协同。",
+    homeBigTitle: "高压配电系统",
+    stage_home: "系统总览",
+    stage_allinone: "集成成套",
+    stage_engine: "模块化柜体",
+    stage_airflow: "运行防护",
+    stage_chassis: "工程交付",
+    subHome: "HIGH-VOLTAGE POWER DISTRIBUTION",
+    sub_home: "HIGH-VOLTAGE POWER DISTRIBUTION",
+    sub_allinone: "INTEGRATED SYSTEM",
+    sub_engine: "MODULAR ARCHITECTURE",
+    sub_airflow: "CONTROLLED OPERATION",
+    sub_chassis: "PROJECT ENGINEERING",
   },
   en: {
     navHome: "Home", navProducts: "Products", navAbout: "About Us",
     navCases: "Projects", navService: "Sales & Service", scroll: "SCROLL",
-    placeholder: "Under development",
-    homeTitle: "Under development",
-    homeIntro1: "Under development",
-    homeIntro2: "Under development",
-    allinoneDesc: "Under development",
-    engineDesc: "Under development",
-    airflowDesc: "Under development",
-    chassisDesc: "Under development",
-    homeBigTitle: "Please inquire if interested",
-    stage_home: "Under development",
-    stage_allinone: "Under development",
-    stage_engine: "Under development",
-    stage_airflow: "Under development",
-    stage_chassis: "Under development",
-    subHome: "Under development",
-    sub_home: "Under development",
-    sub_allinone: "Under development",
-    sub_engine: "Under development",
-    sub_airflow: "Under development",
-    sub_chassis: "Under development",
+    homeTitle: "High-Voltage Distribution System",
+    homeIntro1: "For high-output generation and distribution projects, cabinets, controls, and protection units are engineered as one coordinated system.",
+    homeIntro2: "System configuration is matched to project loads, connection conditions, and operating requirements for clear and maintainable delivery.",
+    allinoneDesc: "Primary distribution and control logic are configured together to simplify site interfaces and improve delivery efficiency.",
+    engineDesc: "A modular cabinet architecture supports expansion, maintenance access, and project-specific capacity combinations.",
+    airflowDesc: "Isolation, interlocking, monitoring, and operating paths are planned together for controlled daily operation.",
+    chassisDesc: "Configuration follows site space, cable routing, and installation conditions, with support for commissioning and technical coordination.",
+    homeBigTitle: "High-Voltage Distribution System",
+    stage_home: "System Overview",
+    stage_allinone: "Integrated System",
+    stage_engine: "Modular Cabinets",
+    stage_airflow: "Operational Safety",
+    stage_chassis: "Project Delivery",
+    subHome: "HIGH-VOLTAGE POWER DISTRIBUTION",
+    sub_home: "HIGH-VOLTAGE POWER DISTRIBUTION",
+    sub_allinone: "INTEGRATED SYSTEM",
+    sub_engine: "MODULAR ARCHITECTURE",
+    sub_airflow: "CONTROLLED OPERATION",
+    sub_chassis: "PROJECT ENGINEERING",
   }
 };
 
