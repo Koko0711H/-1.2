@@ -47,7 +47,7 @@ function About() {
               </div>
               <div className="about-image fade-up">
                 <img
-                  src="/flydeer-building.webp"
+                  src="/flydeer-building-energy.webp"
                   alt={t('aboutImgAlt')}
                   loading="lazy"
                   decoding="async"
