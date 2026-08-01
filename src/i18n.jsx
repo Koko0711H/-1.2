@@ -14,7 +14,7 @@ const translations = {
   // ===== Hero =====
   heroTitle1: { en: 'FLYDEER POWER', zh: '深柴能源' },
   heroBrandLead: { en: 'FLYDEER', zh: '深柴' },
-  heroBrandTail: { en: 'POWER', zh: '动力' },
+  heroBrandTail: { en: 'POWER', zh: '能源' },
   heroSub1: { en: '30KW–2000KW generator sets for industry, infrastructure and emergency power.', zh: '30KW–2000KW 发电机组，为工业、基建与应急场景持续供电' },
   heroCta: { en: 'Explore Products', zh: '探索产品' },
 
