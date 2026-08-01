@@ -133,7 +133,7 @@
     flex-basis: 100px;
   }
 
-  .header-right {
+  .navbar .header-right {
     display: none;
   }
 
@@ -176,6 +176,7 @@
   .navbar .nav-links > a:hover {
     flex: 0 0 auto;
     width: 100%;
+    height: auto;
     min-height: 50px;
     padding: 0 4px;
     display: flex;
