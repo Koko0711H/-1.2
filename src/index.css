@@ -715,9 +715,9 @@ select {
 }
 
 .hero-company-outline {
-  color: rgba(255, 255, 255, 0.035);
-  -webkit-text-stroke: clamp(1.5px, 0.12vw, 2.4px) rgba(255, 255, 255, 0.92);
-  text-shadow: 0 8px 30px rgba(0, 10, 32, 0.25);
+  color: #fff;
+  -webkit-text-stroke: 0;
+  text-shadow: 0 8px 34px rgba(0, 10, 32, 0.4);
 }
 
 .hero-content.hero-content-brand > p {

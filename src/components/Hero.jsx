@@ -65,8 +65,14 @@ function Hero() {
       </div>
       <div className={`hero-content hero-content-brand is-${lang}`}>
         <h1 className="hero-company-title" aria-label={t(slide.titleKey)}>
-          <span className="hero-company-solid" aria-hidden="true">{t('heroBrandLead')}</span>
-          <span className="hero-company-outline" aria-hidden="true">{t('heroBrandTail')}</span>
+          {lang === 'zh' ? (
+            <span className="hero-company-solid" aria-hidden="true">{t(slide.titleKey)}</span>
+          ) : (
+            <>
+              <span className="hero-company-solid" aria-hidden="true">{t('heroBrandLead')}</span>
+              <span className="hero-company-outline" aria-hidden="true">{t('heroBrandTail')}</span>
+            </>
+          )}
         </h1>
         <p>{t(slide.subKey)}</p>
         <button type="button" className="hero-btn" onClick={scrollToProducts}>{t('heroCta')}</button>

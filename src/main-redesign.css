@@ -1824,17 +1824,9 @@
   border-bottom: 1px solid var(--sc-line-dark);
   border-radius: 0;
   cursor: pointer;
-  opacity: 0;
-  transform: translateX(22px);
-  transition:
-    opacity 0.65s ease var(--reason-delay),
-    transform 0.65s ease var(--reason-delay),
-    background-color 0.35s ease;
-}
-
-.main-redesign .advantage-proof-reason.visible {
   opacity: 1;
-  transform: translateX(0);
+  transform: none;
+  transition: background-color 0.35s ease;
 }
 
 .main-redesign .advantage-proof-reason::before {

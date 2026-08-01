@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { useLang } from '../i18n'
 
 const evidenceTopics = [
@@ -65,26 +65,9 @@ const certificationItems = [
 ]
 
 function Advantages() {
-  const ref = useRef(null)
   const [activeIndex, setActiveIndex] = useState(0)
   const { t } = useLang()
   const activeTopic = evidenceTopics[activeIndex]
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return undefined
-
-    const items = el.querySelectorAll('.advantage-proof-reason')
-    const observer = new IntersectionObserver(
-      (entries) => entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add('visible')
-      }),
-      { threshold: 0.18 },
-    )
-
-    items.forEach((item) => observer.observe(item))
-    return () => observer.disconnect()
-  }, [])
 
   return (
     <section className="advantages-section" id="advantages">
@@ -99,7 +82,7 @@ function Advantages() {
         </div>
       </div>
 
-      <div className="advantage-proof-console" ref={ref}>
+      <div className="advantage-proof-console">
         <div className="advantage-proof-media" key={activeTopic.code}>
           <div className={`advantage-proof-collage is-${activeTopic.images.length} topic-${activeIndex}`}>
             {activeTopic.images.map((src, imageIndex) => (
@@ -137,7 +120,6 @@ function Advantages() {
               onClick={() => setActiveIndex(index)}
               onFocus={() => setActiveIndex(index)}
               onMouseEnter={() => setActiveIndex(index)}
-              style={{ '--reason-delay': `${index * 90}ms` }}
             >
               <span className="advantage-proof-code">{topic.code}</span>
               <span className="advantage-proof-copy">
