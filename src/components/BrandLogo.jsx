@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 
-const primaryLogo = '/logo.png'
-const retryLogo = '/logo.png?brand-retry=20260801'
+const primaryLogo = '/logo.svg'
+const retryLogo = '/logo.svg?brand-retry=20260801-energy'
 
-function BrandLogo({ imageClassName = '', alt = 'FLYDEER POWER 深柴动力' }) {
+function BrandLogo({ imageClassName = '', alt = 'FLYDEER POWER 深柴能源' }) {
   const [attempt, setAttempt] = useState(0)
   const [loaded, setLoaded] = useState(false)
   const retryTimerRef = useRef(null)
@@ -25,7 +25,7 @@ function BrandLogo({ imageClassName = '', alt = 'FLYDEER POWER 深柴动力' }) 
     <span className={`brand-logo-media${loaded ? ' is-ready' : ''}`}>
       <span className="brand-logo-fallback" aria-hidden="true">
         <strong>FLYDEER</strong>
-        <small>深柴动力</small>
+        <small>深柴能源</small>
       </span>
       <img
         key={attempt}

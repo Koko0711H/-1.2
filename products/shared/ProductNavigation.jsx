@@ -62,7 +62,7 @@ export default function ProductNavigation({ lang, setLang, t, localize }) {
   return (
     <header className={`navbar${mobileOpen ? " mobile-open" : ""}`}>
       <div className="navbar-inner">
-        <a className="nav-logo-link" href={localize("/")} aria-label={lang === "zh" ? "深柴动力首页" : "FLYDEER POWER home"}>
+        <a className="nav-logo-link" href={localize("/")} aria-label={lang === "zh" ? "深柴能源首页" : "FLYDEER POWER home"}>
           <BrandLogo imageClassName="nav-logo" />
         </a>
         <nav className="nav-links" id="product-primary-navigation" aria-label={lang === "zh" ? "主导航" : "Primary navigation"}>

@@ -26,7 +26,7 @@ window.addEventListener("unhandledrejection", (e) => {
 
 
 const STAGES = [
-  { id: "home", label: "深柴动力", cam: [-2, 1.5, 5], target: [0, 0, 0], fov: 40, rot: 0,
+  { id: "home", label: "深柴能源", cam: [-2, 1.5, 5], target: [0, 0, 0], fov: 40, rot: 0,
     subtitle: "FLYDEER POWER · 始于 2002",
     desc: "专业柴油发电机组研发制造商，专注为客户提供可靠的电力解决方案" },
   { id: "allinone", label: "行车驻车双保险", cam: [0, 5, 7.5], target: [0, 0, 0], fov: 26, rot: -1.5,
@@ -442,7 +442,7 @@ function InquiryFooter({ visible }) {
         <h2>{zh ? "为您的项目，匹配可靠动力方案。" : "Reliable power, configured for your project."}</h2>
         <p className="inquiry-copy">
           {zh
-            ? "告诉我们功率、工况与交付需求，深柴动力团队将为您提供选型与技术支持。"
+            ? "告诉我们功率、工况与交付需求，深柴能源团队将为您提供选型与技术支持。"
             : "Share your power, operating and delivery requirements. Our team will support product selection and engineering decisions."}
         </p>
         <div className="inquiry-actions">
@@ -456,7 +456,7 @@ function InquiryFooter({ visible }) {
       </div>
       <footer className="inquiry-site-footer">
         <span>© 2026 FLYDEER POWER</span>
-        <span>{zh ? "深柴动力 · 可靠动力解决方案" : "FLYDEER POWER · Reliable Power Solutions"}</span>
+        <span>{zh ? "深柴能源 · 可靠动力解决方案" : "FLYDEER POWER · Reliable Power Solutions"}</span>
         <a href={withLanguage("/", lang)} tabIndex={visible ? 0 : -1}>
           {zh ? "返回主站 ↑" : "Main Site ↑"}
         </a>
@@ -545,7 +545,7 @@ export default function App() {
         <StateTable stages={STAGES} currentIdx={currentStage} onSelect={goToStage} />
 <ScrollHint show={ready} progress={progress} />
       </div>
-      <div className="bottom-info">© 2026 深柴动力</div>
+      <div className="bottom-info">© 2026 深柴能源</div>
       <div className="bottom-info-left">SCP · 500kW Series</div>
 
       <ProductSwitcher hidden={progress > 0.02} />
@@ -564,8 +564,8 @@ const T = {
     navHome: "首页", navProducts: "产品中心", navAbout: "关于我们",
     navCases: "项目案例", navService: "销售与服务", scroll: "滚动探索",
     homeTitle: "移动拖车式发电机",
-    homeIntro1: "深柴动力是一家集柴油发电机组研发、生产、销售和服务于一体的综合性企业。公司拥有现代化生产基地，年产能超过5000台套",
-    homeIntro2: "依托自主技术、完善的质量体系与市场化创新机制，深柴动力已发展成为国内领先的柴油发电机组制造商",
+    homeIntro1: "深柴能源是一家集柴油发电机组研发、生产、销售和服务于一体的综合性企业。公司拥有现代化生产基地，年产能超过5000台套",
+    homeIntro2: "依托自主技术、完善的质量体系与市场化创新机制，深柴能源已发展成为国内领先的柴油发电机组制造商",
     allinoneDesc: "行车制动系统：采用惯性制动导向，主车制动时自动触发，牵引杆推力转化为制动力，灵敏可靠。驻车制动系统：停车自动锁止，杜绝溜车隐患",
     engineDesc: "提供全系列发动机品牌选择，满足不同应用场景",
     airflowDesc: "既可置于室内，也可直接摆放于室外。配备道路版行驶系统，可满足道路拖车行驶需求，真正做到电力随行；体积小，移动方便，操作灵活，为地点分散的用户迅速提供紧急供电，并且能快速安装、通用性强、货期短的拖车静音电源",
@@ -615,7 +615,7 @@ function LanguageProvider({ children }) {
   useEffect(() => {
     syncLanguageToUrl(lang);
     document.title = lang === "zh"
-      ? "深柴动力｜3D 产品展厅"
+      ? "深柴能源｜3D 产品展厅"
       : "FLYDEER POWER | 3D Product Showroom";
   }, [lang]);
 

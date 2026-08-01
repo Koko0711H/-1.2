@@ -1,6 +1,6 @@
-# 深柴动力统一站点
+# 深柴能源统一站点
 
-React 19 + Vite 8 构建的深柴动力双语统一站点。主站、关于我们和 5 个 3D 产品展厅共用一个同源项目与一个部署产物，页面采用工业蓝、冷白、大字号标题、技术编号与实色面板，支持中文和英文切换。
+React 19 + Vite 8 构建的深柴能源双语统一站点。主站、关于我们和 5 个 3D 产品展厅共用一个同源项目与一个部署产物，页面采用工业蓝、冷白、大字号标题、技术编号与实色面板，支持中文和英文切换。
 
 ## 统一站点入口
 
@@ -24,7 +24,7 @@ React 19 + Vite 8 构建的深柴动力双语统一站点。主站、关于我�
 | 01 | 为什么选择我们 / 资质矩阵 | `#advantages` | `src/components/Advantages.jsx` |
 | 02 | 探索产品 | `#products` | `src/components/Products.jsx` |
 | 03 | 聚焦行业 | `#industry` | `src/components/Industry.jsx` |
-| 04 | 关于深柴动力 | `#about` | `src/components/About.jsx` |
+| 04 | 关于深柴能源 | `#about` | `src/components/About.jsx` |
 | 05 | 项目案例 | `#cases` | `src/components/Cases.jsx` |
 | 06 | 销售与服务 | `#contact` | `src/components/Contact.jsx` |
 
@@ -84,7 +84,7 @@ Cloudflare Pages 只需要部署本项目构建出的 `dist`，不再分别配�
 1. 运行 `pnpm run check:videos`、`pnpm run lint` 和 `pnpm run build`。
 2. 检查中文和英文切换。
 3. 检查桌面端与 360px、390px、412px 手机端无横向溢出、无缺图和不可读视频。
-4. 确认首页顺序仍为：开屏视频 → 为什么选择我们 → 探索产品 → 聚焦行业 → 关于深柴动力 → 项目案例 → 销售与服务。
+4. 确认首页顺序仍为：开屏视频 → 为什么选择我们 → 探索产品 → 聚焦行业 → 关于深柴能源 → 项目案例 → 销售与服务。
 5. 检查待推送提交中没有 `.zip`、本地快照或超过平台限制的大文件。
 
 ## 2026-07-31 媒体清晰度与手机端重构

@@ -12,7 +12,7 @@ function Footer() {
       </div>
       <div className="footer-inner">
         <div className="footer-brand">
-          <img src="/logo.png" alt="FLYDEER POWER 深柴动力" className="footer-logo" />
+          <img src="/logo.svg" alt="FLYDEER POWER 深柴能源" className="footer-logo" />
           <p>FLYDEER POWER — Professional diesel generator sets for global customers.</p>
         </div>
         <div className="footer-col">

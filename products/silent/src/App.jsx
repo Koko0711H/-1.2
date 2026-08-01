@@ -427,7 +427,7 @@ function InquiryFooter({ visible }) {
         <h2>{zh ? "为您的项目，匹配可靠动力方案。" : "Reliable power, configured for your project."}</h2>
         <p className="inquiry-copy">
           {zh
-            ? "告诉我们功率、工况与交付需求，深柴动力团队将为您提供选型与技术支持。"
+            ? "告诉我们功率、工况与交付需求，深柴能源团队将为您提供选型与技术支持。"
             : "Share your power, operating and delivery requirements. Our team will support product selection and engineering decisions."}
         </p>
         <div className="inquiry-actions">
@@ -441,7 +441,7 @@ function InquiryFooter({ visible }) {
       </div>
       <footer className="inquiry-site-footer">
         <span>© 2026 FLYDEER POWER</span>
-        <span>{zh ? "深柴动力 · 可靠动力解决方案" : "FLYDEER POWER · Reliable Power Solutions"}</span>
+        <span>{zh ? "深柴能源 · 可靠动力解决方案" : "FLYDEER POWER · Reliable Power Solutions"}</span>
         <a href={withLanguage("/", lang)} tabIndex={visible ? 0 : -1}>
           {zh ? "返回主站 ↑" : "Main Site ↑"}
         </a>
@@ -552,7 +552,7 @@ function LanguageProvider({ children }) {
   useEffect(() => {
     syncLanguageToUrl(lang);
     document.title = lang === "zh"
-      ? "深柴动力｜3D 产品展厅"
+      ? "深柴能源｜3D 产品展厅"
       : "FLYDEER POWER | 3D Product Showroom";
   }, [lang]);
 

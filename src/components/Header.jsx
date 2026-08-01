@@ -57,7 +57,7 @@ function Header() {
         <a
           className="logo"
           href="#top"
-          aria-label={lang === 'zh' ? '深柴动力首页' : 'FLYDEER POWER home'}
+          aria-label={lang === 'zh' ? '深柴能源首页' : 'FLYDEER POWER home'}
           onClick={(event) => {
             event.preventDefault()
             window.scrollTo({ top: 0, behavior: 'smooth' })
