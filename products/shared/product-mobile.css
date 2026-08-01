@@ -915,6 +915,16 @@
 /* Desktop product controls live in their own lower rail so stage copy never
    competes with navigation, including short Windows browser viewports. */
 @media (min-width: 901px) {
+  .app .product-switcher {
+    top: max(196px, 23vh);
+  }
+
+  .app .product-switcher-menu {
+    max-height: calc(100vh - 264px);
+    max-height: calc(100dvh - 264px);
+    overflow-y: auto;
+  }
+
   .app .statetable-container {
     z-index: 28;
     top: auto;
@@ -992,6 +1002,12 @@
 
   .app .scroll-hint {
     bottom: max(88px, 10vh);
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1180px) {
+  html[lang="en"] .app .product-switcher {
+    top: max(268px, 31vh);
   }
 }
 

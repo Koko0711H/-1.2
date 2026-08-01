@@ -137,8 +137,19 @@
   }
 
   .product-detail {
-    max-height: none !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    opacity: 0;
+    visibility: hidden;
+    transition: max-height 0.45s ease, opacity 0.22s ease, visibility 0s linear 0.45s;
+  }
+
+  .product-detail.open {
+    max-height: 4000px !important;
     overflow: visible !important;
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
   }
 }
 
