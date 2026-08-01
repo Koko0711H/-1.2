@@ -134,7 +134,21 @@
   }
 
   .navbar .header-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .navbar .header-right .social-icon,
+  .navbar .header-right .quote-btn {
     display: none;
+  }
+
+  .navbar .header-right .lang-btn {
+    min-height: 44px;
+    padding: 0 3px;
+    font-size: 12px;
   }
 
   .navbar .nav-links {
@@ -256,26 +270,6 @@
     padding-top: 18px;
     display: grid;
     gap: 13px;
-  }
-
-  .product-mobile-languages {
-    display: flex;
-    gap: 10px;
-  }
-
-  .navbar .product-mobile-languages .lang-btn {
-    min-width: 88px;
-    min-height: 44px;
-    padding: 0 16px;
-    color: rgba(255, 255, 255, 0.72);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    border-radius: 8px;
-  }
-
-  .navbar .product-mobile-languages .lang-btn.active {
-    color: #fff;
-    border-color: #e63946;
-    background: rgba(230, 57, 70, 0.1);
   }
 
   .product-mobile-quote {
@@ -557,6 +551,17 @@
     margin-top: auto;
     padding: 15px 16px calc(15px + env(safe-area-inset-bottom));
     align-items: flex-start;
+  }
+}
+
+@media (max-width: 420px) {
+  .nav-logo-link .brand-logo-media {
+    width: 98px;
+    flex-basis: 98px;
+  }
+
+  .navbar .header-right {
+    gap: 6px;
   }
 }
 

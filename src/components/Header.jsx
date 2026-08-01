@@ -90,20 +90,6 @@ function Header() {
             </a>
           ))}
           <div className="mobile-nav-actions">
-            <div className="mobile-nav-languages" aria-label={lang === 'zh' ? '语言切换' : 'Language'}>
-              <button
-                type="button"
-                className={`lang-btn ${lang === 'zh' ? 'active' : ''}`}
-                aria-pressed={lang === 'zh'}
-                onClick={() => setLang('zh')}
-              >中文</button>
-              <button
-                type="button"
-                className={`lang-btn ${lang === 'en' ? 'active' : ''}`}
-                aria-pressed={lang === 'en'}
-                onClick={() => setLang('en')}
-              >English</button>
-            </div>
             <a className="mobile-quote-btn" href="#contact" onClick={() => setMobileOpen(false)}>
               {t('getQuote')}
             </a>
