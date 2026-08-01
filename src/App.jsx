@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import './main-redesign.css'
 import './mobile-site.css'
+import './mobile-header.css'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import Products from './components/Products'

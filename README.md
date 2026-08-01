@@ -61,6 +61,7 @@ Cloudflare Pages 只需要部署本项目构建出的 `dist`，不再分别配�
 - `src/i18n.jsx`：中英文文案。
 - `src/main-redesign.css`：主要页面视觉、覆盖转场和响应式样式。
 - `src/mobile-site.css`：主站手机端媒体视窗、横向卡片、触控尺寸和正常阅读流。
+- `src/mobile-header.css`：主站与 5 个产品页共用的手机顶部栏规格。
 - `src/components/Hero.jsx`：唯一首页开屏视频。
 - `src/components/Advantages.jsx`：可信理由、真实项目图和资质矩阵。
 - `src/components/Cases.jsx`：项目案例曲线与滚动插入效果。

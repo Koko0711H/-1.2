@@ -109,46 +109,10 @@
   .navbar,
   .navbar.scrolled {
     z-index: 110;
-    height: calc(64px + env(safe-area-inset-top));
-    padding-top: env(safe-area-inset-top);
-  }
-
-  .navbar-inner {
-    position: relative;
-    z-index: 3;
-    height: 64px;
-    padding: 0 max(16px, env(safe-area-inset-right)) 0 max(16px, env(safe-area-inset-left));
-    justify-content: space-between;
-    gap: 10px;
-    background: rgba(6, 26, 51, 0.98);
   }
 
   .nav-logo {
     height: 28px;
-  }
-
-  .nav-logo-link .brand-logo-media {
-    width: 100px;
-    height: 28px;
-    flex-basis: 100px;
-  }
-
-  .navbar .header-right {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .navbar .header-right .social-icon,
-  .navbar .header-right .quote-btn {
-    display: none;
-  }
-
-  .navbar .header-right .lang-btn {
-    min-height: 44px;
-    padding: 0 3px;
-    font-size: 12px;
   }
 
   .navbar .nav-links {
@@ -551,17 +515,6 @@
     margin-top: auto;
     padding: 15px 16px calc(15px + env(safe-area-inset-bottom));
     align-items: flex-start;
-  }
-}
-
-@media (max-width: 420px) {
-  .nav-logo-link .brand-logo-media {
-    width: 98px;
-    flex-basis: 98px;
-  }
-
-  .navbar .header-right {
-    gap: 6px;
   }
 }
 

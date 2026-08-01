@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import BrandLogo from "../../src/components/BrandLogo"
+import "../../src/mobile-header.css"
 import "./product-mobile.css"
 
 function SocialLinks({ localize }) {
