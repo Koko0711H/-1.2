@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useLang } from '../i18n'
 import { withLanguage } from '../languageRouting'
+import BrandLogo from './BrandLogo'
 
 function Header() {
   const [activeSection, setActiveSection] = useState('top')
@@ -62,11 +63,7 @@ function Header() {
             window.scrollTo({ top: 0, behavior: 'smooth' })
           }}
         >
-          <img
-            src="/logo.png"
-            alt="FLYDEER POWER 深柴动力"
-            className="logo-img"
-          />
+          <BrandLogo imageClassName="logo-img" />
         </a>
         <nav className="nav-links" id="primary-navigation" aria-label={lang === 'zh' ? '主导航' : 'Primary navigation'}>
           {[

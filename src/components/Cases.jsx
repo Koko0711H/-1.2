@@ -278,10 +278,26 @@ function Cases() {
                     <article className={`case-card case-timeline-card case-timeline-card--${side}`} key={item.image} aria-label={copy.category}>
                       <img
                         src={item.image}
+                        data-original-src={item.image}
                         alt={copy.category}
                         className="case-img-photo"
-                        loading={cardIndex > 2 ? 'lazy' : 'eager'}
-                        decoding="async"
+                        loading={cardIndex > 3 ? 'lazy' : 'eager'}
+                        decoding={cardIndex > 3 ? 'async' : 'sync'}
+                        fetchPriority={cardIndex > 3 ? 'auto' : 'high'}
+                        onLoad={(event) => event.currentTarget.classList.add('is-loaded')}
+                        onError={(event) => {
+                          const image = event.currentTarget
+                          image.classList.remove('is-loaded')
+                          const retryCount = Number(image.dataset.retryCount || 0)
+                          if (retryCount >= 2) return
+                          image.dataset.retryCount = String(retryCount + 1)
+                          window.setTimeout(() => {
+                            if (!image.isConnected) return
+                            const retryUrl = new URL(image.dataset.originalSrc, window.location.href)
+                            retryUrl.searchParams.set('retry', String(retryCount + 1))
+                            image.src = retryUrl.toString()
+                          }, 280 * (retryCount + 1))
+                        }}
                       />
                       <div className="case-card-shade" aria-hidden="true" />
                       <span className="case-card-index">{String(cardIndex + 1).padStart(2, '0')}</span>

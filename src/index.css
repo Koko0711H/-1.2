@@ -87,6 +87,47 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   display: flex; align-items: baseline; gap: 2px; cursor: pointer;
 }
 .logo-img { height: 36px; width: auto; object-fit: contain; transition: filter 0.3s; }
+.logo .brand-logo-media {
+  position: relative;
+  width: 128px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 128px;
+  overflow: hidden;
+}
+.logo .brand-logo-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+  line-height: 1;
+  opacity: 1;
+  transition: opacity 0.12s ease;
+}
+.logo .brand-logo-fallback strong {
+  font-size: 15px;
+  font-style: italic;
+  letter-spacing: 0.035em;
+}
+.logo .brand-logo-fallback small {
+  margin-top: 3px;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+}
+.logo .brand-logo-image {
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.16s ease, filter 0.3s;
+}
+.logo .brand-logo-media.is-ready .brand-logo-image { opacity: 1; }
+.logo .brand-logo-media.is-ready .brand-logo-fallback {
+  opacity: 0;
+  visibility: hidden;
+}
 
 .nav-links {
   display: flex;

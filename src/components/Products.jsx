@@ -125,27 +125,40 @@ function ProductCard({ item, index }) {
     if (!el) return
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) el.classList.add('visible')
-        else el.classList.remove('visible')
+        const video = videoRef.current
+        if (entry.isIntersecting) {
+          el.classList.add('visible')
+          if (item.type === 'video' && video && video.dataset.prepared !== 'true') {
+            video.dataset.prepared = 'true'
+            video.preload = 'auto'
+            video.load()
+          }
+        } else {
+          el.classList.remove('visible')
+          if (item.type === 'video' && video) {
+            video.pause()
+            if (video.readyState >= 1) video.currentTime = 0
+          }
+        }
       },
-      { threshold: 0.2 }
+      { threshold: 0.12, rootMargin: '260px 0px' }
     )
     observer.observe(el)
     return () => observer.disconnect()
-  }, [])
+  }, [item.type])
 
   const handleMouseEnter = () => {
-    if (item.type === 'video' && videoRef.current) {
-      videoRef.current.currentTime = 0
-      videoRef.current.play().catch(() => {})
-    }
+    const video = videoRef.current
+    if (item.type !== 'video' || !video) return
+    video.currentTime = 0
+    video.play().catch(() => {})
   }
 
   const handleMouseLeave = () => {
-    if (item.type === 'video' && videoRef.current) {
-      videoRef.current.pause()
-      videoRef.current.currentTime = 0
-    }
+    const video = videoRef.current
+    if (item.type !== 'video' || !video) return
+    video.pause()
+    if (video.readyState >= 1) video.currentTime = 0
   }
 
   return (
@@ -187,11 +200,10 @@ function ProductCard({ item, index }) {
         className="product-showcase-img"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        style={{ cursor: item.type === 'video' ? 'pointer' : 'default' }}
       >
         <div className="product-media-labels" aria-hidden="true">
           <span>PRODUCT MOTION FILE</span>
-          <span>HOVER TO RUN</span>
+          <span>HOVER TO PLAY</span>
         </div>
         {item.type === 'video' ? (
           <video
@@ -200,6 +212,14 @@ function ProductCard({ item, index }) {
             muted
             playsInline
             preload="metadata"
+            onLoadedData={(event) => {
+              event.currentTarget.pause()
+              event.currentTarget.currentTime = 0
+            }}
+            onEnded={(event) => {
+              event.currentTarget.pause()
+              event.currentTarget.currentTime = 0
+            }}
           >
             <source src={item.src} type="video/mp4" />
           </video>

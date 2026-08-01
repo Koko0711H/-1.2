@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import BrandLogo from "../../src/components/BrandLogo"
 import "./product-mobile.css"
 
 function SocialLinks({ localize }) {
@@ -61,7 +62,7 @@ export default function ProductNavigation({ lang, setLang, t, localize }) {
     <header className={`navbar${mobileOpen ? " mobile-open" : ""}`}>
       <div className="navbar-inner">
         <a className="nav-logo-link" href={localize("/")} aria-label={lang === "zh" ? "深柴动力首页" : "FLYDEER POWER home"}>
-          <img className="nav-logo" src="/logo.png" alt="FLYDEER POWER 深柴动力" />
+          <BrandLogo imageClassName="nav-logo" />
         </a>
         <nav className="nav-links" id="product-primary-navigation" aria-label={lang === "zh" ? "主导航" : "Primary navigation"}>
           {navItems.map((item) => (

@@ -2236,8 +2236,14 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  color: transparent;
+  opacity: 0;
   filter: saturate(0.86) contrast(1.03) brightness(0.84);
-  transition: filter 0.5s ease, transform 0.8s cubic-bezier(0.16, 0.78, 0.22, 1);
+  transition: opacity 0.18s ease, filter 0.5s ease, transform 0.8s cubic-bezier(0.16, 0.78, 0.22, 1);
+}
+
+.main-redesign .case-img-photo.is-loaded {
+  opacity: 1;
 }
 
 .main-redesign .case-card-shade {
