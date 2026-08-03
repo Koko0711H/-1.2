@@ -1,0 +1,13 @@
+packages:
+  - '.'
+
+# Allow day-0 @strapi/* npm publishes while keeping pnpm 11 supply-chain defaults for other deps.
+minimumReleaseAgeExclude:
+  - '@strapi/*'
+
+allowBuilds:
+  '@swc/core': true
+  better-sqlite3: true
+  core-js-pure: true
+  esbuild: true
+  sharp: true

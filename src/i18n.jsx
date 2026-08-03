@@ -7,6 +7,7 @@ const translations = {
   navAbout: { en: 'About Us', zh: '关于我们' },
   navProducts: { en: 'Products', zh: '产品中心' },
   navCases: { en: 'Projects', zh: '项目案例' },
+  navNews: { en: 'News', zh: '新闻动态' },
   navService: { en: 'Sales & Service', zh: '销售与服务' },
   navIndustry: { en: 'Online Showroom', zh: '网上展厅' },
   getQuote: { en: 'Get Quote', zh: '获取报价' },

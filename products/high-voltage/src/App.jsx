@@ -562,7 +562,7 @@ export default function App() {
 const T = {
   zh: {
     navHome: "首页", navProducts: "产品中心", navAbout: "关于我们",
-    navCases: "项目案例", navService: "销售与服务", scroll: "滚动探索",
+    navCases: "项目案例", navNews: "新闻动态", navService: "销售与服务", scroll: "滚动探索",
     homeTitle: "高压配电系统",
     homeIntro1: "面向大功率发电与高压配电场景，将柜体、控制与保护单元纳入统一系统设计。",
     homeIntro2: "结合项目负载、接入条件与运行需求，提供清晰、可靠、便于维护的成套方案。",
@@ -585,7 +585,7 @@ const T = {
   },
   en: {
     navHome: "Home", navProducts: "Products", navAbout: "About Us",
-    navCases: "Projects", navService: "Sales & Service", scroll: "SCROLL",
+    navCases: "Projects", navNews: "News", navService: "Sales & Service", scroll: "SCROLL",
     homeTitle: "High-Voltage Distribution System",
     homeIntro1: "For high-output generation and distribution projects, cabinets, controls, and protection units are engineered as one coordinated system.",
     homeIntro2: "System configuration is matched to project loads, connection conditions, and operating requirements for clear and maintainable delivery.",

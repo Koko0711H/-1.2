@@ -44,6 +44,37 @@ pnpm run build
 - `pnpm run lint`：检查当前源码。
 - `pnpm run build`：生成 `dist/` 生产目录。
 
+## 新闻动态子站（本机 Strapi）
+
+新闻动态是独立的 `/news/` 入口，内容由本机 Strapi 后台管理；前台通过 REST API 读取已发布文章。当前默认使用 SQLite，后续购买服务器后可将数据库切换为 PostgreSQL 并迁移导出包。
+
+首次使用时复制环境模板（已有 `cms/.env` 时无需覆盖）：
+
+```powershell
+Copy-Item .env.example .env
+Copy-Item cms/.env.example cms/.env
+pnpm --dir cms install --frozen-lockfile
+```
+
+启动后台（终端一）：
+
+```powershell
+pnpm cms:dev
+```
+
+启动网站（终端二）：
+
+```powershell
+pnpm dev -- --host 127.0.0.1
+```
+
+- 后台管理：`http://localhost:1337/admin`
+- 新闻前台：`http://localhost:5173/news/?lang=zh`
+- 内容模型：文章、分类、标签；文章支持封面、富文本块、草稿/发布、中文/英文语言版本。
+- 备份：`pnpm cms:export`，备份文件写入根目录 `backups/flydeer-news.tar.gz`；迁移到新环境后使用 `pnpm cms:import`（导入会覆盖目标环境数据，请先确认）。
+
+服务器部署时，把 `cms/.env` 中的 `DATABASE_CLIENT` 改为 `postgres`，填写 PostgreSQL 连接参数；另复制根目录 `.env.example` 为 `.env`，将其中的 `VITE_STRAPI_URL` 指向正式 API 地址，再执行 `pnpm run build`。
+
 项目只保留 `pnpm-lock.yaml`；不要提交 `node_modules/`、`dist/`、本地快照、压缩包或历史素材目录。
 
 ## Cloudflare Pages / 一键部署

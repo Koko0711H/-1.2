@@ -9,6 +9,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
+        news: resolve(__dirname, 'news/index.html'),
         openFrame500: resolve(__dirname, 'products/open-frame-500/index.html'),
         openFrame1200: resolve(__dirname, 'products/open-frame-1200/index.html'),
         silent: resolve(__dirname, 'products/silent/index.html'),

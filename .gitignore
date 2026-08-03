@@ -12,6 +12,19 @@ dist
 dist-ssr
 *.local
 
+# Local Strapi runtime data and secrets
+cms/.env
+cms/.tmp/
+cms/.cache/
+cms/build/
+cms/dist/
+cms/types/generated/
+cms/public/uploads/*
+!cms/public/uploads/.gitkeep
+cms/*.tar.gz
+cms/*.tar.gz.enc
+backups/
+
 # Local design archives and generated working material
 .codex-snapshots/
 .media/

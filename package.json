@@ -6,9 +6,14 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "oxlint src products",
+    "lint": "oxlint src products news scripts",
     "check:videos": "node scripts/check-video-assets.mjs",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "cms:dev": "pnpm --dir cms develop",
+    "cms:build": "pnpm --dir cms build",
+    "cms:start": "pnpm --dir cms start",
+    "cms:export": "node scripts/cms-export.mjs",
+    "cms:import": "node scripts/cms-import.mjs"
   },
   "dependencies": {
     "@react-three/drei": "^10.0.0",

@@ -37,6 +37,7 @@ export default function ProductNavigation({ lang, setLang, t, localize }) {
     { href: "/products/open-frame-500/", label: lang === "zh" ? "网上展厅" : "Online Showroom", active: true },
     { href: "/about/", label: t("navAbout") },
     { href: "/#cases", label: t("navCases") },
+    { href: "/news/", label: t("navNews") },
     { href: "/#contact", label: t("navService") },
   ]
 

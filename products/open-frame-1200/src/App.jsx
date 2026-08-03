@@ -562,7 +562,7 @@ export default function App() {
 const T = {
   zh: {
     navHome: "首页", navProducts: "产品中心", navAbout: "关于我们",
-    navCases: "项目案例", navService: "销售与服务", scroll: "滚动探索",
+    navCases: "项目案例", navNews: "新闻动态", navService: "销售与服务", scroll: "滚动探索",
     homeTitle: "1200kW发电机组",
     homeIntro1: "深柴能源是一家集柴油发电机组研发、生产、销售和服务于一体的综合性企业。公司拥有现代化生产基地，年产能超过5000台套",
     homeIntro2: "依托自主技术、完善的质量体系与市场化创新机制，深柴能源已发展成为国内领先的柴油发电机组制造商",
@@ -585,7 +585,7 @@ const T = {
   },
   en: {
     navHome: "Home", navProducts: "Products", navAbout: "About Us",
-    navCases: "Projects", navService: "Sales & Service", scroll: "SCROLL",
+    navCases: "Projects", navNews: "News", navService: "Sales & Service", scroll: "SCROLL",
     homeTitle: "1200kW Generator Set",
     homeIntro1: "FLYDEER POWER is a comprehensive enterprise integrating R&D, production, sales and service of diesel generator sets. With a modern manufacturing base, annual capacity exceeds 5,000 units.",
     homeIntro2: "Backed by state-owned strength combined with market-driven innovation, FLYDEER POWER has become a leading diesel generator set manufacturer in China.",

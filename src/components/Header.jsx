@@ -72,6 +72,7 @@ function Header() {
             { key: 'navIndustry', href: '/products/open-frame-500/' },
             { key: 'navAbout', action: 'about', href: '/about/' },
             { key: 'navCases', action: 'cases' },
+            { key: 'navNews', href: '/news/' },
             { key: 'navService', action: 'contact' },
           ].map((item, i) => (
             <a

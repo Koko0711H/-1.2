@@ -1,0 +1,94 @@
+{
+  "kind": "collectionType",
+  "collectionName": "articles",
+  "info": {
+    "singularName": "article",
+    "pluralName": "articles",
+    "displayName": "新闻文章",
+    "description": "发电机组科普、公司动态和行业资讯"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "maxLength": 120,
+      "pluginOptions": { "i18n": { "localized": true } }
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "summary": {
+      "type": "text",
+      "required": true,
+      "maxLength": 320,
+      "pluginOptions": { "i18n": { "localized": true } }
+    },
+    "body": {
+      "type": "blocks",
+      "required": true,
+      "pluginOptions": { "i18n": { "localized": true } }
+    },
+    "cover": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["images"],
+      "pluginOptions": { "i18n": { "localized": true } }
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "articles"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "inversedBy": "articles"
+    },
+    "author": {
+      "type": "string",
+      "default": "深柴能源",
+      "maxLength": 80
+    },
+    "readingTime": {
+      "type": "integer",
+      "min": 1,
+      "default": 3
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false
+    },
+    "seoTitle": {
+      "type": "string",
+      "maxLength": 70,
+      "pluginOptions": { "i18n": { "localized": true } }
+    },
+    "seoDescription": {
+      "type": "text",
+      "maxLength": 170,
+      "pluginOptions": { "i18n": { "localized": true } }
+    },
+    "sourceName": {
+      "type": "string",
+      "maxLength": 120,
+      "pluginOptions": { "i18n": { "localized": true } }
+    },
+    "sourceUrl": {
+      "type": "string",
+      "maxLength": 500
+    }
+  }
+}
