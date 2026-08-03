@@ -7,10 +7,12 @@
 ```powershell
 Copy-Item .env.example .env
 pnpm install --frozen-lockfile
-pnpm develop
+pnpm develop --no-watch-admin
 ```
 
 打开 `http://localhost:1337/admin` 创建本机管理员。管理员密码只保存在本机数据库中，不要写入 Git 或交接文档。
+
+后台已启用 Strapi 自带的中文（繁体）界面选项，并阻止 Chrome 自动翻译改写 React 页面节点。需要中文界面时请在个人资料中选择中文，不要对 `localhost:1337/admin` 使用浏览器网页翻译。
 
 ## 内容结构
 
