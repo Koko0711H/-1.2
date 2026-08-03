@@ -1,4 +1,7 @@
 import { resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const newsAdminRoot = fileURLToPath(new URL('..', import.meta.url))
 
 function csv(value, fallback) {
   return String(value || fallback)
@@ -12,10 +15,12 @@ export function loadConfig(overrides = {}) {
   const port = Number(overrides.port || process.env.PORT || 3001)
   const host = overrides.host || process.env.HOST || '127.0.0.1'
   const trustProxyValue = overrides.trustProxy ?? process.env.TRUST_PROXY ?? false
+  const staticExportDir = overrides.staticExportDir || resolve(newsAdminRoot, '../public/news-data')
   return {
     host,
     port,
     dataDir,
+    staticExportDir,
     logger: overrides.logger ?? true,
     trustProxy: trustProxyValue === 'true' ? true : trustProxyValue === 'false' ? false : trustProxyValue,
     publicBaseUrl: String(overrides.publicBaseUrl || process.env.PUBLIC_BASE_URL || `http://${host}:${port}`).replace(/\/$/, ''),

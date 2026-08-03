@@ -40,6 +40,9 @@ const refs = {
   bodyEditor: $('#bodyEditor'),
   bodyImageInput: $('#bodyImageInput'),
   restoreInput: $('#restoreInput'),
+  staticExportButton: $('#staticExportButton'),
+  exportDialog: $('#exportDialog'),
+  exportDialogSummary: $('#exportDialogSummary'),
   toast: $('#toast'),
 }
 
@@ -440,6 +443,37 @@ $('#backupButton').addEventListener('click', async () => {
     showToast('备份文件已导出')
   } catch (error) {
     showToast(error.message, 'error')
+  }
+})
+
+refs.staticExportButton.addEventListener('click', async () => {
+  if (state.dirty && !window.confirm('当前文章有未保存修改，这些修改不会进入静态网站。确定继续生成吗？')) return
+  refs.staticExportButton.disabled = true
+  refs.staticExportButton.textContent = '正在生成…'
+  try {
+    const response = await api('/api/admin/static-export', { method: 'POST' })
+    const { articles, images } = response.data
+    refs.exportDialogSummary.textContent = `已生成 ${articles} 篇已发布文章和 ${images} 张引用图片。草稿不会进入网站。`
+    refs.exportDialog.showModal()
+    showToast('静态新闻已生成，请提交并推送 GitHub')
+  } catch (error) {
+    showToast(error.message, 'error')
+  } finally {
+    refs.staticExportButton.disabled = false
+    refs.staticExportButton.textContent = '发布到静态网站'
+  }
+})
+
+for (const selector of ['#exportDialogClose', '#exportDialogDone']) {
+  $(selector).addEventListener('click', () => refs.exportDialog.close())
+}
+
+$('#copyGitCommands').addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText($('#gitCommands').textContent)
+    showToast('Git 命令已复制')
+  } catch {
+    showToast('复制失败，请手动复制命令', 'error')
   }
 })
 

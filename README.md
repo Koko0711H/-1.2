@@ -71,10 +71,21 @@ pnpm dev -- --host 127.0.0.1
 - 后台管理：`http://127.0.0.1:3001/admin/`
 - 新闻前台：`http://localhost:5173/news/?lang=zh`
 - 第一次打开后台会要求建立本机管理员账户，之后直接登录即可。
+- 文章确认发布后，点击后台顶部“发布到静态网站”，系统会把已发布文章和实际引用图片生成到 `public/news-data/`；草稿不会导出。
 - 在后台右上角点击“导出备份”得到 ZIP；迁移到服务器后，在新后台点击“恢复备份”即可恢复文章和图片。
 - 运行验证：`pnpm news-admin:test`。
 
-服务器部署时运行同一个 `news-admin` Node 服务，并通过 Nginx/Caddy 提供 HTTPS；把根目录 `.env` 中的 `VITE_NEWS_API_URL` 指向正式 API 地址后重新构建网站。低频企业新闻可继续使用 SQLite；需要多人高并发编辑时再增加 PostgreSQL 适配。
+当前 Cloudflare Pages 生产构建默认读取 `public/news-data/articles.json`。每次在后台生成静态新闻后，执行：
+
+```powershell
+git add public/news-data
+git commit -m "content: update news"
+git push
+```
+
+Cloudflare Pages 检测到 GitHub 新提交后会自动构建，新闻随新部署上线。图片位于 `public/news-data/uploads/`，生成时会自动移除不再被已发布文章引用的旧图片。
+
+服务器部署时可运行同一个 `news-admin` Node 服务，并通过 Nginx/Caddy 提供 HTTPS；将网站构建变量设为 `VITE_NEWS_SOURCE=api`，再把 `VITE_NEWS_API_URL` 指向正式 API 地址后重新构建。低频企业新闻可继续使用 SQLite；需要多人高并发编辑时再增加 PostgreSQL 适配。
 
 原 `cms/` Strapi 目录暂时保留作回退，不再是新闻前台的默认数据源；确认新后台长期稳定后可另行归档。
 
@@ -87,7 +98,7 @@ pnpm dev -- --host 127.0.0.1
 - 根目录：项目根目录
 - 依赖锁文件：`pnpm-lock.yaml`
 
-Cloudflare Pages 只需要部署本项目构建出的 `dist`，不再分别配置主站和子站域名。当前统一构建会生成 `dist/index.html`、`dist/about/index.html`、`dist/news/index.html` 和 5 个产品入口目录。新闻后台不能部署在纯静态 Pages 上，需要运行在支持 Node.js 和持久磁盘的服务器中。
+Cloudflare Pages 只需要部署本项目构建出的 `dist`，不再分别配置主站和子站域名。当前统一构建会生成 `dist/index.html`、`dist/about/index.html`、`dist/news/index.html`、静态新闻数据和 5 个产品入口目录。本机后台不部署到 Pages；Pages 只使用后台生成并提交到 GitHub 的静态文章与图片。
 
 ## 关键文件
 
@@ -103,6 +114,7 @@ Cloudflare Pages 只需要部署本项目构建出的 `dist`，不再分别配�
 - `products/<slug>/`：各产品 3D 展厅的独立入口、组件和样式。
 - `news/`：新闻列表与文章详情前台。
 - `news-admin/`：轻量新闻后台、SQLite 数据库接口和中文文章工作台。
+- `public/news-data/`：由后台生成、提交 GitHub 并随 Cloudflare Pages 部署的静态新闻数据。
 - `public/product-assets/<slug>/`：按产品隔离的模型与图片；`public/product-assets/shared/` 为共享模型依赖。
 - `public/about/`：关于我们静态页面及其同源资源。
 - `scripts/check-video-assets.mjs`：视频完整性检查。

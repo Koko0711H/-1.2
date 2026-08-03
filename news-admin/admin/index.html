@@ -46,6 +46,7 @@
         </div>
         <div class="topbar-actions">
           <span id="saveState" class="save-state">尚未编辑</span>
+          <button id="staticExportButton" class="button button-static-publish" type="button">发布到静态网站</button>
           <button id="backupButton" class="button button-quiet" type="button">导出备份</button>
           <label class="button button-quiet file-button">
             恢复备份
@@ -183,6 +184,25 @@
         </section>
       </div>
     </div>
+
+    <dialog id="exportDialog" class="export-dialog">
+      <button id="exportDialogClose" class="dialog-close" type="button" aria-label="关闭">×</button>
+      <p class="eyebrow">STATIC RELEASE / READY</p>
+      <h2>静态新闻已经生成</h2>
+      <p id="exportDialogSummary" class="dialog-lead"></p>
+      <div class="release-steps">
+        <span>下一步</span>
+        <strong>在项目目录提交并推送 GitHub</strong>
+        <pre id="gitCommands">git add public/news-data
+git commit -m "content: update news"
+git push</pre>
+      </div>
+      <div class="dialog-actions">
+        <button id="copyGitCommands" class="button button-secondary" type="button">复制 Git 命令</button>
+        <button id="exportDialogDone" class="button button-primary" type="button">我知道了</button>
+      </div>
+      <p class="dialog-note">Cloudflare Pages 检测到 GitHub 新提交后会自动重新部署。生成静态数据本身不会自动推送。</p>
+    </dialog>
 
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
     <script type="module" src="/admin/app.js"></script>

@@ -15,6 +15,7 @@ pnpm dev
 - 新建、保存草稿、发布和撤回文章；
 - 上传封面和正文图片；
 - 管理中英文、栏目、标签、作者、阅读时间和 SEO；
+- 生成可提交 GitHub、由 Cloudflare Pages 直接读取的静态新闻；
 - 导出包含文章与图片的 ZIP 备份；
 - 在另一台电脑或服务器的新后台恢复 ZIP。
 
@@ -33,6 +34,22 @@ pnpm test
 
 请定期点击后台右上角“导出备份”，并把 ZIP 复制到另一块磁盘。
 
+## 发布到 GitHub 和 Cloudflare Pages
+
+1. 在后台完成文章并点击“发布文章”。
+2. 点击顶部“发布到静态网站”。后台只会导出已发布文章和实际引用的本机图片。
+3. 在项目根目录执行弹窗给出的命令：
+
+```powershell
+git add public/news-data
+git commit -m "content: update news"
+git push
+```
+
+Cloudflare Pages 会在收到 GitHub 新提交后自动构建。生产网站默认读取静态新闻文件，本机 Vite 开发环境继续读取 `http://127.0.0.1:3001` 后台接口。
+
+静态导出固定写入项目根目录下的 `public/news-data`，避免误配路径覆盖网站其他文件。
+
 ## 迁移服务器
 
 1. 在服务器安装 Node.js 22 或更高版本并复制项目。
@@ -40,6 +57,6 @@ pnpm test
 3. 执行 `pnpm install --frozen-lockfile` 与 `pnpm start`。
 4. 使用 Nginx 或 Caddy 把正式 API 域名反向代理到 `127.0.0.1:3001`，并配置 HTTPS。
 5. 在新后台建立管理员，随后恢复本机导出的 ZIP。
-6. 将网站构建变量 `VITE_NEWS_API_URL` 指向正式 API，重新构建并部署静态网站。
+6. 将网站构建变量设为 `VITE_NEWS_SOURCE=api`，并把 `VITE_NEWS_API_URL` 指向正式 API，重新构建并部署网站。
 
 `cms/` 中的旧 Strapi 当前仅作为回退保留，不参与这套后台运行。

@@ -1,4 +1,8 @@
+const NEWS_SOURCE = import.meta.env.VITE_NEWS_SOURCE || (import.meta.env.DEV ? 'api' : 'static')
 const NEWS_API_URL = (import.meta.env.VITE_NEWS_API_URL || 'http://127.0.0.1:3001').replace(/\/$/, '')
+const STATIC_NEWS_URL = '/news-data/articles.json'
+
+let staticNewsPromise
 
 function normalizeRelation(value) {
   return value?.data ?? value ?? null
@@ -43,7 +47,37 @@ async function request(path, params, signal) {
   return response.json()
 }
 
+async function loadStaticNews(signal) {
+  if (!staticNewsPromise) {
+    staticNewsPromise = fetch(STATIC_NEWS_URL, {
+      headers: { Accept: 'application/json' },
+      cache: 'no-cache',
+    }).then((response) => {
+      if (!response.ok) throw new Error(`Static news returned ${response.status}`)
+      return response.json()
+    }).catch((error) => {
+      staticNewsPromise = null
+      throw error
+    })
+  }
+  if (signal?.aborted) throw new DOMException('Aborted', 'AbortError')
+  const payload = await staticNewsPromise
+  if (signal?.aborted) throw new DOMException('Aborted', 'AbortError')
+  return payload
+}
+
 export async function fetchArticles(language, signal) {
+  if (NEWS_SOURCE === 'static') {
+    const payload = await loadStaticNews(signal)
+    const articles = (payload.data ?? [])
+      .filter((article) => article.language === language)
+      .map(normalizeArticle)
+    return {
+      articles,
+      pagination: { page: 1, pageSize: articles.length, pageCount: articles.length ? 1 : 0, total: articles.length },
+    }
+  }
+
   const params = createParams(language)
   params.set('pageSize', '50')
   const articles = []
@@ -65,6 +99,12 @@ export async function fetchArticles(language, signal) {
 }
 
 export async function fetchArticleBySlug(slug, language, signal) {
+  if (NEWS_SOURCE === 'static') {
+    const payload = await loadStaticNews(signal)
+    const article = (payload.data ?? []).find((entry) => entry.language === language && entry.slug === slug)
+    return article ? normalizeArticle(article) : null
+  }
+
   const params = createParams(language, slug)
   const payload = await request('/api/articles', params, signal)
   const article = payload.data?.[0]
@@ -75,5 +115,6 @@ export function mediaUrl(media) {
   const rawUrl = media?.url ?? media?.attributes?.url
   if (!rawUrl) return ''
   if (/^https?:\/\//i.test(rawUrl)) return rawUrl
+  if (NEWS_SOURCE === 'static') return rawUrl
   return `${NEWS_API_URL}${rawUrl.startsWith('/') ? '' : '/'}${rawUrl}`
 }

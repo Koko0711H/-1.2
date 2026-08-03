@@ -1,11 +1,25 @@
 import assert from 'node:assert/strict'
-import { mkdtemp, readFile, rm } from 'node:fs/promises'
+import { mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
-import { join } from 'node:path'
+import { join, resolve } from 'node:path'
 import test from 'node:test'
 import archiver from 'archiver'
 
 import { buildApp } from '../src/app.js'
+import { loadConfig } from '../src/config.js'
+
+test('static export directory cannot be redirected through environment configuration', () => {
+  const original = process.env.STATIC_EXPORT_DIR
+  process.env.STATIC_EXPORT_DIR = resolve('unrelated-site-content')
+  try {
+    const config = loadConfig()
+    assert.notEqual(config.staticExportDir, process.env.STATIC_EXPORT_DIR)
+    assert.match(config.staticExportDir.replace(/\\/g, '/'), /\/public\/news-data$/)
+  } finally {
+    if (original === undefined) delete process.env.STATIC_EXPORT_DIR
+    else process.env.STATIC_EXPORT_DIR = original
+  }
+})
 
 function sessionCookie(response) {
   const header = response.headers['set-cookie']
@@ -14,8 +28,10 @@ function sessionCookie(response) {
 
 async function createTestApp(t, overrides = {}) {
   const dataDir = await mkdtemp(join(tmpdir(), 'flydeer-news-admin-'))
+  const staticExportDir = overrides.staticExportDir || join(dataDir, 'static-news-data')
   const app = await buildApp({
     dataDir,
+    staticExportDir,
     logger: false,
     publicBaseUrl: 'http://127.0.0.1:3001',
     allowedOrigins: ['http://127.0.0.1:4173'],
@@ -27,7 +43,7 @@ async function createTestApp(t, overrides = {}) {
     await rm(dataDir, { recursive: true, force: true })
   })
 
-  return { app, dataDir }
+  return { app, dataDir, staticExportDir }
 }
 
 async function setupAdmin(app) {
@@ -200,6 +216,90 @@ test('public article list exposes stable pagination', async (t) => {
 
   const secondPage = await app.inject({ method: 'GET', url: '/api/articles?language=zh&page=2&pageSize=2' })
   assert.equal(secondPage.json().data.length, 1)
+})
+
+test('static website export includes published articles and referenced local images only', async (t) => {
+  const { app, dataDir, staticExportDir } = await createTestApp(t)
+  const cookie = await setupAdmin(app)
+  const png = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=', 'base64')
+  await writeFile(join(dataDir, 'uploads', 'fixture.png'), png)
+  await writeFile(join(dataDir, 'uploads', 'orphan.png'), png)
+
+  const published = await app.inject({
+    method: 'POST',
+    url: '/api/admin/articles',
+    headers: { cookie },
+    payload: {
+      language: 'zh',
+      title: '静态发布测试',
+      slug: 'static-export-test',
+      summary: '只导出已发布文章。',
+      coverUrl: '/uploads/fixture.png',
+      bodyHtml: '<p>正文</p><img src="/uploads/fixture.png"><img src="https://example.com/external.jpg">',
+    },
+  })
+  await app.inject({
+    method: 'POST',
+    url: `/api/admin/articles/${published.json().data.id}/publish`,
+    headers: { cookie },
+  })
+  await app.inject({
+    method: 'POST',
+    url: '/api/admin/articles',
+    headers: { cookie },
+    payload: {
+      language: 'zh',
+      title: '不应导出的草稿',
+      slug: 'draft-must-stay-private',
+      bodyHtml: '<p>草稿</p>',
+    },
+  })
+
+  const exported = await app.inject({
+    method: 'POST',
+    url: '/api/admin/static-export',
+    headers: { cookie },
+  })
+  assert.equal(exported.statusCode, 200)
+  assert.deepEqual(exported.json().data, {
+    articles: 1,
+    images: 1,
+    path: 'public/news-data',
+  })
+
+  const payload = JSON.parse(await readFile(join(staticExportDir, 'articles.json'), 'utf8'))
+  assert.equal(payload.data.length, 1)
+  assert.equal(payload.data[0].slug, 'static-export-test')
+  assert.equal(payload.data[0].coverUrl, '/news-data/uploads/fixture.png')
+  assert.match(payload.data[0].bodyHtml, /src="\/news-data\/uploads\/fixture\.png"/)
+  assert.match(payload.data[0].bodyHtml, /https:\/\/example\.com\/external\.jpg/)
+  assert.deepEqual(await readdir(join(staticExportDir, 'uploads')), ['fixture.png'])
+
+  const stableExport = await readFile(join(staticExportDir, 'articles.json'), 'utf8')
+  const missingImageArticle = await app.inject({
+    method: 'POST',
+    url: '/api/admin/articles',
+    headers: { cookie },
+    payload: {
+      language: 'zh',
+      title: '缺失图片测试',
+      slug: 'missing-static-image',
+      coverUrl: '/uploads/missing.png',
+      bodyHtml: '<p>正文</p>',
+    },
+  })
+  await app.inject({
+    method: 'POST',
+    url: `/api/admin/articles/${missingImageArticle.json().data.id}/publish`,
+    headers: { cookie },
+  })
+  const failedExport = await app.inject({
+    method: 'POST',
+    url: '/api/admin/static-export',
+    headers: { cookie },
+  })
+  assert.equal(failedExport.statusCode, 409)
+  assert.equal(await readFile(join(staticExportDir, 'articles.json'), 'utf8'), stableExport)
 })
 
 test('backup export refuses data beyond the configured memory limit', async (t) => {

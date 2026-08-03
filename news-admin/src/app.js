@@ -23,6 +23,7 @@ import {
   validatePassword,
   verifyPassword,
 } from './security.js'
+import { exportStaticNews } from './static-export.js'
 
 const SESSION_COOKIE = 'flydeer_admin_session'
 const IMAGE_TYPES = new Map([
@@ -463,6 +464,26 @@ export async function buildApp(overrides = {}) {
       .type('application/zip')
       .header('content-disposition', `attachment; filename="flydeer-news-${date}.zip"`)
     return reply.send(zip)
+  })
+
+  app.post('/api/admin/static-export', { preHandler: authenticate }, async (_request, reply) => {
+    const articles = db.prepare(`
+      SELECT * FROM articles
+      WHERE status = 'published'
+      ORDER BY featured DESC, published_at DESC, updated_at DESC
+    `).all().map(articleFromRow)
+    try {
+      const result = await exportStaticNews({
+        articles,
+        uploadsDir,
+        outputDir: config.staticExportDir,
+        publicBaseUrl: config.publicBaseUrl,
+      })
+      return { data: result }
+    } catch (error) {
+      if (error.code === 'STATIC_IMAGE_MISSING') return reply.code(409).send({ error: error.message })
+      throw error
+    }
   })
 
   app.post('/api/admin/restore', {
