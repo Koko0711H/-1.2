@@ -44,22 +44,22 @@ pnpm run build
 - `pnpm run lint`：检查当前源码。
 - `pnpm run build`：生成 `dist/` 生产目录。
 
-## 新闻动态子站（本机 Strapi）
+## 新闻动态子站（轻量本机后台）
 
-新闻动态是独立的 `/news/` 入口，内容由本机 Strapi 后台管理；前台通过 REST API 读取已发布文章。当前默认使用 SQLite，后续购买服务器后可将数据库切换为 PostgreSQL 并迁移导出包。
+新闻动态是独立的 `/news/` 入口，内容由项目自带的中文文章工作台管理。后台只保留日常所需功能：文章草稿/发布、中文/英文、封面与正文图片上传、栏目与标签、SEO、ZIP 备份和恢复。数据默认写入本机 SQLite，不依赖 Strapi。
 
-首次使用时复制环境模板（已有 `cms/.env` 时无需覆盖）：
+首次使用时复制环境模板：
 
 ```powershell
 Copy-Item .env.example .env
-Copy-Item cms/.env.example cms/.env
-pnpm --dir cms install --frozen-lockfile
+Copy-Item news-admin/.env.example news-admin/.env
+pnpm --dir news-admin install --frozen-lockfile
 ```
 
 启动后台（终端一）：
 
 ```powershell
-pnpm cms:dev
+pnpm news-admin:dev
 ```
 
 启动网站（终端二）：
@@ -68,12 +68,15 @@ pnpm cms:dev
 pnpm dev -- --host 127.0.0.1
 ```
 
-- 后台管理：`http://localhost:1337/admin`
+- 后台管理：`http://127.0.0.1:3001/admin/`
 - 新闻前台：`http://localhost:5173/news/?lang=zh`
-- 内容模型：文章、分类、标签；文章支持封面、富文本块、草稿/发布、中文/英文语言版本。
-- 备份：`pnpm cms:export`，备份文件写入根目录 `backups/flydeer-news.tar.gz`；迁移到新环境后使用 `pnpm cms:import`（导入会覆盖目标环境数据，请先确认）。
+- 第一次打开后台会要求建立本机管理员账户，之后直接登录即可。
+- 在后台右上角点击“导出备份”得到 ZIP；迁移到服务器后，在新后台点击“恢复备份”即可恢复文章和图片。
+- 运行验证：`pnpm news-admin:test`。
 
-服务器部署时，把 `cms/.env` 中的 `DATABASE_CLIENT` 改为 `postgres`，填写 PostgreSQL 连接参数；另复制根目录 `.env.example` 为 `.env`，将其中的 `VITE_STRAPI_URL` 指向正式 API 地址，再执行 `pnpm run build`。
+服务器部署时运行同一个 `news-admin` Node 服务，并通过 Nginx/Caddy 提供 HTTPS；把根目录 `.env` 中的 `VITE_NEWS_API_URL` 指向正式 API 地址后重新构建网站。低频企业新闻可继续使用 SQLite；需要多人高并发编辑时再增加 PostgreSQL 适配。
+
+原 `cms/` Strapi 目录暂时保留作回退，不再是新闻前台的默认数据源；确认新后台长期稳定后可另行归档。
 
 项目只保留 `pnpm-lock.yaml`；不要提交 `node_modules/`、`dist/`、本地快照、压缩包或历史素材目录。
 
@@ -84,7 +87,7 @@ pnpm dev -- --host 127.0.0.1
 - 根目录：项目根目录
 - 依赖锁文件：`pnpm-lock.yaml`
 
-Cloudflare Pages 只需要部署本项目构建出的 `dist`，不再分别配置主站和子站域名。当前统一构建会生成 `dist/index.html`、`dist/about/index.html` 和 5 个产品入口目录。2026-07-31 的生产构建共 161 个文件、约 95.26 MiB，最大单文件约 6.39 MiB，低于 Cloudflare Pages 的 25 MiB 单文件限制。
+Cloudflare Pages 只需要部署本项目构建出的 `dist`，不再分别配置主站和子站域名。当前统一构建会生成 `dist/index.html`、`dist/about/index.html`、`dist/news/index.html` 和 5 个产品入口目录。新闻后台不能部署在纯静态 Pages 上，需要运行在支持 Node.js 和持久磁盘的服务器中。
 
 ## 关键文件
 
@@ -98,6 +101,8 @@ Cloudflare Pages 只需要部署本项目构建出的 `dist`，不再分别配�
 - `src/components/Cases.jsx`：项目案例曲线与滚动插入效果。
 - `src/components/Contact.jsx`：醒目的电话、邮箱和公司信息。
 - `products/<slug>/`：各产品 3D 展厅的独立入口、组件和样式。
+- `news/`：新闻列表与文章详情前台。
+- `news-admin/`：轻量新闻后台、SQLite 数据库接口和中文文章工作台。
 - `public/product-assets/<slug>/`：按产品隔离的模型与图片；`public/product-assets/shared/` 为共享模型依赖。
 - `public/about/`：关于我们静态页面及其同源资源。
 - `scripts/check-video-assets.mjs`：视频完整性检查。

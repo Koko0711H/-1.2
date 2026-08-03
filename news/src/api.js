@@ -1,4 +1,4 @@
-const STRAPI_URL = (import.meta.env.VITE_STRAPI_URL || 'http://localhost:1337').replace(/\/$/, '')
+const NEWS_API_URL = (import.meta.env.VITE_NEWS_API_URL || 'http://127.0.0.1:3001').replace(/\/$/, '')
 
 function normalizeRelation(value) {
   return value?.data ?? value ?? null
@@ -6,8 +6,11 @@ function normalizeRelation(value) {
 
 function normalizeArticle(entry) {
   const fields = entry?.attributes ?? entry ?? {}
-  const cover = normalizeRelation(fields.cover)
-  const category = normalizeRelation(fields.category)
+  const cover = normalizeRelation(fields.cover) ?? (fields.coverUrl ? { url: fields.coverUrl } : null)
+  const category = normalizeRelation(fields.category) ?? (fields.categoryName ? {
+    name: fields.categoryName,
+    slug: fields.categorySlug,
+  } : null)
   const tags = normalizeRelation(fields.tags)
 
   return {
@@ -16,22 +19,19 @@ function normalizeArticle(entry) {
     documentId: entry?.documentId ?? fields.documentId,
     cover,
     category,
-    tags: Array.isArray(tags) ? tags : [],
+    tags: Array.isArray(tags) ? tags.map((tag) => typeof tag === 'string' ? { name: tag } : tag) : [],
   }
 }
 
-function createParams(language) {
+function createParams(language, slug) {
   const params = new URLSearchParams()
-  params.set('locale', language)
-  params.set('status', 'published')
-  params.set('populate[cover]', 'true')
-  params.set('populate[category]', 'true')
-  params.set('populate[tags]', 'true')
+  params.set('language', language)
+  if (slug) params.set('slug', slug)
   return params
 }
 
 async function request(path, params, signal) {
-  const response = await fetch(`${STRAPI_URL}${path}?${params.toString()}`, {
+  const response = await fetch(`${NEWS_API_URL}${path}?${params.toString()}`, {
     headers: { Accept: 'application/json' },
     signal,
   })
@@ -45,21 +45,27 @@ async function request(path, params, signal) {
 
 export async function fetchArticles(language, signal) {
   const params = createParams(language)
-  params.set('sort[0]', 'featured:desc')
-  params.set('sort[1]', 'publishedAt:desc')
-  params.set('pagination[pageSize]', '50')
-  const payload = await request('/api/articles', params, signal)
+  params.set('pageSize', '50')
+  const articles = []
+  let page = 1
+  let pagination = null
+
+  do {
+    params.set('page', String(page))
+    const payload = await request('/api/articles', params, signal)
+    articles.push(...(payload.data ?? []).map(normalizeArticle))
+    pagination = payload.meta?.pagination ?? null
+    page += 1
+  } while (pagination && page <= pagination.pageCount)
 
   return {
-    articles: (payload.data ?? []).map(normalizeArticle),
-    pagination: payload.meta?.pagination ?? null,
+    articles,
+    pagination,
   }
 }
 
 export async function fetchArticleBySlug(slug, language, signal) {
-  const params = createParams(language)
-  params.set('filters[slug][$eq]', slug)
-  params.set('pagination[pageSize]', '1')
+  const params = createParams(language, slug)
   const payload = await request('/api/articles', params, signal)
   const article = payload.data?.[0]
   return article ? normalizeArticle(article) : null
@@ -69,5 +75,5 @@ export function mediaUrl(media) {
   const rawUrl = media?.url ?? media?.attributes?.url
   if (!rawUrl) return ''
   if (/^https?:\/\//i.test(rawUrl)) return rawUrl
-  return `${STRAPI_URL}${rawUrl.startsWith('/') ? '' : '/'}${rawUrl}`
+  return `${NEWS_API_URL}${rawUrl.startsWith('/') ? '' : '/'}${rawUrl}`
 }

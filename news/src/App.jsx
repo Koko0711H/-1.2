@@ -348,9 +348,14 @@ function ArticleDetail({ slug, lang }) {
         {cover && <figure className="news-article-cover"><img src={cover} alt={article.cover?.alternativeText ?? article.title} /></figure>}
         <div className="news-article-layout">
           <aside><span>FLYDEER / KNOWLEDGE</span><strong>{article.author ?? 'FLYDEER POWER'}</strong><i /></aside>
-          <div className="news-article-body"><Blocks blocks={article.body} />{article.sourceName && <p className="news-source">{t.source}：{article.sourceUrl ? <a href={article.sourceUrl} target="_blank" rel="noreferrer">{article.sourceName}</a> : article.sourceName}</p>}</div>
+          <div className="news-article-body">
+            {article.bodyHtml
+              ? <div className="news-prose" dangerouslySetInnerHTML={{ __html: article.bodyHtml }} />
+              : <Blocks blocks={article.body} />}
+            {article.sourceName && <p className="news-source">{t.source}：{article.sourceUrl ? <a href={article.sourceUrl} target="_blank" rel="noreferrer">{article.sourceName}</a> : article.sourceName}</p>}
+          </div>
         </div>
-        {article.tags?.length > 0 && <div className="news-tags">{article.tags.map((tag) => <span key={tag.documentId ?? tag.id}>{tag.name}</span>)}</div>}
+        {article.tags?.length > 0 && <div className="news-tags">{article.tags.map((tag) => <span key={tag.documentId ?? tag.id ?? tag.name}>{tag.name}</span>)}</div>}
       </article>
       <section className="news-detail-cta">
         <div><p>PROJECT SUPPORT</p><h2>{t.relatedCta}</h2><span>{t.relatedBody}</span></div>

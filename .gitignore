@@ -25,6 +25,13 @@ cms/*.tar.gz
 cms/*.tar.gz.enc
 backups/
 
+# Lightweight local news admin runtime data and secrets
+news-admin/.env
+news-admin/.data/*
+!news-admin/.data/.gitkeep
+news-admin/.qa-data/
+news-admin/*.zip
+
 # Local design archives and generated working material
 .codex-snapshots/
 .media/

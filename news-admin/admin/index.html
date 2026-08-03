@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light" />
+    <title>深柴能源 · 文章工作台</title>
+    <link rel="stylesheet" href="/admin/styles.css" />
+  </head>
+  <body>
+    <div class="signal-line" aria-hidden="true"></div>
+
+    <main id="authView" class="auth-view">
+      <section class="auth-card" aria-labelledby="authTitle">
+        <div class="brand-lockup">
+          <span class="brand-en">FlyDeer</span>
+          <span class="brand-cn">深柴能源</span>
+        </div>
+        <p class="eyebrow">NEWSROOM / LOCAL CMS</p>
+        <h1 id="authTitle">文章工作台</h1>
+        <p id="authLead" class="auth-lead">正在检查本机后台状态…</p>
+
+        <form id="authForm" class="auth-form" hidden>
+          <label>
+            <span>管理员邮箱</span>
+            <input id="authEmail" name="email" type="email" autocomplete="username" required />
+          </label>
+          <label>
+            <span>密码</span>
+            <input id="authPassword" name="password" type="password" autocomplete="current-password" required />
+          </label>
+          <p id="passwordHint" class="form-hint" hidden>至少 10 位，包含大写字母、小写字母和数字。</p>
+          <button id="authSubmit" class="button button-primary" type="submit">进入工作台</button>
+        </form>
+        <p id="authMessage" class="message" role="status"></p>
+      </section>
+    </main>
+
+    <div id="workspace" class="workspace" hidden>
+      <header class="topbar">
+        <div class="topbar-brand">
+          <span class="brand-en">FlyDeer</span>
+          <span class="brand-cn">深柴能源</span>
+          <span class="topbar-divider"></span>
+          <span class="topbar-title">文章工作台</span>
+        </div>
+        <div class="topbar-actions">
+          <span id="saveState" class="save-state">尚未编辑</span>
+          <button id="backupButton" class="button button-quiet" type="button">导出备份</button>
+          <label class="button button-quiet file-button">
+            恢复备份
+            <input id="restoreInput" type="file" accept=".zip,application/zip" />
+          </label>
+          <button id="logoutButton" class="icon-button" type="button" aria-label="退出登录" title="退出登录">↗</button>
+        </div>
+      </header>
+
+      <div class="work-grid">
+        <aside class="article-rail">
+          <div class="rail-heading">
+            <div>
+              <p class="eyebrow">CONTENT INDEX</p>
+              <h2>文章</h2>
+            </div>
+            <button id="newArticleButton" class="new-button" type="button" aria-label="新建文章">＋</button>
+          </div>
+          <div class="rail-filters" role="group" aria-label="文章筛选">
+            <button class="filter-chip active" data-filter="all" type="button">全部</button>
+            <button class="filter-chip" data-filter="draft" type="button">草稿</button>
+            <button class="filter-chip" data-filter="published" type="button">已发布</button>
+          </div>
+          <div id="articleList" class="article-list" aria-live="polite"></div>
+          <div class="rail-footer">
+            <span id="articleCount">0 篇文章</span>
+            <span>数据保存在本机</span>
+          </div>
+        </aside>
+
+        <section class="editor-panel">
+          <div id="emptyEditor" class="empty-editor">
+            <span class="empty-index">01</span>
+            <h2>从一篇好文章开始</h2>
+            <p>新建文章，填写标题与正文。保存为草稿后确认内容，再一键发布到网站新闻中心。</p>
+            <button id="emptyNewButton" class="button button-primary" type="button">新建第一篇文章</button>
+          </div>
+
+          <form id="editorForm" class="editor-form" hidden>
+            <div class="editor-head">
+              <div class="editor-meta-line">
+                <span id="articleNumber">ARTICLE / NEW</span>
+                <span id="articleStatus" class="status-badge draft">草稿</span>
+              </div>
+              <div class="editor-actions">
+                <button id="previewButton" class="button button-quiet" type="button">网站预览</button>
+                <button id="deleteButton" class="button button-danger-quiet" type="button">删除</button>
+                <button id="saveButton" class="button button-secondary" type="submit">保存草稿</button>
+                <button id="publishButton" class="button button-primary" type="button">发布文章</button>
+              </div>
+            </div>
+
+            <div class="editor-scroll">
+              <div class="language-row">
+                <label class="compact-field">
+                  <span>语言</span>
+                  <select id="language" name="language">
+                    <option value="zh">中文</option>
+                    <option value="en">English</option>
+                  </select>
+                </label>
+                <label class="feature-toggle">
+                  <input id="featured" name="featured" type="checkbox" />
+                  <span>设为推荐文章</span>
+                </label>
+              </div>
+
+              <label class="title-field">
+                <span class="sr-only">文章标题</span>
+                <textarea id="title" name="title" rows="2" maxlength="160" placeholder="输入文章标题" required></textarea>
+              </label>
+
+              <label class="summary-field field-block">
+                <span>内容摘要</span>
+                <textarea id="summary" name="summary" rows="3" maxlength="500" placeholder="用两三句话说明读者能从本文获得什么"></textarea>
+              </label>
+
+              <section class="cover-section">
+                <div class="section-label">
+                  <span>封面图片</span>
+                  <small>建议 16:9，JPG / PNG / WebP，最大 10MB</small>
+                </div>
+                <div id="coverDrop" class="cover-drop">
+                  <img id="coverPreview" alt="文章封面预览" hidden />
+                  <div id="coverEmpty" class="cover-empty">
+                    <span class="cover-mark">IMAGE / 16:9</span>
+                    <strong>上传文章封面</strong>
+                    <span>点击选择图片，也可直接拖入此处</span>
+                  </div>
+                  <input id="coverInput" type="file" accept="image/jpeg,image/png,image/webp,image/gif" />
+                  <input id="coverUrl" name="coverUrl" type="hidden" />
+                </div>
+              </section>
+
+              <section class="content-section">
+                <div class="section-label">
+                  <span>文章正文</span>
+                  <small>图片会自动上传并插入正文</small>
+                </div>
+                <div class="editor-toolbar" role="toolbar" aria-label="正文格式">
+                  <button type="button" data-command="formatBlock" data-value="p">正文</button>
+                  <button type="button" data-command="formatBlock" data-value="h2">标题 2</button>
+                  <button type="button" data-command="formatBlock" data-value="h3">标题 3</button>
+                  <span class="toolbar-divider"></span>
+                  <button type="button" data-command="bold"><strong>B</strong></button>
+                  <button type="button" data-command="italic"><em>I</em></button>
+                  <button type="button" data-command="insertUnorderedList">列表</button>
+                  <button type="button" data-command="formatBlock" data-value="blockquote">引用</button>
+                  <button id="linkButton" type="button">链接</button>
+                  <label class="toolbar-upload">
+                    插入图片
+                    <input id="bodyImageInput" type="file" accept="image/jpeg,image/png,image/webp,image/gif" />
+                  </label>
+                </div>
+                <div id="bodyEditor" class="body-editor" contenteditable="true" data-placeholder="从这里开始撰写正文…"></div>
+              </section>
+
+              <div class="details-grid">
+                <label><span>文章链接标识</span><input id="slug" name="slug" type="text" maxlength="120" placeholder="how-to-size-a-generator" /></label>
+                <label><span>栏目</span><input id="categoryName" name="categoryName" type="text" maxlength="80" placeholder="发电机组基础知识" /></label>
+                <label><span>标签</span><input id="tags" name="tags" type="text" placeholder="功率选型, kVA, 备用电源" /></label>
+                <label><span>作者</span><input id="author" name="author" type="text" maxlength="80" placeholder="深柴能源技术团队" /></label>
+                <label><span>预计阅读</span><div class="input-unit"><input id="readingTime" name="readingTime" type="number" min="1" max="120" value="5" /><span>分钟</span></div></label>
+              </div>
+
+              <details class="seo-panel">
+                <summary>搜索引擎设置 <span>SEO</span></summary>
+                <div class="details-grid seo-grid">
+                  <label><span>SEO 标题</span><input id="seoTitle" name="seoTitle" type="text" maxlength="180" /></label>
+                  <label><span>SEO 描述</span><textarea id="seoDescription" name="seoDescription" rows="3" maxlength="320"></textarea></label>
+                </div>
+              </details>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="/admin/app.js"></script>
+  </body>
+</html>
