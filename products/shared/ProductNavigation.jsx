@@ -93,7 +93,10 @@ export default function ProductNavigation({ lang, setLang, t, localize }) {
           <button type="button" className={`lang-btn${lang === "zh" ? " active" : ""}`} aria-pressed={lang === "zh"} onClick={() => setLang("zh")}>中文</button>
           <button type="button" className={`lang-btn${lang === "en" ? " active" : ""}`} aria-pressed={lang === "en"} onClick={() => setLang("en")}>English</button>
           <SocialLinks localize={localize} />
-          <a className="quote-btn" href={localize("/#contact")}><QuoteIcon />{lang === "zh" ? "获取报价" : "Get Quote"}</a>
+          <a className="quote-btn" href={localize("/#contact")} aria-label={lang === "zh" ? "获取报价" : "Get Quote"}>
+            <QuoteIcon />
+            <span className="quote-btn-label">{lang === "zh" ? "获取报价" : "Get Quote"}</span>
+          </a>
         </div>
         <button
           type="button"
