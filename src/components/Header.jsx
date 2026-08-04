@@ -70,7 +70,7 @@ function Header() {
             { key: 'navHome', action: 'top' },
             { key: 'navProducts', action: 'products' },
             { key: 'navIndustry', href: '/products/open-frame-500/' },
-            { key: 'navAbout', action: 'about', href: '/about/' },
+            { key: 'navAbout', action: 'about', href: '/about/index.html' },
             { key: 'navCases', action: 'cases' },
             { key: 'navNews', href: '/news/' },
             { key: 'navService', action: 'contact' },

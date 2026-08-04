@@ -97,7 +97,7 @@ function Header({ lang, setLang }) {
     { href: '/', label: t.home },
     { href: '/#products', label: t.products },
     { href: '/products/open-frame-500/', label: t.showroom },
-    { href: '/about/', label: t.about },
+    { href: '/about/index.html', label: t.about },
     { href: '/#cases', label: t.cases },
     { href: '/news/', label: t.news, active: true },
     { href: '/#contact', label: t.service },

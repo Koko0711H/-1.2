@@ -41,7 +41,7 @@ function About() {
                 <h3>{t('aboutH3')}</h3>
                 <p>{t('aboutP1')}</p>
                 <p>{t('aboutP2')}</p>
-                <a className="about-page-btn" href={withLanguage('/about/', lang)}>
+                <a className="about-page-btn" href={withLanguage('/about/index.html', lang)}>
                   {t('aboutPageBtn')}
                 </a>
               </div>

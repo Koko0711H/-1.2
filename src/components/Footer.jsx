@@ -27,7 +27,7 @@ function Footer() {
         <div className="footer-col">
           <h4>{t('footerAbout')}</h4>
           <ul>
-            <li><a href={withLanguage('/about/', lang)}>{t('footerAboutLink1')}</a></li>
+            <li><a href={withLanguage('/about/index.html', lang)}>{t('footerAboutLink1')}</a></li>
             <li><a href="#advantages">{t('footerAboutLink2')}</a></li>
             <li><a href="#cases">{t('footerAboutLink3')}</a></li>
             <li><a href="#contact">{t('footerAboutLink4')}</a></li>
