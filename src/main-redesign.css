@@ -116,7 +116,7 @@
 .main-redesign .products-explore-section {
   z-index: 4;
   max-width: none;
-  margin: calc(-1 * var(--qualification-cover-depth)) 0 0;
+  margin: 0;
   padding: 132px 4.5vw 64px;
   overflow: clip;
   color: var(--sc-ink);
@@ -943,9 +943,9 @@
 }
 
 .main-redesign .advantage-certifications {
-  position: sticky;
+  position: relative;
   z-index: 1;
-  top: clamp(88px, 9vh, 112px);
+  top: auto;
   width: 100%;
   margin: 0;
   padding: 0;
@@ -954,7 +954,7 @@
 
 .main-redesign .advantage-certifications-stage {
   width: min(1320px, 100%);
-  height: calc(var(--qualification-panel-depth) + var(--qualification-cover-travel) + 32px);
+  height: auto;
   margin: 96px auto 0;
   padding: 32px 0 0;
   box-sizing: border-box;
@@ -1036,14 +1036,12 @@
 }
 
 .main-redesign .customer-review-content {
-  position: relative;
-  height: 370px;
-  overflow: hidden;
+  height: auto;
+  overflow: visible;
 }
 
 .main-redesign .customer-reviews-grid {
-  position: absolute;
-  inset: 0;
+  position: static;
 }
 
 .main-redesign .customer-review-stars {
@@ -1056,22 +1054,17 @@
 
 .main-redesign .customer-reviews-grid {
   display: grid;
-  grid-template-columns: none;
-  grid-template-rows: repeat(2, minmax(0, 1fr));
-  grid-auto-flow: column;
-  grid-auto-columns: calc((100% - 36px) / 4);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-flow: row;
   gap: 12px;
-  padding-bottom: 6px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(139, 183, 223, 0.4) transparent;
+  overflow: visible;
 }
 
 .main-redesign .customer-review-card {
   display: grid;
   grid-template-rows: auto 1fr auto;
   min-width: 0;
+  min-height: 178px;
   padding: 15px 16px 14px;
   overflow: hidden;
   background: linear-gradient(150deg, rgba(15, 51, 88, 0.86), rgba(5, 24, 48, 0.94));
@@ -1079,7 +1072,6 @@
   border-radius: 12px;
   box-shadow: 0 14px 28px rgba(0, 8, 24, 0.18);
   transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.35s ease;
-  scroll-snap-align: start;
 }
 
 .main-redesign .customer-review-card:hover {
@@ -1189,12 +1181,11 @@
   }
 
   .main-redesign .customer-review-content {
-    height: 390px;
+    height: auto;
   }
 
   .main-redesign .customer-reviews-grid {
-    grid-auto-columns: minmax(300px, 42vw);
-    padding-right: 1px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -1213,22 +1204,16 @@
   }
 
   .main-redesign .customer-review-content {
-    height: 320px;
+    height: auto;
   }
 
   .main-redesign .customer-reviews-grid {
-    width: calc(100% + 6vw);
-    grid-template-rows: minmax(0, 1fr);
-    grid-auto-columns: min(82vw, 330px);
-    padding-right: 6vw;
-    scrollbar-width: none;
-  }
-
-  .main-redesign .customer-reviews-grid::-webkit-scrollbar {
-    display: none;
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .main-redesign .customer-review-card {
+    min-height: 250px;
     padding: 20px 18px 18px;
   }
 
