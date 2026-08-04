@@ -7,6 +7,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js"
 import "./App.css"
 import { getInitialLanguage, syncLanguageToUrl, withLanguage } from "./languageRouting"
 import ProductNavigation from "../../shared/ProductNavigation"
+import { PRODUCT_SITES, ProductBrowseMenu } from "../../shared/ProductBrowseMenu"
 
 // Error display for debugging
 window.addEventListener("error", (e) => {
@@ -371,14 +372,6 @@ function Navbar() {
 }
 
 
-const PRODUCT_SITES = [
-  { label: "静音型发电机组", url: "/products/silent/" },
-  { label: "开架型发电机组", url: "/products/open-frame-1200/" },
-  { label: "开架型发电机组（小）", url: "/products/open-frame-500/" },
-  { label: "移动拖车式发电机组", url: "/products/mobile-trailer/" },
-  { label: "高压配电系统", url: "/products/high-voltage/" },
-]
-
 function ProductSwitcher({ hidden }) {
   const [open, setOpen] = useState(false)
   const { lang } = useLang()
@@ -408,7 +401,7 @@ function ProductSwitcher({ hidden }) {
                 aria-current={isCurrent ? "page" : undefined}
                 onClick={() => setOpen(false)}
               >
-                {site.label}
+                {lang === "zh" ? site.label : site.labelEn}
               </a>
             )
           })}
@@ -452,6 +445,7 @@ function InquiryFooter({ visible }) {
           <a className="inquiry-secondary" href={withLanguage("/#products", lang)} tabIndex={visible ? 0 : -1}>
             {zh ? "返回产品中心" : "Explore Products"}
           </a>
+          <ProductBrowseMenu lang={lang} localize={(href) => withLanguage(href, lang)} visible={visible} />
         </div>
       </div>
       <footer className="inquiry-site-footer">

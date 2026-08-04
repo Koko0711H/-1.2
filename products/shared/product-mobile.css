@@ -4,6 +4,125 @@
   display: none;
 }
 
+.inquiry-product-browser {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.inquiry-browse-toggle {
+  min-height: 46px;
+  padding: 0 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.52);
+  border-radius: 4px;
+  color: #fff;
+  background: rgba(4, 23, 45, 0.34);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.inquiry-browse-toggle:hover,
+.inquiry-browse-toggle[aria-expanded="true"] {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.86);
+}
+
+.inquiry-browse-toggle:focus-visible,
+.inquiry-browse-menu a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+.inquiry-browse-arrow {
+  font-size: 18px;
+  line-height: 1;
+  transition: transform 0.25s ease;
+}
+
+.inquiry-product-browser.is-open .inquiry-browse-arrow {
+  transform: rotate(180deg);
+}
+
+.inquiry-browse-menu {
+  position: absolute;
+  z-index: 20;
+  bottom: calc(100% + 12px);
+  left: 0;
+  width: min(286px, calc(100vw - 48px));
+  padding: 8px;
+  display: grid;
+  gap: 2px;
+  border: 1px solid rgba(116, 162, 206, 0.46);
+  border-radius: 10px;
+  background: rgba(4, 29, 57, 0.98);
+  box-shadow: 0 22px 54px rgba(0, 0, 0, 0.42);
+  backdrop-filter: blur(18px) saturate(125%);
+  animation: inquiry-menu-in 0.2s ease-out;
+}
+
+.inquiry-browse-menu a {
+  min-height: 42px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 14px;
+  line-height: 1.35;
+  text-decoration: none;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.inquiry-browse-menu a:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.inquiry-browse-menu a.active {
+  color: #fff;
+  background: rgba(20, 67, 116, 0.72);
+}
+
+@keyframes inquiry-menu-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .inquiry-product-browser,
+  .inquiry-browse-toggle {
+    width: 100%;
+  }
+
+  .inquiry-browse-toggle {
+    min-height: 48px;
+  }
+
+  .inquiry-browse-menu {
+    right: 0;
+    left: 0;
+    width: 100%;
+    max-height: min(270px, 44dvh);
+    overflow-y: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inquiry-browse-menu {
+    animation: none;
+  }
+
+  .inquiry-browse-arrow {
+    transition: none;
+  }
+}
+
 .st-item {
   -webkit-appearance: none;
   appearance: none;
