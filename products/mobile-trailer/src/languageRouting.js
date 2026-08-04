@@ -1,5 +1,5 @@
 const SUPPORTED_LANGUAGES = new Set(['zh', 'en'])
-const LANGUAGE_STORAGE_KEY = 'flydeer-language'
+const LANGUAGE_STORAGE_KEY = 'flydeer-language-v2'
 
 export function normalizeLanguage(value, fallback = 'en') {
   return SUPPORTED_LANGUAGES.has(value) ? value : fallback

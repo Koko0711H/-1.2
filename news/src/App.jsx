@@ -370,7 +370,7 @@ function Footer({ lang }) {
 }
 
 export default function App() {
-  const [lang, setLang] = useState(() => getInitialLanguage('zh'))
+  const [lang, setLang] = useState(() => getInitialLanguage('en'))
   const slug = new URLSearchParams(window.location.search).get('slug')
 
   useEffect(() => {

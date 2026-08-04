@@ -699,7 +699,7 @@
     aboutNav?.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>setAboutMenu(false)));
     addEventListener('keydown',event=>{if(event.key==='Escape')setAboutMenu(false)});
     addEventListener('resize',()=>{if(innerWidth>900)setAboutMenu(false)});
-    const LANGUAGE_STORAGE_KEY='flydeer-language';
+    const LANGUAGE_STORAGE_KEY='flydeer-language-v2';
     const normalizeLanguage=(value,fallback='en')=>value==='zh'||value==='en'?value:fallback;
     const getInitialLanguage=()=>{
       const queryLanguage=new URLSearchParams(location.search).get('lang');
