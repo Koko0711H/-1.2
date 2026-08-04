@@ -4,6 +4,12 @@
   display: none;
 }
 
+.navbar .header-right .lang-btn {
+  min-width: 0;
+  font-family: Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+  letter-spacing: normal;
+}
+
 .inquiry-product-browser {
   position: relative;
   flex: 0 0 auto;

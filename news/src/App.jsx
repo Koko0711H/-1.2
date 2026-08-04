@@ -12,6 +12,7 @@ const copy = {
     cases: '项目案例',
     news: '新闻动态',
     service: '销售与服务',
+    getQuote: '获取报价',
     menuOpen: '打开导航菜单',
     menuClose: '关闭导航菜单',
     heroKicker: 'FLYDEER POWER / KNOWLEDGE SYSTEM',
@@ -47,6 +48,7 @@ const copy = {
     cases: 'Projects',
     news: 'News',
     service: 'Sales & Service',
+    getQuote: 'Get Quote',
     menuOpen: 'Open navigation menu',
     menuClose: 'Close navigation menu',
     heroKicker: 'FLYDEER POWER / KNOWLEDGE SYSTEM',
@@ -121,10 +123,31 @@ function Header({ lang, setLang }) {
               {item.label}
             </a>
           ))}
+          <div className="news-mobile-actions">
+            <a className="news-mobile-quote" href={withLanguage('/#contact', lang)} onClick={() => setOpen(false)}>{t.getQuote}</a>
+            <div className="news-mobile-social">
+              <a href={withLanguage('/#contact', lang)} onClick={() => setOpen(false)}>Facebook</a>
+              <a href={withLanguage('/#contact', lang)} onClick={() => setOpen(false)}>LinkedIn</a>
+              <a href={withLanguage('/#contact', lang)} onClick={() => setOpen(false)}>Douyin</a>
+            </div>
+          </div>
         </nav>
         <div className="news-header-actions">
           <button className={lang === 'zh' ? 'active' : ''} type="button" onClick={() => setLang('zh')} aria-pressed={lang === 'zh'}>中文</button>
           <button className={lang === 'en' ? 'active' : ''} type="button" onClick={() => setLang('en')} aria-pressed={lang === 'en'}>English</button>
+          <a className="news-social-icon" href={withLanguage('/#contact', lang)} aria-label="Facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
+          </a>
+          <a className="news-social-icon" href={withLanguage('/#contact', lang)} aria-label="LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" /><circle cx="4" cy="4" r="2" /></svg>
+          </a>
+          <a className="news-social-icon" href={withLanguage('/#contact', lang)} aria-label="Douyin">
+            <svg width="30" height="30" viewBox="0 0 48 48" fill="currentColor"><path d="M33.5 8.5c1.5 3 4 5 7 5.5v4.5c-2.5 0-5-1-7-3v13c0 6.5-5 11.5-11.5 11.5S10.5 35 10.5 28.5 15.5 17 22 17v4.5c-4 0-7 3-7 7s3 7 7 7 7-3 7-7V8.5h4.5z" /></svg>
+          </a>
+          <a className="news-quote-btn" href={withLanguage('/#contact', lang)}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z" /></svg>
+            {t.getQuote}
+          </a>
         </div>
         <button
           className="news-menu-toggle"

@@ -47,8 +47,10 @@
   .brand-header .header-inner .header-right .lang-btn,
   .navbar .navbar-inner .header-right .lang-btn {
     min-height: 44px;
+    min-width: 0;
     padding: 0 3px;
     font-size: 12px;
+    letter-spacing: normal;
   }
 }
 

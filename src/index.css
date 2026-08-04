@@ -598,6 +598,8 @@ select {
 
 .brand-header .lang-btn {
   appearance: none;
+  min-height: 0;
+  min-width: 0;
   background: transparent;
   border: 0;
   padding: 5px 3px 7px;
@@ -607,6 +609,7 @@ select {
   font-size: 14px;
   font-weight: 500;
   line-height: 1;
+  letter-spacing: normal;
   cursor: pointer;
   transition: color 0.25s ease, border-color 0.25s ease;
 }
@@ -637,6 +640,7 @@ select {
   background-clip: padding-box;
   transform: translateZ(0);
   font-weight: 600;
+  line-height: 1;
 }
 
 .brand-header .quote-btn:hover {
