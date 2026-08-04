@@ -64,11 +64,14 @@ const customerReviews = [
   { name: 'Hannah L.', avatar: '/customer-avatars/customer-06.webp', roleKey: 'review6Role', titleKey: 'review6Title', quoteKey: 'review6Quote' },
   { name: 'Dr. Adrian W.', avatar: '/customer-avatars/customer-07.webp', roleKey: 'review7Role', titleKey: 'review7Title', quoteKey: 'review7Quote' },
   { name: 'Grace T.', avatar: '/customer-avatars/customer-08.webp', roleKey: 'review8Role', titleKey: 'review8Title', quoteKey: 'review8Quote' },
+  { name: 'Victor H.', avatar: '/customer-avatars/customer-09.webp', roleKey: 'review9Role', titleKey: 'review9Title', quoteKey: 'review9Quote' },
+  { name: 'Natalie P.', avatar: '/customer-avatars/customer-10.webp', roleKey: 'review10Role', titleKey: 'review10Title', quoteKey: 'review10Quote' },
+  { name: 'Ryan B.', avatar: '/customer-avatars/customer-11.webp', roleKey: 'review11Role', titleKey: 'review11Title', quoteKey: 'review11Quote' },
+  { name: 'Claire N.', avatar: '/customer-avatars/customer-12.webp', roleKey: 'review12Role', titleKey: 'review12Title', quoteKey: 'review12Quote' },
 ]
 
 function Advantages() {
   const [activeIndex, setActiveIndex] = useState(0)
-  const [reviewsExpanded, setReviewsExpanded] = useState(false)
   const { t } = useLang()
   const activeTopic = evidenceTopics[activeIndex]
 
@@ -157,7 +160,7 @@ function Advantages() {
       </div>
 
       <div className="advantage-certifications-stage">
-        <div className={`advantage-certifications customer-reviews${reviewsExpanded ? ' is-expanded' : ''}`}>
+        <div className="advantage-certifications customer-reviews">
           <div className="advantage-certifications-heading">
             <div>
               <span>{t('reviewEyebrow')}</span>
@@ -165,38 +168,11 @@ function Advantages() {
             </div>
             <div className="customer-reviews-intro">
               <p>{t('reviewSub')}</p>
-              <button
-                type="button"
-                className="customer-reviews-toggle"
-                aria-expanded={reviewsExpanded}
-                aria-controls="customer-review-content"
-                onClick={() => setReviewsExpanded((current) => !current)}
-              >
-                <span>{t(reviewsExpanded ? 'reviewCollapse' : 'reviewExpand')}</span>
-                <i aria-hidden="true">{reviewsExpanded ? '−' : '+'}</i>
-              </button>
             </div>
           </div>
 
-          <div className="customer-review-content" id="customer-review-content">
-            <div className="customer-review-overview" aria-hidden={reviewsExpanded}>
-              <div className="customer-rating-score">
-                <span>{t('reviewScoreLabel')}</span>
-                <strong>5.0</strong>
-                <div className="customer-review-stars" aria-label={t('reviewFiveStars')}>★★★★★</div>
-              </div>
-              <div className="customer-rating-summary">
-                <span>AMAZON CUSTOMER REVIEWS</span>
-                <strong>{t('reviewSummary')}</strong>
-                <p>{t('reviewSummarySub')}</p>
-              </div>
-              <div className="customer-review-privacy">
-                <span>PRIVACY / 01</span>
-                <p>{t('reviewPrivacy')}</p>
-              </div>
-            </div>
-
-            <div className="customer-reviews-grid" aria-hidden={!reviewsExpanded}>
+          <div className="customer-review-content">
+            <div className="customer-reviews-grid">
               {customerReviews.map((review, index) => (
                 <article className="customer-review-card" key={review.name}>
                   <div className="customer-review-card-topline">
